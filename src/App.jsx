@@ -16,9 +16,7 @@ export default function App(){
     return (
         <BrowserRouter>
         <Routes>
-            {/*Login Page*/}
             <Route path='/' element={<LoginPage/>}></Route>
-            {/*Money Snapshot Page*/}
             <Route path='/' element={<Dashboard/>}></Route>
         </Routes>
         </BrowserRouter>
