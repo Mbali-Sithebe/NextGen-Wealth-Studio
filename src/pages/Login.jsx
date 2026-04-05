@@ -6,9 +6,18 @@ export default function Login () {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [isRegistering, setIsRegistering] = useState(false); 
 
-    const {login} = useContext(AuthContext);
+    const {login, register} = useContext(AuthContext);
     const navigate = useNavigate();
+
+    function handleSwitchToRegister() {
+        // Clear all fields and errors when switching to register form
+        setUsername("");
+        setPassword("");
+        setError("");
+        setIsRegistering(true);
+    }
 
     function handleSubmit (e) {
         e.preventDefault();  
@@ -18,7 +27,22 @@ export default function Login () {
             navigate("/Dashboard");
         }
         else {
-            setError("Invalid credentials. Please try again.")
+            alert("Invalid credentials. Please try again.");
+        }
+    }
+
+    function handleRegister (e) {
+        e.preventDefault();
+        const result = register(username, password);
+
+        if (result.success){
+            alert("Account created successfully! Please log in.");
+            setUsername("");
+            setPassword("");
+            setIsRegistering(false);
+        }
+        else {
+            alert(result.message);
         }
     }
 
@@ -38,26 +62,55 @@ export default function Login () {
             </section>
 
             {/* second column here */}
-
             <section className="formColumn">
-                <h1>Hello, Friend! Login Here</h1>
-                <p>Sign in or Create a new account, please be advice this application is free</p>
 
-                <form onSubmit={handleSubmit}>
-                    <div className="username">
-                        <label>Username</label>
-                        <input type="text" onChange={(e) => setUsername(e.target.value)}/>
-                    </div>
+                {/* Switches heading depending on if user is registering or logging in */}
+                <h1>{isRegistering ? "Create Your Account" : "Hello, Friend! Login Here"}</h1>
+                <p>{isRegistering ? "Fill in your details to create a new account" : 
+                "Sign in or create a new account, please be advised this application is free"}</p>
 
-                    <div className="password">
-                        <label>Password</label>
-                        <input type="password" onChange={(e) => setPassword(e.target.value)}/>
-                    </div>
+                {/* Switches between login and register form depending on isRegistering state */}
+                {isRegistering ? (
 
-                    <p>Update your login credentials</p>
-                    {error && <p style={{color: "red"}}>{error}</p>}
-                    <button type="submit">Log in</button>
-                </form>
+                    /* Register Form - no link, just form and button */
+                    <form onSubmit={handleRegister}>
+                        <div className="username">
+                            <label>Username</label>
+                            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                        </div>
+
+                        <div className="password">
+                            <label>Password</label>
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        </div>
+
+                        <button type="submit">Create Account</button>
+                    </form>
+
+                ) : (
+
+                    /* Login Form */
+                    <form onSubmit={handleSubmit}>
+                        <div className="username">
+                            <label>Username</label>
+                            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                        </div>
+
+                        <div className="password">
+                            <label>Password</label>
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        </div>
+
+                        {/* Link to switch to register form - clears all fields and errors */}
+                        <p onClick={handleSwitchToRegister} style={{cursor: "pointer", 
+                            textDecoration: "underline"}}>
+                            New user? Create an account here
+                        </p>
+
+                        <button type="submit">Log in</button>
+                    </form>
+                )}
+
             </section>
         </main>
     )
