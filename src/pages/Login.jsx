@@ -71,8 +71,6 @@ export default function Login () {
 
                 {/* Switches between login and register form depending on isRegistering state */}
                 {isRegistering ? (
-
-                    /* Register Form - no link, just form and button */
                     <form onSubmit={handleRegister}>
                         <div className="username">
                             <label>Username</label>
