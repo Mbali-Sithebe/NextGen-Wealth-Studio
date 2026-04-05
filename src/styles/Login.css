@@ -126,3 +126,14 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+.formColumn button{
+    align-self: center;
+    margin-right: -80px; 
+    margin-bottom: -20px;
+    width: 65%; 
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
