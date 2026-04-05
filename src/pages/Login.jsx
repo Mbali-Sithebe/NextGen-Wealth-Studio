@@ -49,9 +49,9 @@ export default function Login () {
     return (
         <main className="login-page">
             <section className="introColumn">
-                {/* separate background colour here */}
+                {/* separate background colour here - first column */}
                  <header className="introContext">
-                    <img className="absa-logo" src="" alt="logo placeholder" />
+                    <img className="absa-logo" src="" alt="" />
 
                     <h1 className="welcomeText">
                         <span className="font-1">Welcome to</span>
@@ -74,12 +74,14 @@ export default function Login () {
                     <form onSubmit={handleRegister}>
                         <div className="username">
                             <label>Username</label>
-                            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                            <input type="text" value={username} onChange={(e) => 
+                            setUsername(e.target.value)}/>
                         </div>
 
                         <div className="password">
                             <label>Password</label>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                            <input type="password" value={password} onChange={(e) => 
+                            setPassword(e.target.value)}/>
                         </div>
 
                         <button type="submit">Create Account</button>
@@ -91,21 +93,25 @@ export default function Login () {
                     <form onSubmit={handleSubmit}>
                         <div className="username">
                             <label>Username</label>
-                            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                            <input type="text" value={username} onChange={(e) => 
+                            setUsername(e.target.value)}/>
                         </div>
 
                         <div className="password">
                             <label>Password</label>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                            <input type="password" value={password} onChange={(e) => 
+                            setPassword(e.target.value)}/>
                         </div>
 
                         {/* Link to switch to register form - clears all fields and errors */}
-                        <p onClick={handleSwitchToRegister} style={{cursor: "pointer", 
+                        <div className="formActions">
+                            <p onClick={handleSwitchToRegister} style={{cursor: "pointer", 
                             textDecoration: "underline"}}>
                             New user? Create an account here
-                        </p>
+                            </p>
 
-                        <button type="submit">Log in</button>
+                           <button type="submit">Log in</button>
+                        </div>
                     </form>
                 )}
 

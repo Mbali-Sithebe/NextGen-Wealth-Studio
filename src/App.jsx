@@ -5,6 +5,7 @@ import AuthContext from './context/AuthContext';
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import './App.css'
+import './styles/Login.css'
 
 // Import All Other Pages That You Will Create Above: (Money snapshot, Strategy Tracks, Simulation lab and Education hub)
 

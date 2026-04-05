@@ -1,0 +1,128 @@
+* {
+    font-family: 'Source Sans 3', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login-page {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.introColumn {
+    width: 50%;
+    height: 120%;
+    margin-top: -65px;
+    margin-left: -10px;
+    background-color: #D9D9D9;
+    display: flex;
+    align-items: center;
+   
+}
+
+.introContext {
+    padding: 70px;
+    margin-top: -145px;
+    margin-left: 80px; 
+}
+
+.formColumn {
+    width: 50%;
+    height: 100%;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 130px;
+    padding-right: 60px; 
+}
+
+.absa-logo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: #C1C1C1;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.font-1 {
+    display: block;
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.welcomeText {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 16px; 
+}
+
+.introP {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.formColumn h1 {
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.formColumn p {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.formColumn form {
+    width: 100%;
+    max-width: 400px;
+}
+
+.username, .password {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.username label, .password label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.username input, .password input {
+    padding: 16px 18px;
+    font-size: 14px;
+    border: 1px solid #C1C1C1;
+    border-radius: 3px;
+    outline: none;
+    width: 137%; 
+}
+
+.formActions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.formActions p {
+    text-align: right;
+    margin-right: -145px; 
+    margin-bottom: 70px;
+    font-size: 15px;
+}
+
+.formActions button {
+    align-self: center;
+    margin-right: -80px; 
+    width: 65%; 
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
