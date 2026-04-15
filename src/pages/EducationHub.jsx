@@ -1,12 +1,11 @@
 import React from "react";
-import Navigation from '../components/Navigation'
+import Layout from "../components/layout";
 
 export default function EducationHub(){
     return(
-        <>
-        <Navigation/>
-         <h1>Education Hub Page</h1>
-        </>
+        <Layout>
+          <h1>Education Hub Page</h1>
+        </Layout>
     )
     
 }

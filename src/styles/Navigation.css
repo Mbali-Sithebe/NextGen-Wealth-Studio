@@ -55,3 +55,12 @@
 .sidebar li:hover {
     background-color: #545454;
 }
+
+.layout {
+    display: flex;
+}
+
+.page-content {
+    flex: 1;
+    padding: 40px;
+}

@@ -1,12 +1,13 @@
 import React from "react";
-import Navigation from '../components/Navigation'
+import Layout from "../components/layout";
 
 export default function SimulationLab(){
     return(
-        <>
-        <Navigation />
+
+       <Layout>
          <h1>Simulation Lab Page</h1>
-        </>
+       </Layout>
+
     )
    
 }

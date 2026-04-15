@@ -1,13 +1,10 @@
 import React from "react";
-import Navigation from '../components/Navigation'
+import Layout from "../components/layout";
 
-
-export default function MoneySnapshot (){
+export default function MoneySnapshot() {
     return (
-        <>
-        <Navigation />
-            <h1>Money Snapshot Page</h1> 
-        </>
-       
-    )
+        <Layout>
+            <h1>Money Snapshot Page</h1>
+        </Layout>
+    );
 }
