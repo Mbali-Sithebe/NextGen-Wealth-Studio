@@ -2,33 +2,48 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthProvider } from './context/AuthContext';
 import AuthContext from './context/AuthContext';
+
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import MoneySnapshot from './pages/MoneySnapshot';
+import StrategyTracks from './pages/StrategyTracks';
+import SimulationLab from './pages/SimulationLab';
+import EducationHub from './pages/EducationHub';
 import './App.css'
 import './styles/Login.css'
 
-// Import All Other Pages That You Will Create Above: (Money snapshot, Strategy Tracks, Simulation lab and Education hub)
-
-function AppRoutes(){
-    const { authStatus } = useContext(AuthContext);
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path='/Login' element={<Login/>}/>
-                {/* Dashboard is protected - only authed users can access it */}
-                <Route path='/Dashboard' element={authStatus === "authed" ? 
-                <Dashboard/> : <Navigate to="/Login"/>}/>
-                {/* Redirect any unknown path to Login */}
-                <Route path='*' element={<Navigate to="/Login"/>}/>
-            </Routes>
-        </BrowserRouter>
-    )
-}
 
 export default function App(){
     return (
         <AuthProvider>
-            <AppRoutes/>
+            <BrowserRouter>
+                <AppRoutes/>
+            </BrowserRouter>
         </AuthProvider>
+    )
+}
+
+function AppRoutes(){
+    const { authStatus } = useContext(AuthContext);
+
+    return (
+        <Routes>
+            <Route path='/' element={<Navigate to="/login"/>}/>
+            <Route path='/login' element={<Login/>}/>
+            {/* MoneySnapshot is protected - only authed users can access the page */}
+            <Route path='/MoneySnapshot' element={authStatus === "authed" ? 
+            <MoneySnapshot/> : <Navigate to="/login"/>}/>
+            {/* Redirect any unknown user to Login */}
+            <Route path='*' element={<Navigate to="/login"/>}/>
+
+            {/*Strategy Tracks*/}
+            <Route path='/StrategyTracks' element={authStatus === "authed" ? 
+            <StrategyTracks/> : <Navigate to="/login"/>}/>
+            {/*Simulation Lab*/}
+            <Route path='/SimulationLab' element={authStatus === "authed" ? 
+            <SimulationLab/> : <Navigate to="/login"/>}/>
+            {/*Education Hub*/}
+            <Route path='/EducationHub' element={authStatus === "authed" ? 
+            <EducationHub/> : <Navigate to="/login"/>}/>
+        </Routes>
     )
 }

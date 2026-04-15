@@ -12,7 +12,7 @@ export default function Login () {
     const navigate = useNavigate();
 
     function handleSwitchToRegister() {
-        // Clear all fields and errors when switching to register form
+        // Clear your login info when switching to register form
         setUsername("");
         setPassword("");
         setError("");
@@ -24,7 +24,7 @@ export default function Login () {
         const success = login(username, password);
 
         if (success){
-            navigate("/Dashboard");
+            navigate("/MoneySnapshot");
         }
         else {
             alert("Invalid credentials. Please try again.");
@@ -64,7 +64,7 @@ export default function Login () {
             {/* second column here */}
             <section className="formColumn">
 
-                {/* Switches heading depending on if user is registering or logging in */}
+                {/* Registering user or logging in user */}
                 <h1>{isRegistering ? "Create Your Account" : "Hello, Friend! Login Here"}</h1>
                 <p>{isRegistering ? "Fill in your details to create a new account" : 
                 "Sign in or create a new account, please be advised this application is free"}</p>
