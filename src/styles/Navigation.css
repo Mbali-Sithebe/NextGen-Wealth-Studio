@@ -56,6 +56,13 @@
     background-color: #545454;
 }
 
+.footer {
+    background-color: #D9D9D9;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+}
+
 .layout {
     display: flex;
 }
@@ -63,4 +70,15 @@
 .page-content {
     flex: 1;
     padding: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100vh;
 }
