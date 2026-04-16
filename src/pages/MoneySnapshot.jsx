@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Layout from "../components/layout";
 import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 //Images Import Section
 import userProfileImg from "../images/ProfilePicture.png";
@@ -8,7 +9,8 @@ import notificationImg from "../images/active.png";
 import calendarImg from "../images/calendarTwo.png"
 
 export default function MoneySnapshot() {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     // Live date
     const today = new Date();
@@ -17,6 +19,12 @@ export default function MoneySnapshot() {
         month: "long",
         year: "numeric"
     });
+
+    // Log out and redirect to login
+    function handleLogOut() {
+        logOut();
+        navigate("/");
+    }
 
     return (
         <Layout>
@@ -27,7 +35,7 @@ export default function MoneySnapshot() {
                     </h1>
 
                     <div className="logout-profile">
-                        <button>Log Out</button>
+                        <button onClick={handleLogOut}>Log Out</button>
                         <img className="userProfile" src={userProfileImg} alt="User Profile" />
                         <img className="notification" src={notificationImg} alt="Notifications" />
                     </div>
