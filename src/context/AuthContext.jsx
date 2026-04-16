@@ -9,11 +9,11 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         const mockToken = localStorage.getItem("mockToken");
-        const displayName = localStorage.getItem("userDisplayName");
+        const username = localStorage.getItem("userDisplayName"); // renamed from displayName
 
-        if (mockToken && displayName){
+        if (mockToken && username){
             setAuthStatus("authed");
-            setUser({displayName});
+            setUser({username}); // changed from {displayName} to {username}
         }
         else {
             setAuthStatus("guest");
@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
 
         if (foundUser){
             setAuthStatus("authed");
-            setUser({displayName: username});
+            setUser({username}); // changed from {displayName: username} to {username}
             localStorage.setItem("userDisplayName", username);
             localStorage.setItem("mockToken", "abcdefghijklmnopqrstuvwxyz");
             return true;

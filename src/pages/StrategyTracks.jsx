@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/ayout";
+import Layout from "../components/layout";
 
 export default function StrategyTracks () {
     return(
