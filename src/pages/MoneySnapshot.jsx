@@ -5,6 +5,7 @@ import AuthContext from "../context/AuthContext";
 //Images Import Section
 import userProfileImg from "../images/ProfilePicture.png";
 import notificationImg from "../images/active.png";
+import calendarImg from "../images/calendarTwo.png"
 
 export default function MoneySnapshot() {
     const { user } = useContext(AuthContext);
@@ -28,7 +29,10 @@ export default function MoneySnapshot() {
             <main>
                 <section className="page-header">
                     <h1>Money Snapshot</h1>
-                    <div className="date"></div>
+                    <div className="date">
+                        <img className="calendar"src={calendarImg} alt="Calendar" />
+                        <p>16 April 2026</p>
+                    </div>
                 </section>
             </main>
            
