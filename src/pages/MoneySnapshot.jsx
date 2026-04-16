@@ -10,6 +10,14 @@ import calendarImg from "../images/calendarTwo.png"
 export default function MoneySnapshot() {
     const { user } = useContext(AuthContext);
 
+    // Live date
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    });
+
     return (
         <Layout>
             <header>
@@ -30,8 +38,8 @@ export default function MoneySnapshot() {
                 <section className="page-header">
                     <h1>Money Snapshot</h1>
                     <div className="date">
-                        <img className="calendar"src={calendarImg} alt="Calendar" />
-                        <p>16 April 2026</p>
+                        <img className="calendar" src={calendarImg} alt="Calendar" />
+                        <p>{formattedDate}</p>
                     </div>
                 </section>
             </main>
