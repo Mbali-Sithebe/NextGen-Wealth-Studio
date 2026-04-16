@@ -3,8 +3,8 @@ import Layout from "../components/layout";
 import AuthContext from "../context/AuthContext";
 
 //Images Import Section
-import userProfileImg from "../images/user.png";
-import notificationImg from "../images/notification icon.png";
+import userProfileImg from "../images/ProfilePicture.png";
+import notificationImg from "../images/active.png";
 
 export default function MoneySnapshot() {
     const { user } = useContext(AuthContext);

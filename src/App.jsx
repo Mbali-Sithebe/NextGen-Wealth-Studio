@@ -12,6 +12,7 @@ import EducationHub from './pages/EducationHub';
 import './App.css'
 import './styles/Login.css'
 import './styles/Navigation.css'
+import './styles/MoneySnapshot.css'
 
 
 export default function App(){
