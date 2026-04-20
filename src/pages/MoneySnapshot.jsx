@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Layout from "../components/layout";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 //Images Import Section
 import userProfileImg from "../images/ProfilePicture.png";
@@ -39,6 +40,13 @@ export default function MoneySnapshot() {
             net: gross - uif
         };
     }
+
+    // Pie Chart Data (MOVED HERE — FIXED CRASH ISSUE)
+    const chartData = [
+        { name: "Income", value: income || 0 },
+        { name: "Expenses", value: 2000 },   // placeholder for now
+        { name: "Savings", value: income ? income * 0.3 : 0 }
+    ];
 
     return (
         <Layout>
@@ -131,8 +139,26 @@ export default function MoneySnapshot() {
 
                     {/*Data Pie Chart*/}
                     <div className="resultData">
-                        <h1>Financial Manangement Breakdown</h1>
-                        <span className="pieChart"></span>
+                        <h1>Financial Management Breakdown</h1>
+
+                        <PieChart width={300} height={300}>
+                            <Pie
+                                data={chartData}
+                                dataKey="value"
+                                nameKey="name"
+                                cx="50%"
+                                cy="50%"
+                                outerRadius={100}
+                                label
+                            >
+                                <Cell fill="#000000" />
+                                <Cell fill="#666666" />
+                                <Cell fill="#999999" />
+                            </Pie>
+
+                            <Tooltip />
+                            <Legend />
+                        </PieChart>
                     </div>
 
                     <div className="savingGoals-Box">
