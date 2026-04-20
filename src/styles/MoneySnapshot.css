@@ -101,7 +101,7 @@ body {
     width: 450px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     border-radius: 20px;
 }
 
@@ -141,7 +141,7 @@ body {
 .incomeValues {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+   
 }
 
 /* HEADINGS (Gross / UIF / Net labels) */
@@ -164,14 +164,13 @@ body {
 .grossInputArea {
     display: flex;
     flex-direction: column;
-    gap: 10px;
     margin-top: 5px;
 }
 
 /* INPUT + SAVE BUTTON ROW */
 .incomeInputBox {
     display: flex;
-    gap: 8px;
+    gap: 5px;
 }
 
 /* INPUT FIELD */
@@ -197,12 +196,55 @@ body {
 }
 
 .resultData {
-    margin-top: 45px;
+    margin-top: 30px;
     margin-left: 10px;
 }
 
 
-/*RIGHT PANEL - SAVING GOALS + FIXED EXPENSES*/
+/* RIGHT PANEL - SAVING GOALS + FIXED EXPENSES */
+
+.financeBox-Holder {
+    display: flex;
+    align-items: flex-start;
+    margin-right: 418px;
+}
+
+/* LEFT PANEL (needed for layout balance) */
+.leftPanel {
+    flex: 2;
+}
+
+/* RIGHT PANEL */
+.rightPanel {
+    flex: 0 0 460px; 
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+/* 🔲 CARD STYLE (applies to both boxes) */
+.savingGoals-Box,
+.fixedExpenses-Box {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    border: 2px solid #686868; 
+}
+
+/* HEADINGS */
+.savingGoals-Box h1,
+.fixedExpenses-Box h1 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.balance {
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+/* INPUT SECTION */
 .goalInputBox {
     display: flex;
     gap: 8px;
@@ -211,27 +253,32 @@ body {
 
 .goalInputBox input {
     flex: 1;
-    padding: 6px;
-    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
 }
 
 .goalInputBox button {
-    padding: 6px 10px;
-    border: 1px solid #999;
-    background: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    background: #000;
+    color: #fff;
     cursor: pointer;
 }
 
+/* LIST */
 .goalList {
-    margin-top: 10px;
+    margin-top: 12px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
 }
 
+/* EACH ITEM */
 .goalItem {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
 }
