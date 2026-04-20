@@ -71,7 +71,7 @@ body {
 .date {
     display: flex;
     align-items: center; 
-    margin-top: 20px;
+    margin-top: 30px;
     margin-left: 2px;
     gap: 8px; 
 }
@@ -88,8 +88,8 @@ body {
     color: #6B7280; 
 }
 
-.financeBox-Holder{
-    margin-bottom: 30px;
+.page-header {
+    margin-bottom: 45px;
 }
 
 /* HEADER */
