@@ -52,7 +52,15 @@ export default function MoneySnapshot() {
                 </section>
 
                 {/*Financial Content*/}
-                <section className="financeBox-Holder"></section>
+                <section className="financeBox-Holder">
+                    <div className="incomeBox">
+                        <h1>Income</h1>
+                        <h2>Current Income</h2>
+                        <h3 className="balance">R0.00</h3>
+                    </div>
+
+                    <div></div>
+                </section>
             </main>
            
         </Layout>
