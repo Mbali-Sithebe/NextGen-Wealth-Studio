@@ -200,3 +200,38 @@ body {
     margin-top: 45px;
     margin-left: 10px;
 }
+
+
+/*RIGHT PANEL - SAVING GOALS + FIXED EXPENSES*/
+.goalInputBox {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.goalInputBox input {
+    flex: 1;
+    padding: 6px;
+    border: 1px solid #ccc;
+}
+
+.goalInputBox button {
+    padding: 6px 10px;
+    border: 1px solid #999;
+    background: white;
+    cursor: pointer;
+}
+
+.goalList {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.goalItem {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
