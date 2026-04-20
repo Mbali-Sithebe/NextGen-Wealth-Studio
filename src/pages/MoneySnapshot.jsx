@@ -74,7 +74,6 @@ export default function MoneySnapshot() {
                         <div className="incomeHeader">
                             <h1>Income</h1>
 
-                            {/* Plus Button */}
                             <button
                                 className="addIncomeBtn"
                                 onClick={() => setShowIncomeInput(!showIncomeInput)}

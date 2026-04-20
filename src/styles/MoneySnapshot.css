@@ -87,3 +87,111 @@ body {
     font-size: 15px;
     color: #6B7280; 
 }
+
+.financeBox-Holder{
+    margin-bottom: 30px;
+}
+
+/* HEADER */
+.incomeBox {
+    background-color: #ffffff;
+    border: 2px solid #686868;
+    margin-left: 10px;
+    padding: 20px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 20px;
+}
+
+/* HEADER: INCOME LEFT, BUTTON RIGHT */
+.incomeHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+/* TITLE */
+.incomeHeader h1 {
+    font-size: 25px;
+    font-weight: 650;
+    margin: 0;
+}
+
+
+/* + BUTTON */
+.addIncomeBtn {
+    background-color: #ffffff;
+    border: 1px solid #999;
+    border-radius: 8px;
+    color: #000;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* GROSS + UIF + NET SECTION WRAPPER */
+.incomeValues {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* HEADINGS (Gross / UIF / Net labels) */
+.incomeValues h2 {
+    font-size: 16.5px;
+    font-weight: 500;
+    margin: 0;
+    color: #333;
+}
+
+/* VALUES (R0.00 etc.) */
+.balance {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+    color: #000;
+}
+
+/* INPUT AREA WRAPPER */
+.grossInputArea {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+/* INPUT + SAVE BUTTON ROW */
+.incomeInputBox {
+    display: flex;
+    gap: 8px;
+}
+
+/* INPUT FIELD */
+.incomeInputBox input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+/* SAVE BUTTON */
+.incomeInputBox button {
+    padding: 8px 12px;
+    border: 1px solid #999;
+    background-color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* SMALL SPACING FIX BETWEEN SECTIONS */
+.incomeValues h2:not(:first-child) {
+    margin-top: 8px;
+}
