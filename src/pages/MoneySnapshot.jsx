@@ -59,7 +59,34 @@ export default function MoneySnapshot() {
                         <h3 className="balance">R0.00</h3>
                     </div>
 
-                    <div></div>
+                    {/*Data Pie Chart*/}
+                    <div className="resultData">
+                        <h1>Financial Manangement Breakdown</h1>
+                        <span className="pieChart"></span>
+                    </div>
+
+                    <div className="savingGoals-Box">
+                        <h1>Saving Goals</h1>
+                        <h2>Money Saved Balance</h2>
+                        <h3 className="balance">R0.00</h3>
+
+                        {/*Input Boxes*/}
+                        <div className="inputSections">
+                            <p>add saving goals...</p>
+                            <p>add saving goals...</p>
+                            <p>+</p>
+                        </div>
+                    </div>
+
+                    <div className="fixedExpenses-Box">
+                        <h1>Fixed Expenses</h1>
+                        <div className="addSection">
+                            <p>add your fixed expenses</p>
+                            <p>add your fixed expenses</p>
+                            <p>+</p>
+                        </div>
+                        <h3 className="balance">R0.00</h3>
+                    </div>
                 </section>
             </main>
            
