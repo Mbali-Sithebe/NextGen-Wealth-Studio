@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Layout from "../components/layout";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -6,11 +6,16 @@ import { useNavigate } from "react-router-dom";
 //Images Import Section
 import userProfileImg from "../images/ProfilePicture.png";
 import notificationImg from "../images/active.png";
-import calendarImg from "../images/calendarTwo.png"
+import calendarImg from "../images/calendarTwo.png";
 
 export default function MoneySnapshot() {
     const { user, logOut } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    // Income state
+    const [income, setIncome] = useState(null);
+    const [inputValue, setInputValue] = useState("");
+    const [showIncomeInput, setShowIncomeInput] = useState(false);
 
     // Live date
     const today = new Date();
@@ -30,8 +35,8 @@ export default function MoneySnapshot() {
         <Layout>
             <header>
                 <section className="user-Content">
-                    <h1 className="displayName">  
-                        Welcome back{user?.username ? `, ${user.username}` : ""} 
+                    <h1 className="displayName">
+                        Welcome back{user?.username ? `, ${user.username}` : ""}
                     </h1>
 
                     <div className="logout-profile">
@@ -53,10 +58,57 @@ export default function MoneySnapshot() {
 
                 {/*Financial Content*/}
                 <section className="financeBox-Holder">
+
+                    {/*Income*/}
                     <div className="incomeBox">
-                        <h1>Income</h1>
-                        <h2>Current Income</h2>
-                        <h3 className="balance">R0.00</h3>
+                        <div className="incomeHeader">
+                            <h1>Income</h1>
+
+                            {/* Plus Button */}
+                            <button
+                                className="addIncomeBtn"
+                                onClick={() => setShowIncomeInput(!showIncomeInput)}
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        {/* Display Values */}
+                        <div className="incomeValues">
+                            <h2>Gross Income</h2>
+                            <h3 className="balance">
+                                {income !== null ? `R${income}` : "R0.00"}
+                            </h3>
+
+                            <h2>After Deductions</h2>
+                            <h3 className="balance">
+                                {income !== null
+                                    ? `R${(income * 0.85).toFixed(2)}`
+                                    : "R0.00"}
+                            </h3>
+                        </div>
+
+                        {/* Input Section (hidden later with state) */}
+                        {showIncomeInput && (
+                            <div className="incomeInputBox">
+                                <input
+                                    type="number"
+                                    placeholder="Enter income amount (R)"
+                                    value={inputValue}
+                                    onChange={(e) => setInputValue(e.target.value)}
+                                />
+
+                                <button
+                                    onClick={() => {
+                                        setIncome(Number(inputValue));
+                                        setInputValue("");
+                                        setShowIncomeInput(false);
+                                    }}
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        )}
                     </div>
 
                     {/*Data Pie Chart*/}
@@ -87,9 +139,9 @@ export default function MoneySnapshot() {
                         </div>
                         <h3 className="balance">R0.00</h3>
                     </div>
+
                 </section>
             </main>
-           
         </Layout>
     );
 }
