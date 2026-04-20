@@ -73,17 +73,9 @@ export default function MoneySnapshot() {
 
                         <div className="incomeHeader">
                             <h1>Income</h1>
-
-                            {/* Plus Button */}
-                            <button
-                                className="addIncomeBtn"
-                                onClick={() => setShowIncomeInput(!showIncomeInput)}
-                            >
-                                +
-                            </button>
                         </div>
 
-                        {/* Display Values */}
+                        {/* GROSS INCOME SECTION */}
                         <div className="incomeValues">
 
                             <h2>Gross Income</h2>
@@ -91,6 +83,40 @@ export default function MoneySnapshot() {
                                 {income !== null ? `R${income}` : "R0.00"}
                             </h3>
 
+                            {/* PLUS BUTTON + INPUT UNDER GROSS INCOME */}
+                            <div className="grossInputArea">
+
+                                <button
+                                    className="addIncomeBtn"
+                                    onClick={() => setShowIncomeInput(!showIncomeInput)}
+                                >
+                                    +
+                                </button>
+
+                                {showIncomeInput && (
+                                    <div className="incomeInputBox">
+                                        <input
+                                            type="number"
+                                            placeholder="Enter income amount (R)"
+                                            value={inputValue}
+                                            onChange={(e) => setInputValue(e.target.value)}
+                                        />
+
+                                        <button
+                                            onClick={() => {
+                                                setIncome(Number(inputValue));
+                                                setInputValue("");
+                                                setShowIncomeInput(false);
+                                            }}
+                                        >
+                                            Save
+                                        </button>
+                                    </div>
+                                )}
+
+                            </div>
+
+                            {/* UIF */}
                             <h2>UIF (1%)</h2>
                             <h3 className="balance">
                                 {income !== null
@@ -98,6 +124,7 @@ export default function MoneySnapshot() {
                                     : "R0.00"}
                             </h3>
 
+                            {/* NET INCOME */}
                             <h2>After Deductions (Net Income)</h2>
                             <h3 className="balance">
                                 {income !== null
@@ -106,28 +133,6 @@ export default function MoneySnapshot() {
                             </h3>
 
                         </div>
-
-                        {/* Input Section */}
-                        {showIncomeInput && (
-                            <div className="incomeInputBox">
-                                <input
-                                    type="number"
-                                    placeholder="Enter income amount (R)"
-                                    value={inputValue}
-                                    onChange={(e) => setInputValue(e.target.value)}
-                                />
-
-                                <button
-                                    onClick={() => {
-                                        setIncome(Number(inputValue));
-                                        setInputValue("");
-                                        setShowIncomeInput(false);
-                                    }}
-                                >
-                                    Save
-                                </button>
-                            </div>
-                        )}
                     </div>
 
                     {/*Data Pie Chart*/}
