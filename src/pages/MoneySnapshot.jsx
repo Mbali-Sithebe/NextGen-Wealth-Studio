@@ -31,6 +31,15 @@ export default function MoneySnapshot() {
         navigate("/");
     }
 
+    // UIF CALCULATION (1%)
+    function calculateNetIncome(gross) {
+        const uif = gross * 0.01;
+        return {
+            uif,
+            net: gross - uif
+        };
+    }
+
     return (
         <Layout>
             <header>
@@ -61,6 +70,7 @@ export default function MoneySnapshot() {
 
                     {/*Income*/}
                     <div className="incomeBox">
+
                         <div className="incomeHeader">
                             <h1>Income</h1>
 
@@ -75,20 +85,29 @@ export default function MoneySnapshot() {
 
                         {/* Display Values */}
                         <div className="incomeValues">
+
                             <h2>Gross Income</h2>
                             <h3 className="balance">
                                 {income !== null ? `R${income}` : "R0.00"}
                             </h3>
 
-                            <h2>After Deductions</h2>
+                            <h2>UIF (1%)</h2>
                             <h3 className="balance">
                                 {income !== null
-                                    ? `R${(income * 0.85).toFixed(2)}`
+                                    ? `R${calculateNetIncome(income).uif.toFixed(2)}`
                                     : "R0.00"}
                             </h3>
+
+                            <h2>After Deductions (Net Income)</h2>
+                            <h3 className="balance">
+                                {income !== null
+                                    ? `R${calculateNetIncome(income).net.toFixed(2)}`
+                                    : "R0.00"}
+                            </h3>
+
                         </div>
 
-                        {/* Input Section (hidden later with state) */}
+                        {/* Input Section */}
                         {showIncomeInput && (
                             <div className="incomeInputBox">
                                 <input
