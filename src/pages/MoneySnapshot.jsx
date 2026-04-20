@@ -50,6 +50,9 @@ export default function MoneySnapshot() {
                         <p>{formattedDate}</p>
                     </div>
                 </section>
+
+                {/*Financial Content*/}
+                <section className="financeBox-Holder"></section>
             </main>
            
         </Layout>
