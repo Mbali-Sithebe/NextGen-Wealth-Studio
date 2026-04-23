@@ -113,6 +113,7 @@ body {
 
 .incomeHeader h1 {
     font-size: 25px;
+    padding-top: 10px;
     padding-bottom: 15px;
     font-weight: 650;
     margin: 0;
@@ -307,4 +308,46 @@ input[type="number"] {
     margin-top: 65px;
     margin-left: 5px;
     font-size: 25px;
+}
+
+/*Information Hover - EDUCATION PURPOSE SUGESTED*/
+
+.infoIcon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.infoIcon img {
+    width: 16px;  
+    height: 16px;
+    object-fit: contain;
+
+}
+
+.infoIcon .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #b14b58;
+    color: white;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    width: 180px;
+    text-align: center;
+    transition: 0.2s;
+    z-index: 999;
+
+    font-weight: normal; 
+}
+
+.infoIcon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
 }

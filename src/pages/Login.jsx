@@ -2,10 +2,13 @@ import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
+// ABSA LOGO IMPORT
+import AbsaLogo from "../images/AbsaLogo.png";
+
 export default function Login () {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+
     const [isRegistering, setIsRegistering] = useState(false); 
 
     const {login, register} = useContext(AuthContext);
@@ -15,7 +18,6 @@ export default function Login () {
         // Clear your login info when switching to register form
         setUsername("");
         setPassword("");
-        setError("");
         setIsRegistering(true);
     }
 
@@ -51,7 +53,9 @@ export default function Login () {
             <section className="introColumn">
                 {/* separate background colour here - first column */}
                  <header className="introContext">
-                    <img className="absa-logo" src="" alt="" />
+
+                    {/* ABSA LOGO */}
+                    <img className="absa-logo" src={AbsaLogo} alt="Absa Logo" />
 
                     <h1 className="welcomeText">
                         <span className="font-1">Welcome to</span>
@@ -74,14 +78,20 @@ export default function Login () {
                     <form onSubmit={handleRegister}>
                         <div className="username">
                             <label>Username</label>
-                            <input type="text" value={username} onChange={(e) => 
-                            setUsername(e.target.value)}/>
+                            <input 
+                                type="text" 
+                                value={username} 
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
                         </div>
 
                         <div className="password">
                             <label>Password</label>
-                            <input type="password" value={password} onChange={(e) => 
-                            setPassword(e.target.value)}/>
+                            <input 
+                                type="password" 
+                                value={password} 
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </div>
 
                         <button type="submit">Create Account</button>
@@ -93,21 +103,32 @@ export default function Login () {
                     <form onSubmit={handleSubmit}>
                         <div className="username">
                             <label>Username</label>
-                            <input type="text" value={username} onChange={(e) => 
-                            setUsername(e.target.value)}/>
+                            <input 
+                                type="text" 
+                                value={username} 
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
                         </div>
 
                         <div className="password">
                             <label>Password</label>
-                            <input type="password" value={password} onChange={(e) => 
-                            setPassword(e.target.value)}/>
+                            <input 
+                                type="password" 
+                                value={password} 
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </div>
 
                         {/* Link to switch to register form - clears all fields and errors */}
                         <div className="formActions">
-                            <p onClick={handleSwitchToRegister} style={{cursor: "pointer", 
-                            textDecoration: "underline"}}>
-                            New user? Create an account here
+                            <p 
+                                onClick={handleSwitchToRegister} 
+                                style={{
+                                    cursor: "pointer", 
+                                    textDecoration: "underline"
+                                }}
+                            >
+                                New user? Create an account here
                             </p>
 
                            <button type="submit">Log in</button>

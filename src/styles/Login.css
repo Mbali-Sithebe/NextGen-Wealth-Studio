@@ -16,7 +16,7 @@
     height: 120%;
     margin-top: -65px;
     margin-left: -10px;
-    background-color: #D9D9D9;
+    background-color: #640032;
     display: flex;
     align-items: center;
    
@@ -59,11 +59,13 @@
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 16px; 
+    color: #FFFFFF;
 }
 
 .introP {
     font-size: 18px;
     font-weight: 400;
+    color: #FFFFFF;
 }
 
 .formColumn h1 {

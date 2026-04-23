@@ -8,6 +8,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import userProfileImg from "../images/ProfilePicture.png";
 //import notificationImg from "../images/active.png";
 import calendarImg from "../images/calendarTwo.png";
+import InfoIconImg from "../images/info.png";
 
 export default function MoneySnapshot() {
     //1. Logout Button
@@ -101,11 +102,11 @@ export default function MoneySnapshot() {
                     <h1 className="displayUser-Name">
                         Welcome back{user?.username ? `, ${user.username}` : ""}
                     </h1>
+
                     {/*Username + Logout Button */}
                     <div className="logout-profile">
                         <button onClick={handleLogOut}>Log Out</button>
                         <img className="userProfile" src={userProfileImg} alt="User Profile" />
-                        {/*<img className="notification" src={notificationImg} alt="Notifications" />*/}
                     </div>
                 </section>
             </header>
@@ -113,22 +114,23 @@ export default function MoneySnapshot() {
             <main>
                 <section className="page-header">
                     <h1>Money Snapshot</h1>
-                     {/*Money Snapshot + Today's Date */}
+
+                    {/*Money Snapshot + Today's Date */}
                     <div className="date">
                         <img className="calendar" src={calendarImg} alt="Calendar" />
                         <p>{formattedDate}</p>
                     </div>
                 </section>
 
-                
                 <section className="financeBox-Holder">
 
                     {/* Left Panel Containers */}
                     <div className="leftPanel">
+
                         {/*User's Income Box*/}
                         <div className="incomeBox">
                             <div className="incomeHeader">
-                                <h1>Income</h1>
+                                <h1>Income Balance</h1>
                                 <button
                                     className="addIncomeBtn"
                                     onClick={() => setShowIncomeInput(!showIncomeInput)}
@@ -139,19 +141,55 @@ export default function MoneySnapshot() {
 
                             {/* Display Values (Gross Income + UIF + Income After Deductions) */}
                             <div className="incomeValues">
-                                <h2>Gross Income</h2>
+
+                                {/* EDUCATION: Gross Income */}
+                                <h2>
+                                    Gross Income
+
+                                    <span className="infoIcon">
+                                        <img src={InfoIconImg} alt="info" />
+
+                                        <span className="tooltip">
+                                            Total income before any deductions.
+                                        </span>
+                                    </span>
+                                    
+                                </h2>
+
                                 <h3 className="balance">
                                     {income !== null ? `R${income}` : "R0.00"}
                                 </h3>
 
-                                <h2>UIF (1%)</h2>
+                                {/* EDUCATION: UIF */}
+                                <h2>
+                                    UIF (1%)
+                                    <span className="infoIcon">
+                                         <img src={InfoIconImg} alt="info" />
+
+                                        <span className="tooltip">
+                                            UIF is a 1% deduction for unemployment insurance in South Africa.
+                                        </span>
+                                    </span>
+                                </h2>
+
                                 <h3 className="balance">
                                     {income !== null
                                         ? `R${calculateNetIncome(income).uif.toFixed(2)}`
                                         : "R0.00"}
                                 </h3>
 
-                                <h2>After Deductions (Net Income)</h2>
+                                {/* EDUCATION: Net Income */}
+                                <h2>
+                                    After Deductions (Net Income)
+                                    <span className="infoIcon">
+                                         <img src={InfoIconImg} alt="info" />
+
+                                        <span className="tooltip">
+                                            Your final income after deductions.
+                                        </span>
+                                    </span>
+                                </h2>
+
                                 <h3 className="balance">
                                     {income !== null
                                         ? `R${calculateNetIncome(income).net.toFixed(2)}`
@@ -190,18 +228,17 @@ export default function MoneySnapshot() {
                             <PieChart width={420} height={420}>
                                 {/*Empty Diagram of the pie*/}
                                 <Pie
-                                data={[{value: 100}]}
-                                dataKey={"value"}
-                                cx="50%"
-                                cy="50%"
-                                outerRadius={140}
-                                fill="#e0e0e0"
-                                isAnimationActive={false}
-                                stroke="none"
-                                nameKey={null}
-                                legendType="none"
+                                    data={[{ value: 100 }]}
+                                    dataKey={"value"}
+                                    cx="50%"
+                                    cy="50%"
+                                    outerRadius={140}
+                                    fill="none"
+                                    isAnimationActive={false}
+                                    stroke="#2e2d2d"
+                                    strokeWidth={2}
                                 />
-                                
+
                                 <Pie
                                     data={chartData}
                                     dataKey="value"
@@ -209,15 +246,24 @@ export default function MoneySnapshot() {
                                     cx="50%"
                                     cy="50%"
                                     outerRadius={140}
-                                    label
+                                    label={false} // FIX: removed extra labels
                                 >
                                     <Cell fill="#640032" /> {/*Income*/}
                                     <Cell fill="#DC0032" /> {/*Expenses*/}
                                     <Cell fill="#C95326" /> {/*Savings*/}
                                 </Pie>
 
-                                <Tooltip />
-                                <Legend />
+
+                                <Tooltip formatter={(value, name) => [`R${value}`, name]} />
+
+                                <Legend 
+                                    formatter={(value) => {
+                                        if (value === "Income" || value === "Expenses" || value === "Savings") {
+                                            return value;
+                                        }
+                                        return null;
+                                    }}
+                                />
                             </PieChart>
                         </div>
                     </div>
@@ -227,7 +273,19 @@ export default function MoneySnapshot() {
 
                         {/* User's Saving Goals */}
                         <div className="savingGoals-Box">
-                            <h1 className="mainHeading">Saving Goals</h1>
+                            <h1 className="mainHeading">
+                                Monthly Saving Goals
+
+                                {/* EDUCATION */}
+                                <span className="infoIcon">
+                                     <img src={InfoIconImg} alt="info" />
+
+                                    <span className="tooltip">
+                                        Saving goals help you plan future expenses like emergencies or big purchases.
+                                    </span>
+                                </span>
+                            </h1>
+
                             <h2 className="midHeading">Total Money Saved</h2>
 
                             <h3 className="balance">
@@ -273,10 +331,22 @@ export default function MoneySnapshot() {
 
                         {/* Fixed Expenses Container */}
                         <div className="fixedExpenses-Box">
-                            <h1 className="mainHeading">Fixed Expenses</h1>
+                            <h1 className="mainHeading">
+                                Fixed Expenses
+
+                                {/* EDUCATION */}
+                                <span className="infoIcon">
+                                     <img src={InfoIconImg} alt="info" />
+
+                                     
+                                    <span className="tooltip">
+                                        Fixed expenses are recurring monthly costs like rent, transport and subscriptions.
+                                    </span>
+                                </span>
+                            </h1>
+
                             <h2 className="midHeading">Monthly Enxpenses</h2>
 
-                            {/* Total Balance of Expenses */}
                             <h3 className="balance">
                                 R{expenses.reduce((sum, e) => sum + e.amount, 0).toFixed(2)}
                             </h3>
