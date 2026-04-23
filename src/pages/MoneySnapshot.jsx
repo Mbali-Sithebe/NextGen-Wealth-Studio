@@ -6,7 +6,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 //Import Images(Icons) Here
 import userProfileImg from "../images/ProfilePicture.png";
-import notificationImg from "../images/active.png";
+//import notificationImg from "../images/active.png";
 import calendarImg from "../images/calendarTwo.png";
 
 export default function MoneySnapshot() {
@@ -105,7 +105,7 @@ export default function MoneySnapshot() {
                     <div className="logout-profile">
                         <button onClick={handleLogOut}>Log Out</button>
                         <img className="userProfile" src={userProfileImg} alt="User Profile" />
-                        <img className="notification" src={notificationImg} alt="Notifications" />
+                        {/*<img className="notification" src={notificationImg} alt="Notifications" />*/}
                     </div>
                 </section>
             </header>
@@ -188,6 +188,20 @@ export default function MoneySnapshot() {
                             <h1>Financial Management Breakdown</h1>
 
                             <PieChart width={300} height={300}>
+                                {/*Empty Diagram of the pie*/}
+                                <Pie
+                                data={[{value: 100}]}
+                                dataKey={"value"}
+                                cx="50%"
+                                cy="50%"
+                                outerRadius={100}
+                                fill="#e0e0e0"
+                                isAnimationActive={false}
+                                stroke="none"
+                                nameKey={null}
+                                legendType="none"
+                                />
+                                
                                 <Pie
                                     data={chartData}
                                     dataKey="value"

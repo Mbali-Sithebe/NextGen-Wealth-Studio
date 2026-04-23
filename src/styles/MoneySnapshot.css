@@ -294,3 +294,16 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* Remove focus outline from Recharts elements */
+.recharts-wrapper:focus {
+  outline: none;
+}
+
+.recharts-sector:focus {
+  outline: none;
+}
+
+.recharts-surface:focus {
+  outline: none;
+}
