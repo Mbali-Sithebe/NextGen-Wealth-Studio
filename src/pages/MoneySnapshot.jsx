@@ -4,29 +4,30 @@ import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
-//Images Import Section
+//Import Images(Icons) Here
 import userProfileImg from "../images/ProfilePicture.png";
 import notificationImg from "../images/active.png";
 import calendarImg from "../images/calendarTwo.png";
 
 export default function MoneySnapshot() {
+    //1. Logout Button
     const { user, logOut } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    // Income state
+    //2. Income State
     const [income, setIncome] = useState(null);
     const [inputValue, setInputValue] = useState("");
     const [showIncomeInput, setShowIncomeInput] = useState(false);
 
-    // Saving Goals state (MISSING BEFORE → FIXED)
+    //3. Saving Goals State
     const [goals, setGoals] = useState([]);
     const [goalInput, setGoalInput] = useState({ name: "", amount: "" });
 
-    // Fixed Expenses state (ADDED → NOW WORKS LIKE GOALS)
+    //4.Fixed Expenses State
     const [expenses, setExpenses] = useState([]);
     const [expenseInput, setExpenseInput] = useState({ name: "", amount: "" });
 
-    // Add Goal function (MISSING BEFORE → FIXED)
+    // Adding Saving Goal (Input) Function 
     function addGoal() {
         if (goals.length >= 5) return;
         if (!goalInput.name || !goalInput.amount) return;
@@ -42,7 +43,7 @@ export default function MoneySnapshot() {
         setGoalInput({ name: "", amount: "" });
     }
 
-    // Add Expense function (NEW)
+    // Adding Expenses (Input) Function
     function addExpense() {
         if (expenses.length >= 5) return;
         if (!expenseInput.name || !expenseInput.amount) return;
@@ -58,7 +59,7 @@ export default function MoneySnapshot() {
         setExpenseInput({ name: "", amount: "" });
     }
 
-    // Live date
+    // Accurate Date (Live)
     const today = new Date();
     const formattedDate = today.toLocaleDateString("en-GB", {
         day: "numeric",
@@ -66,13 +67,13 @@ export default function MoneySnapshot() {
         year: "numeric"
     });
 
-    // Log out and redirect to login
+    // Log Out and Redirect to login
     function handleLogOut() {
         logOut();
         navigate("/");
     }
 
-    // UIF CALCULATION (1%)
+    // South Africa UIF Calculation (1%) Remove From Salary
     function calculateNetIncome(gross) {
         const uif = gross * 0.01;
         return {
@@ -81,25 +82,26 @@ export default function MoneySnapshot() {
         };
     }
 
-    // TOTALS FOR CHART (UPDATED)
+    // Updates Pie Chart Financial Data 
     const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
     const totalSavings = goals.reduce((sum, g) => sum + g.amount, 0);
 
-    // Pie Chart Data (UPDATED → NOW READS EVERYTHING)
+    // Pie Chart Data (Reads All User's Expenses)
     const chartData = [
         { name: "Income", value: income || 0 },
         { name: "Expenses", value: totalExpenses },
         { name: "Savings", value: totalSavings }
     ];
 
+    //USER INTERFACE DESIGN HERE......(INCOME, SAVING GOALS & EXPENSES)
     return (
         <Layout>
             <header>
                 <section className="user-Content">
-                    <h1 className="displayName">
+                    <h1 className="displayUser-Name">
                         Welcome back{user?.username ? `, ${user.username}` : ""}
                     </h1>
-
+                    {/*Username + Logout Button */}
                     <div className="logout-profile">
                         <button onClick={handleLogOut}>Log Out</button>
                         <img className="userProfile" src={userProfileImg} alt="User Profile" />
@@ -111,24 +113,22 @@ export default function MoneySnapshot() {
             <main>
                 <section className="page-header">
                     <h1>Money Snapshot</h1>
+                     {/*Money Snapshot + Today's Date */}
                     <div className="date">
                         <img className="calendar" src={calendarImg} alt="Calendar" />
                         <p>{formattedDate}</p>
                     </div>
                 </section>
 
-                {/*Financial Content*/}
+                
                 <section className="financeBox-Holder">
 
-                    {/* LEFT PANEL */}
+                    {/* Left Panel Containers */}
                     <div className="leftPanel">
-
-                        {/*Income*/}
+                        {/*User's Income Box*/}
                         <div className="incomeBox">
-
                             <div className="incomeHeader">
                                 <h1>Income</h1>
-
                                 <button
                                     className="addIncomeBtn"
                                     onClick={() => setShowIncomeInput(!showIncomeInput)}
@@ -137,9 +137,8 @@ export default function MoneySnapshot() {
                                 </button>
                             </div>
 
-                            {/* Display Values */}
+                            {/* Display Values (Gross Income + UIF + Income After Deductions) */}
                             <div className="incomeValues">
-
                                 <h2>Gross Income</h2>
                                 <h3 className="balance">
                                     {income !== null ? `R${income}` : "R0.00"}
@@ -166,7 +165,7 @@ export default function MoneySnapshot() {
                                 <div className="incomeInputBox">
                                     <input
                                         type="number"
-                                        placeholder="Enter income amount (R)"
+                                        placeholder="Enter Income Amount (ZAR)"
                                         value={inputValue}
                                         onChange={(e) => setInputValue(e.target.value)}
                                     />
@@ -184,7 +183,7 @@ export default function MoneySnapshot() {
                             )}
                         </div>
 
-                        {/*Data Pie Chart*/}
+                        {/*Financial Data - Pie Chart*/}
                         <div className="resultData">
                             <h1>Financial Management Breakdown</h1>
 
@@ -209,25 +208,25 @@ export default function MoneySnapshot() {
                         </div>
                     </div>
 
-                    {/* RIGHT PANEL */}
+                    {/* Right Panel Container */}
                     <div className="rightPanel">
 
-                        {/* Saving Goals */}
+                        {/* User's Saving Goals */}
                         <div className="savingGoals-Box">
-                            <h1>Saving Goals</h1>
-                            <h2>Total Saved</h2>
+                            <h1 className="mainHeading">Saving Goals</h1>
+                            <h2 className="midHeading">Total Money Saved</h2>
 
                             <h3 className="balance">
                                 R{goals.reduce((sum, g) => sum + g.amount, 0).toFixed(2)}
                             </h3>
 
-                            {/* INPUT BOX */}
+                            {/* Input (add) Section */}
                             {goals.length < 5 && (
                                 <div className="goalInputBox">
 
                                     <input
                                         type="text"
-                                        placeholder="Goal name"
+                                        placeholder="Enter Goal Name"
                                         value={goalInput.name}
                                         onChange={(e) =>
                                             setGoalInput({ ...goalInput, name: e.target.value })
@@ -236,7 +235,7 @@ export default function MoneySnapshot() {
 
                                     <input
                                         type="number"
-                                        placeholder="Amount (R)"
+                                        placeholder="Amount (ZAR)"
                                         value={goalInput.amount}
                                         onChange={(e) =>
                                             setGoalInput({ ...goalInput, amount: e.target.value })
@@ -247,7 +246,7 @@ export default function MoneySnapshot() {
                                 </div>
                             )}
 
-                            {/* LIST */}
+                            {/* List (5) */}
                             <div className="goalList">
                                 {goals.map((g, index) => (
                                     <div key={index} className="goalItem">
@@ -258,17 +257,23 @@ export default function MoneySnapshot() {
                             </div>
                         </div>
 
-                        {/* Fixed Expenses */}
+                        {/* Fixed Expenses Container */}
                         <div className="fixedExpenses-Box">
-                            <h1>Fixed Expenses</h1>
+                            <h1 className="mainHeading">Fixed Expenses</h1>
+                            <h2 className="midHeading">Monthly Enxpenses</h2>
 
-                            {/* INPUT */}
+                            {/* Total Balance of Expenses */}
+                            <h3 className="balance">
+                                R{expenses.reduce((sum, e) => sum + e.amount, 0).toFixed(2)}
+                            </h3>
+
+                            {/* Input Section */}
                             {expenses.length < 5 && (
                                 <div className="goalInputBox">
 
                                     <input
                                         type="text"
-                                        placeholder="Expense name"
+                                        placeholder="Enter Expense Name"
                                         value={expenseInput.name}
                                         onChange={(e) =>
                                             setExpenseInput({ ...expenseInput, name: e.target.value })
@@ -277,7 +282,7 @@ export default function MoneySnapshot() {
 
                                     <input
                                         type="number"
-                                        placeholder="Amount (R)"
+                                        placeholder="Amount (ZAR)"
                                         value={expenseInput.amount}
                                         onChange={(e) =>
                                             setExpenseInput({ ...expenseInput, amount: e.target.value })
@@ -288,12 +293,7 @@ export default function MoneySnapshot() {
                                 </div>
                             )}
 
-                            {/* TOTAL */}
-                            <h3 className="balance">
-                                R{expenses.reduce((sum, e) => sum + e.amount, 0).toFixed(2)}
-                            </h3>
-
-                            {/* LIST */}
+                            {/* List carry (5) */}
                             <div className="goalList">
                                 {expenses.map((e, index) => (
                                     <div key={index} className="goalItem">
@@ -303,9 +303,7 @@ export default function MoneySnapshot() {
                                 ))}
                             </div>
                         </div>
-
                     </div>
-
                 </section>
             </main>
         </Layout>

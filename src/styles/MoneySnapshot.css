@@ -9,7 +9,7 @@ body {
     padding: 0px 15px; 
 }
 
-.displayName {
+.displayUser-Name {
     font-size: 27px;
     font-weight: 650;
     margin: 0;
@@ -281,4 +281,16 @@ body {
     justify-content: space-between;
     padding: 8px 0;
     border-bottom: 1px solid #f0f0f0;
+}
+
+/* Remove arrows in Chrome, Safari, Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove arrows in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
