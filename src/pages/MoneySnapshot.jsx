@@ -211,9 +211,9 @@ export default function MoneySnapshot() {
                                     outerRadius={140}
                                     label
                                 >
-                                    <Cell fill="#000000" />
-                                    <Cell fill="#666666" />
-                                    <Cell fill="#999999" />
+                                    <Cell fill="#640032" /> {/*Income*/}
+                                    <Cell fill="#DC0032" /> {/*Expenses*/}
+                                    <Cell fill="#C95326" /> {/*Savings*/}
                                 </Pie>
 
                                 <Tooltip />
