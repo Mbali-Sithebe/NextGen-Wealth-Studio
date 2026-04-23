@@ -22,6 +22,10 @@ export default function MoneySnapshot() {
     const [goals, setGoals] = useState([]);
     const [goalInput, setGoalInput] = useState({ name: "", amount: "" });
 
+    // Fixed Expenses state (ADDED → NOW WORKS LIKE GOALS)
+    const [expenses, setExpenses] = useState([]);
+    const [expenseInput, setExpenseInput] = useState({ name: "", amount: "" });
+
     // Add Goal function (MISSING BEFORE → FIXED)
     function addGoal() {
         if (goals.length >= 5) return;
@@ -36,6 +40,22 @@ export default function MoneySnapshot() {
         ]);
 
         setGoalInput({ name: "", amount: "" });
+    }
+
+    // Add Expense function (NEW)
+    function addExpense() {
+        if (expenses.length >= 5) return;
+        if (!expenseInput.name || !expenseInput.amount) return;
+
+        setExpenses([
+            ...expenses,
+            {
+                name: expenseInput.name,
+                amount: Number(expenseInput.amount)
+            }
+        ]);
+
+        setExpenseInput({ name: "", amount: "" });
     }
 
     // Live date
@@ -61,11 +81,15 @@ export default function MoneySnapshot() {
         };
     }
 
-    // Pie Chart Data (SAFE LOCATION)
+    // TOTALS FOR CHART (UPDATED)
+    const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
+    const totalSavings = goals.reduce((sum, g) => sum + g.amount, 0);
+
+    // Pie Chart Data (UPDATED → NOW READS EVERYTHING)
     const chartData = [
         { name: "Income", value: income || 0 },
-        { name: "Expenses", value: 2000 },
-        { name: "Savings", value: income ? income * 0.3 : 0 }
+        { name: "Expenses", value: totalExpenses },
+        { name: "Savings", value: totalSavings }
     ];
 
     return (
@@ -237,12 +261,47 @@ export default function MoneySnapshot() {
                         {/* Fixed Expenses */}
                         <div className="fixedExpenses-Box">
                             <h1>Fixed Expenses</h1>
-                            <div className="addSection">
-                                <p>add your fixed expenses</p>
-                                <p>add your fixed expenses</p>
-                                <p>+</p>
+
+                            {/* INPUT */}
+                            {expenses.length < 5 && (
+                                <div className="goalInputBox">
+
+                                    <input
+                                        type="text"
+                                        placeholder="Expense name"
+                                        value={expenseInput.name}
+                                        onChange={(e) =>
+                                            setExpenseInput({ ...expenseInput, name: e.target.value })
+                                        }
+                                    />
+
+                                    <input
+                                        type="number"
+                                        placeholder="Amount (R)"
+                                        value={expenseInput.amount}
+                                        onChange={(e) =>
+                                            setExpenseInput({ ...expenseInput, amount: e.target.value })
+                                        }
+                                    />
+
+                                    <button onClick={addExpense}>+</button>
+                                </div>
+                            )}
+
+                            {/* TOTAL */}
+                            <h3 className="balance">
+                                R{expenses.reduce((sum, e) => sum + e.amount, 0).toFixed(2)}
+                            </h3>
+
+                            {/* LIST */}
+                            <div className="goalList">
+                                {expenses.map((e, index) => (
+                                    <div key={index} className="goalItem">
+                                        <p>{e.name}</p>
+                                        <p>R{e.amount}</p>
+                                    </div>
+                                ))}
                             </div>
-                            <h3 className="balance">R0.00</h3>
                         </div>
 
                     </div>
