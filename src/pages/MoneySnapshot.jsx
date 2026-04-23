@@ -187,14 +187,14 @@ export default function MoneySnapshot() {
                         <div className="resultData">
                             <h1>Financial Management Breakdown</h1>
 
-                            <PieChart width={300} height={300}>
+                            <PieChart width={420} height={420}>
                                 {/*Empty Diagram of the pie*/}
                                 <Pie
                                 data={[{value: 100}]}
                                 dataKey={"value"}
                                 cx="50%"
                                 cy="50%"
-                                outerRadius={100}
+                                outerRadius={140}
                                 fill="#e0e0e0"
                                 isAnimationActive={false}
                                 stroke="none"
@@ -208,7 +208,7 @@ export default function MoneySnapshot() {
                                     nameKey="name"
                                     cx="50%"
                                     cy="50%"
-                                    outerRadius={100}
+                                    outerRadius={140}
                                     label
                                 >
                                     <Cell fill="#000000" />
