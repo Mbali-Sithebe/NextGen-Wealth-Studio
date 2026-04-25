@@ -11,8 +11,9 @@ export default function StrategyTracks () {
 
     const [progress, setProgress] = useState(0);
     const [completed, setCompleted] = useState([]);
-
-    const totalTasks = 12; // 5 boxes × 3 tasks each
+    
+    // 4 Boxes: Each Box Has 3 Goals (Progress Slider)
+    const totalTasks = 12; 
 
     function handleTick(id) {
         if (completed.includes(id)) return;
@@ -21,7 +22,8 @@ export default function StrategyTracks () {
         setCompleted(updated);
         setProgress(Math.round((updated.length / totalTasks) * 100));
     }
-
+    
+    //USER INTERFACE DESIGN HERE (4 USER MILESTONES: 4 YEARS: PROGRESS TRACKER:)
     return(
         <Layout>
             <header>
@@ -30,16 +32,15 @@ export default function StrategyTracks () {
                         Strategy Tracker
                     </h1>
 
-                    {/* FIXED: paragraph now sits next to icon */}
                     <div className="introRow">
                         <img className="progress" src={milestoneImg} alt="Progress" />
                         <p>
-                            Track your progress milestones and financial strategy set for the next 5 years.
+                            Track your progress milestones and financial strategy set for the next four years.
                         </p>
                     </div>
                 </section>
 
-                {/* RED BOX PROGRESS SECTION */}
+                {/* Main Slider */}
                 <section className="mainSlider-Progress">
                     <div className="sliderContainer">
                         <h1 className="slider-Progress">

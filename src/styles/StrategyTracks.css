@@ -1,101 +1,114 @@
-.progress {
-  width: 30px;
-  height: 30px;
+.pageTitle{
+  margin-bottom: 20px;
+  font-size: 30px;
+  color: #2D2323;
 }
 
-/* INTRO ROW */
+.progress {
+  width: 20px;
+  height: 20px;
+}
+
 .introRow {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 8px;
 }
 
-/* PROGRESS SECTION */
+/*Slider Styling Starts Here */
 .mainSlider-Progress {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-}
-
-.sliderContainer {
-    background-color: #8B0000;
-    padding: 20px;
-    border-radius: 12px;
-    width: 65%;
-    text-align: center;
+    margin-top: 35px;
 }
 
 .slider-Progress {
     color: white;
+    font-size: 22px;
+    font-weight: 500;
 }
 
-/* SLIDER */
-.progressSlider {
+.sliderContainer {
+    background-color: #DC0032;
+    padding: 25px;
+    border-radius: 5px;
     width: 100%;
-    height: 12px;
+    text-align: center;
+}
+
+
+.progressSlider {
+    width: 70%;
+    height: 20px;
     background: #ddd;
     border-radius: 10px;
     margin-top: 10px;
     overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #fff;
 }
 
 .progressFill {
     height: 100%;
-    background: #ff4d4d;
+    background: #C95326;
     transition: 0.3s;
 }
 
-/* GRID → NOW 4 BOXES */
+/* 4 Milestone Boxes Syle Starts Here */
 .milestone-Boxes {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
-/* WRAPPER (BOX + YEAR BUTTON) */
 .goalWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* BOX */
 .goalBox {
     background: white;
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
+    height: 195px;
 }
 
-/* HEADER */
 .boxHeader {
-    background: orange;
+    background: #DC0032;
     padding: 10px;
     font-weight: bold;
-    border-bottom: 2px solid black;
     text-align: center;
+    color: #fff;
 }
 
-/* CONTENT */
 .boxContent {
     padding: 15px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    
 }
 
-/* BUTTON + TEXT ROW */
+/* Tick Button and Text*/
+.taskRow p {
+    margin: 0;
+    font-size: 14px;
+    text-align: left;
+}
+
 .taskRow {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-/* BUTTON (FIXED: NO GREY BACKGROUND) */
 .tickBox {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     border: none;
     background: none;
@@ -105,39 +118,35 @@
     cursor: pointer;
 }
 
-/* ICON */
 .tickBox img {
     width: 22px;
     height: 22px;
 }
 
 .tickBox.done {
-    background: #ff4d4d;   /* fill color */
+    background: #C95326;   
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* HOVER */
 .tickBox:hover img {
     filter: brightness(0.7);
 }
 
-/* TEXT */
-.taskRow p {
-    margin: 0;
-    font-size: 14px;
-    text-align: left;
-}
-
-/* YEAR BUTTON (OUTSIDE BOX) */
+/* Year Buttins Here */
 .yearLabel {
-    margin-top: 10px;
-    background: red;
-    color: white;
-    border: none;
-    padding: 6px 16px;
-    border-radius: 6px;
+    margin-top: 30px;
+    background: #D9D9D9;
+    color: #2D2323;
+    border: 1px solid #2D2323;
+    padding: 10px 108px;
+    border-radius: 0px;
     cursor: default;
+
+    white-space: nowrap; /* keeps "Year 1" on one line */
+    font-weight: 600;     
+    text-align: center;  
+    font-size: 16px;
 }
