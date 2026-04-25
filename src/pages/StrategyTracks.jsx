@@ -34,7 +34,6 @@ export default function StrategyTracks () {
     //USER INTERFACE DESIGN HERE (4 USER MILESTONES: 4 YEARS: PROGRESS TRACKER:)
     return(
         <Layout>
-
             <header>
                 <section className="pageIntro">
                     <h1 className="pageTitle">
