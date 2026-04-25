@@ -25,12 +25,13 @@ export default function StrategyTracks () {
         setProgress(Math.round((updated.length / totalTasks) * 100));
     }
 
-    // YEAR PROGRESS FOR BAR GRAPH
+    // Year Progress for Bar Graph
     const getYearProgress = (tasks) => {
         const done = tasks.filter(t => completed.includes(t.id)).length;
         return Math.round((done / tasks.length) * 100);
     };
 
+    //USER INTERFACE DESIGN HERE (4 USER MILESTONES: 4 YEARS: PROGRESS TRACKER:)
     return(
         <Layout>
 
@@ -126,7 +127,7 @@ export default function StrategyTracks () {
                         </div>
                     </div>
 
-                    {/* RIGHT TIPS */}
+                    {/* Generate Tips (Right) */}
                     <div className="TipsContainer-Holder">
 
                         <div className="TipsBox">
