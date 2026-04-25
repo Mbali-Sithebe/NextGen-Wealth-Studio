@@ -10,7 +10,11 @@
     border: 2px solid red;
     padding: 20px;
     width: 300px;
+    height: 250px; /* FIXED HEIGHT (no shrinking) */
     background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /* TITLE + UNDERLINE */
@@ -20,11 +24,29 @@
     margin-bottom: 15px;
 }
 
+/* DEFINITIONS AREA (prevents jump) */
+.definations {
+    flex: 1;
+}
+
 /* NEXT BUTTON RIGHT */
 .nextButton {
     display: flex;
     justify-content: flex-end;
     margin-top: 15px;
+}
+
+/* BUTTON RESET (REMOVE BOX) */
+.nextButton button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* HOVER EFFECT */
+.nextButton button:hover img {
+    filter: brightness(0) saturate(100%) invert(17%) sepia(100%) saturate(500%) hue-rotate(0deg) brightness(90%);
 }
 
 /* RIGHT - ARTICLE CONTAINER */

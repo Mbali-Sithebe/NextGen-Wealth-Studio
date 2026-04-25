@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/layout";
 
 //Import Images 
 import nextButtonImg from "../images/nextButton.png"
 
+//Import Data
+import { glossaryData } from "../data/glossaryData";
+
 export default function EducationHub(){
+
+    // GLOSSARY STATE
+    const [index, setIndex] = useState(0);
+
+    function handleNext() {
+        setIndex((prev) => (prev + 1) % glossaryData.length);
+    }
 
     return(
         <Layout>
@@ -23,18 +33,16 @@ export default function EducationHub(){
                         <h1 className="glossaryTitle">Glossary</h1>
 
                         <div className="definations">
-                            <h3>SARS</h3>
+                            <h3>{glossaryData[index].term}</h3>
 
                             <p>
-                                The South African Revenue Service (SARS) is the nation's 
-                                official tax-collecting authority, responsible for managing income tax, 
-                                customs, and enforcing tax compliance in South Africa.
+                                {glossaryData[index].definition}
                             </p>
 
                             <div className="nextButton">
-                                <a href="#" target="_blank">
+                                <button onClick={handleNext}>
                                     <img className="nextB" src={nextButtonImg} alt="next"/>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -49,8 +57,14 @@ export default function EducationHub(){
                         <div className="articleItem">
                             <h1>Understanding Investments</h1>
                             <p>Press here to learn more about investments</p>
-                            <a href="#" target="_blank" className="readButton">
-                                <img className="nextB" src={nextButtonImg} />
+                            <a 
+                                href="https://www.ebsco.com/research-starters/business-and-management/understanding-investing" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="readButton"
+                                title="Opens in a new tab"
+                            >
+                                <img className="nextB" src={nextButtonImg} alt="read"/>
                             </a>
                         </div>
 
@@ -58,8 +72,14 @@ export default function EducationHub(){
                         <div className="articleItem">
                             <h1>Learn more about smart budgeting</h1>
                             <p>Press here to learn more about budgeting</p>
-                            <a href="#" target="_blank" className="readButton">
-                                <img className="nextB" src={nextButtonImg} />
+                            <a 
+                                href="https://bettermoneyhabits.bankofamerica.com/en/saving-budgeting/creating-a-budget" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="readButton"
+                                title="Opens in a new tab"
+                            >
+                                <img className="nextB" src={nextButtonImg} alt="read"/>
                             </a>
                         </div>
 
@@ -67,8 +87,14 @@ export default function EducationHub(){
                         <div className="articleItem">
                             <h1>What is Tax?</h1>
                             <p>Press here to learn more about tax</p>
-                            <a href="#" target="_blank" className="readButton">
-                                <img className="nextB" src={nextButtonImg} />
+                            <a 
+                                href="https://www.investopedia.com/terms/t/taxation.asp" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="readButton"
+                                title="Opens in a new tab"
+                            >
+                                <img className="nextB" src={nextButtonImg} alt="read"/>
                             </a>
                         </div>
 
@@ -76,8 +102,14 @@ export default function EducationHub(){
                         <div className="articleItem">
                             <h1>Inflation</h1>
                             <p>Press here to learn more about inflations</p>
-                            <a href="#" target="_blank" className="readButton">
-                                <img className="nextB" src={nextButtonImg} />
+                            <a 
+                                href="https://www.statssa.gov.za/?cat=33" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="readButton"
+                                title="Opens in a new tab"
+                            >
+                                <img className="nextB" src={nextButtonImg} alt="read"/>
                             </a>
                         </div>
 
