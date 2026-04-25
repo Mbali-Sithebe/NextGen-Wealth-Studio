@@ -6,27 +6,21 @@ import nextButtonImg from "../images/nextButton.png"
 
 export default function EducationHub(){
 
-      //USER INTERFACE DESIGN HERE (For Educational Content)
     return(
         <Layout>
             <header>
                 <section className="educationContent">
-                  <h1>
-                    Education Hub
-                  </h1>
-                  <p>
-                    Learn and grow with Absa NextGen Wealth Studio
-                  </p>
+                  <h1>Education Hub</h1>
+                  <p>Learn and grow with Absa NextGen Wealth Studio</p>
                 </section>
             </header>
 
-            <main>
+            <main className="eduMain">
+
                 {/*Left Section*/}
                 <section className="contentHolders">
                     <div className="glossary">
-                        <h1>
-                            Glossary
-                        </h1>
+                        <h1 className="glossaryTitle">Glossary</h1>
 
                         <div className="definations">
                             <h3>SARS</h3>
@@ -38,10 +32,9 @@ export default function EducationHub(){
                             </p>
 
                             <div className="nextButton">
-                                <button>
-                                    {/*Put a link here*/}
-                                    <img className="nextB" src={nextButtonImg}/>
-                                </button>
+                                <a href="#" target="_blank">
+                                    <img className="nextB" src={nextButtonImg} alt="next"/>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -49,64 +42,45 @@ export default function EducationHub(){
 
                 {/*Right Section*/}
                 <section className="eduArticles">
-                    {/*Article 1*/}
-                    <div className="article-1">
-                        <h1>
-                            Understanding Investments
-                        </h1>
-                        <p>Press here to learn more about investments</p>
-                    </div>
 
-                    <div className="readButton">
-                                <button>
-                                    {/*Put a link here*/}
-                                    <img className="nextB" src={nextButtonImg}/>
-                                </button>
-                    </div>
+                    <div className="articleBox">
 
-                    {/*Article 2*/}
-                     <div className="article-2">
-                        <h1>
-                            Learn more about smart budgeting
-                        </h1>
-                        <p>Press here to learn more about budgeting</p>
-                    </div>
+                        {/*Article 1*/}
+                        <div className="articleItem">
+                            <h1>Understanding Investments</h1>
+                            <p>Press here to learn more about investments</p>
+                            <a href="#" target="_blank" className="readButton">
+                                <img className="nextB" src={nextButtonImg} />
+                            </a>
+                        </div>
 
-                    <div className="readButton">
-                                <button>
-                                    {/*Put a link here*/}
-                                    <img className="nextB" src={nextButtonImg}/>
-                                </button>
-                    </div>
+                        {/*Article 2*/}
+                        <div className="articleItem">
+                            <h1>Learn more about smart budgeting</h1>
+                            <p>Press here to learn more about budgeting</p>
+                            <a href="#" target="_blank" className="readButton">
+                                <img className="nextB" src={nextButtonImg} />
+                            </a>
+                        </div>
 
-                    {/*Article 3*/}
-                     <div className="article-3">
-                        <h1>
-                          What is Tax?
-                        </h1>
-                        <p>Press here to learn more about tax</p>
-                    </div>
+                        {/*Article 3*/}
+                        <div className="articleItem">
+                            <h1>What is Tax?</h1>
+                            <p>Press here to learn more about tax</p>
+                            <a href="#" target="_blank" className="readButton">
+                                <img className="nextB" src={nextButtonImg} />
+                            </a>
+                        </div>
 
-                    <div className="readButton">
-                                <button>
-                                    {/*Put a link here*/}
-                                    <img className="nextB" src={nextButtonImg}/>
-                                </button>
-                    </div>
+                        {/*Article 4*/}
+                        <div className="articleItem">
+                            <h1>Inflation</h1>
+                            <p>Press here to learn more about inflations</p>
+                            <a href="#" target="_blank" className="readButton">
+                                <img className="nextB" src={nextButtonImg} />
+                            </a>
+                        </div>
 
-                    {/*Article 4*/}
-                     <div className="article-4">
-                        <h1>
-                            Inflation
-                        </h1>
-                        <p>Press here to learn more about inflations</p>
-                    </div>
-
-                    <div className="readButton">
-                                <button>
-                                    {/*Put a link here*/}
-                                    <img className="nextB" src={nextButtonImg}/>
-                                </button>
                     </div>
 
                 </section>
@@ -115,5 +89,4 @@ export default function EducationHub(){
           
         </Layout>
     )
-    
 }

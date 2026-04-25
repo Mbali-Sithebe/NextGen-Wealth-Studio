@@ -14,6 +14,7 @@ import './styles/Login.css'
 import './styles/Navigation.css'
 import './styles/MoneySnapshot.css'
 import './styles/StrategyTracks.css'
+import './styles/EducationHub.css'
 
 
 export default function App(){
