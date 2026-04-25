@@ -13,6 +13,7 @@ import './App.css'
 import './styles/Login.css'
 import './styles/Navigation.css'
 import './styles/MoneySnapshot.css'
+import './styles/StrategyTracks.css'
 
 
 export default function App(){

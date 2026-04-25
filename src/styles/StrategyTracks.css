@@ -1,0 +1,143 @@
+.progress {
+  width: 30px;
+  height: 30px;
+}
+
+/* INTRO ROW */
+.introRow {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* PROGRESS SECTION */
+.mainSlider-Progress {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.sliderContainer {
+    background-color: #8B0000;
+    padding: 20px;
+    border-radius: 12px;
+    width: 65%;
+    text-align: center;
+}
+
+.slider-Progress {
+    color: white;
+}
+
+/* SLIDER */
+.progressSlider {
+    width: 100%;
+    height: 12px;
+    background: #ddd;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: #ff4d4d;
+    transition: 0.3s;
+}
+
+/* GRID → NOW 4 BOXES */
+.milestone-Boxes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 40px;
+}
+
+/* WRAPPER (BOX + YEAR BUTTON) */
+.goalWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* BOX */
+.goalBox {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+}
+
+/* HEADER */
+.boxHeader {
+    background: orange;
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    text-align: center;
+}
+
+/* CONTENT */
+.boxContent {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* BUTTON + TEXT ROW */
+.taskRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* BUTTON (FIXED: NO GREY BACKGROUND) */
+.tickBox {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* ICON */
+.tickBox img {
+    width: 22px;
+    height: 22px;
+}
+
+.tickBox.done {
+    background: #ff4d4d;   /* fill color */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* HOVER */
+.tickBox:hover img {
+    filter: brightness(0.7);
+}
+
+/* TEXT */
+.taskRow p {
+    margin: 0;
+    font-size: 14px;
+    text-align: left;
+}
+
+/* YEAR BUTTON (OUTSIDE BOX) */
+.yearLabel {
+    margin-top: 10px;
+    background: red;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    cursor: default;
+}
