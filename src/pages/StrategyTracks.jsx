@@ -5,6 +5,8 @@ import Layout from "../components/layout";
 import milestoneImg from "../images/milestone.png";
 import tickButtonImg from "../images/circleButton.png";
 
+import { strategyData } from "../data/strategyData";
+
 export default function StrategyTracks () {
 
     const [progress, setProgress] = useState(0);
@@ -58,169 +60,31 @@ export default function StrategyTracks () {
             <main>
                 <section className="milestone-Boxes">
 
-                    {/* BOX 1 */}
-                    <div className="goalWrapper">
-                        <div className="goalBox">
-                            <div className="boxHeader">Property Tracker</div>
-                            <div className="boxContent">
+                    {strategyData.map((box) => (
+                        <div className="goalWrapper" key={box.title}>
+                            <div className="goalBox">
+                                <div className="boxHeader">{box.title}</div>
 
-                                <div className="taskRow">
-                                    <button
-                                        onClick={() => handleTick(1)}
-                                        className={`tickBox ${completed.includes(1) ? "done" : ""}`}
-                                    >
-                                        <img src={tickButtonImg} alt="tick" />
-                                    </button>
-                                    <p>Save enough money for a deposit.</p>
+                                <div className="boxContent">
+
+                                    {box.tasks.map((task) => (
+                                        <div className="taskRow" key={task.id}>
+                                            <button
+                                                onClick={() => handleTick(task.id)}
+                                                className={`tickBox ${completed.includes(task.id) ? "done" : ""}`}
+                                            >
+                                                <img src={tickButtonImg} alt="tick" />
+                                            </button>
+                                            <p>{task.text}</p>
+                                        </div>
+                                    ))}
+
                                 </div>
-
-                                <div className="taskRow">
-                                    <button
-                                        onClick={() => handleTick(2)}
-                                        className={`tickBox ${completed.includes(2) ? "done" : ""}`}
-                                    >
-                                        <img src={tickButtonImg} alt="tick" />
-                                    </button>
-                                    <p>Build a strong credit score.</p>
-                                </div>
-
-                                <div className="taskRow">
-                                    <button
-                                        onClick={() => handleTick(3)}
-                                        className={`tickBox ${completed.includes(3) ? "done" : ""}`}
-                                    >
-                                        <img src={tickButtonImg} alt="tick" />
-                                    </button>
-                                    <p>Reduce existing debt.</p>
-                                </div>
-
                             </div>
+
+                            <button className="yearLabel">{box.year}</button>
                         </div>
-                        <button className="yearLabel">Year 1</button>
-                    </div>
-
-                    {/* BOX 2 */}
-                    <div className="goalWrapper">
-                        <div className="goalBox">
-                            <div className="boxHeader">Vehicle Tracker</div>
-                            <div className="boxContent">
-
-                                <div className="taskRow">
-                                    <button
-                                        onClick={() => handleTick(4)}
-                                        className={`tickBox ${completed.includes(4) ? "done" : ""}`}
-                                    >
-                                        <img src={tickButtonImg} alt="tick" />
-                                    </button>
-                                    <p>Save for car deposit.</p>
-                                </div>
-
-                                <div className="taskRow">
-                                    <button
-                                        onClick={() => handleTick(5)}
-                                        className={`tickBox ${completed.includes(5) ? "done" : ""}`}
-                                    >
-                                        <img src={tickButtonImg} alt="tick" />
-                                    </button>
-                                    <p>Compare vehicle options.</p>
-                                </div>
-
-                                <div className="taskRow">
-                                    <button
-                                        onClick={() => handleTick(6)}
-                                        className={`tickBox ${completed.includes(6) ? "done" : ""}`}
-                                    >
-                                        <img src={tickButtonImg} alt="tick" />
-                                    </button>
-                                    <p>Plan monthly instalments.</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <button className="yearLabel">Year 2</button>
-                    </div>
-
-                    {/* BOX 3 */}
-                    <div className="goalWrapper">
-                        <div className="goalBox">
-                            <div className="boxHeader">Investment Tracker</div>
-                            <div className="boxContent">
-
-                                <div className="taskRow">
-                                    <button
-                                        onClick={() => handleTick(7)}
-                                        className={`tickBox ${completed.includes(7) ? "done" : ""}`}
-                                    >
-                                        <img src={tickButtonImg} alt="tick" />
-                                    </button>
-                                    <p>Start investing small amounts.</p>
-                                </div>
-
-                                <div className="taskRow">
-                                    <button
-                                        onClick={() => handleTick(8)}
-                                        className={`tickBox ${completed.includes(8) ? "done" : ""}`}
-                                    >
-                                        <img src={tickButtonImg} alt="tick" />
-                                    </button>
-                                    <p>Diversify income streams.</p>
-                                </div>
-
-                                <div className="taskRow">
-                                    <button
-                                        onClick={() => handleTick(9)}
-                                        className={`tickBox ${completed.includes(9) ? "done" : ""}`}
-                                    >
-                                        <img src={tickButtonImg} alt="tick" />
-                                    </button>
-                                    <p>Track portfolio growth.</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <button className="yearLabel">Year 3</button>
-                    </div>
-
-                    {/* BOX 4 */}
-                    <div className="goalWrapper">
-                        <div className="goalBox">
-                            <div className="boxHeader">Balanced Lifestyle</div>
-                            <div className="boxContent">
-
-                                <div className="taskRow">
-                                    <button
-                                        onClick={() => handleTick(10)}
-                                        className={`tickBox ${completed.includes(10) ? "done" : ""}`}
-                                    >
-                                        <img src={tickButtonImg} alt="tick" />
-                                    </button>
-                                    <p>Maintain healthy spending habits.</p>
-                                </div>
-
-                                <div className="taskRow">
-                                    <button
-                                        onClick={() => handleTick(11)}
-                                        className={`tickBox ${completed.includes(11) ? "done" : ""}`}
-                                    >
-                                        <img src={tickButtonImg} alt="tick" />
-                                    </button>
-                                    <p>Save for leisure and travel.</p>
-                                </div>
-
-                                <div className="taskRow">
-                                    <button
-                                        onClick={() => handleTick(12)}
-                                        className={`tickBox ${completed.includes(12) ? "done" : ""}`}
-                                    >
-                                        <img src={tickButtonImg} alt="tick" />
-                                    </button>
-                                    <p>Build an emergency fund.</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <button className="yearLabel">Year 4</button>
-                    </div>
+                    ))}
 
                 </section>
             </main>
