@@ -4,6 +4,8 @@ import Layout from "../components/layout";
 //Image Import (Icons)
 import milestoneImg from "../images/milestone.png";
 import tickButtonImg from "../images/circleButton.png";
+import TipsImg from "../images/SmileyOne.png"
+import TipsIconImg from "../images/tips.png"
 
 import { strategyData } from "../data/strategyData";
 
@@ -22,10 +24,16 @@ export default function StrategyTracks () {
         setCompleted(updated);
         setProgress(Math.round((updated.length / totalTasks) * 100));
     }
-    
-    //USER INTERFACE DESIGN HERE (4 USER MILESTONES: 4 YEARS: PROGRESS TRACKER:)
+
+    // YEAR PROGRESS FOR BAR GRAPH
+    const getYearProgress = (tasks) => {
+        const done = tasks.filter(t => completed.includes(t.id)).length;
+        return Math.round((done / tasks.length) * 100);
+    };
+
     return(
         <Layout>
+
             <header>
                 <section className="pageIntro">
                     <h1 className="pageTitle">
@@ -47,23 +55,24 @@ export default function StrategyTracks () {
                             Progress: {progress}% Completed
                         </h1>
 
-                        {/* FUNCTIONAL SLIDER */}
                         <div className="progressSlider">
                             <div 
                                 className="progressFill"
                                 style={{ width: `${progress}%` }}
-                            ></div>
+                            />
                         </div>
                     </div>
                 </section>
             </header>
 
+            {/* Milestones - 4 Year */}
             <main>
                 <section className="milestone-Boxes">
 
                     {strategyData.map((box) => (
                         <div className="goalWrapper" key={box.title}>
                             <div className="goalBox">
+
                                 <div className="boxHeader">{box.title}</div>
 
                                 <div className="boxContent">
@@ -76,11 +85,13 @@ export default function StrategyTracks () {
                                             >
                                                 <img src={tickButtonImg} alt="tick" />
                                             </button>
+
                                             <p>{task.text}</p>
                                         </div>
                                     ))}
 
                                 </div>
+
                             </div>
 
                             <button className="yearLabel">{box.year}</button>
@@ -88,7 +99,74 @@ export default function StrategyTracks () {
                     ))}
 
                 </section>
+
+               
+                <section className="dashboardBottom">
+
+                    {/* Bar Graph Generate (Left) */}
+                    <div className="trackData">
+                        <div className="barGraph-Container">
+                            <h1 className="dataTitle">
+                                Progress Tracker Data
+                            </h1>
+                            <p className="text">This is yearly progress data tracking how much you have saved over the course of a year</p>
+
+                            {strategyData.map((box) => (
+                                <div key={box.year} className="barRow">
+                                    <p>{box.year}</p>
+
+                                    <div className="bar">
+                                        <div
+                                            className="barFill"
+                                            style={{ width: `${getYearProgress(box.tasks)}%` }}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* RIGHT TIPS */}
+                    <div className="TipsContainer-Holder">
+
+                        <div className="TipsBox">
+                             
+                            <h1 className="tipsTitle">
+                                <img className="tips" src={TipsIconImg} />
+                                General Tips
+                            </h1>
+
+                            <div className="Tip-1">
+                                <img className="smiley" src={TipsImg} />
+                                <p>Set aside your savings the moment your income arrives.</p>
+                            </div>
+
+                            <div className="Tip-2">
+                                <img className="smiley" src={TipsImg} />
+                                <p>Know where your money goes helps you cut what doesn't matter.</p>
+                            </div>
+
+                            <div className="Tip-3">
+                                <img className="smiley" src={TipsImg} />
+                                <p>Avoid impulse buying, wait 24 hours before making any unplanned purchase.</p>
+                            </div>
+
+                             <div className="Tip-4">
+                                <img className="smiley" src={TipsImg} />
+                                <p>cancel any service you haven't used in the past month</p>
+                            </div>
+
+                        
+                        </div>
+
+               
+
+                    </div>
+
+                </section>
+
             </main>
+
         </Layout>
     )
 }
