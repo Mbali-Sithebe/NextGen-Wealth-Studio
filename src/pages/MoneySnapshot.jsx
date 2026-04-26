@@ -6,7 +6,6 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 //Import Images(Icons) Here
 import userProfileImg from "../images/ProfilePicture.png";
-//import notificationImg from "../images/active.png";
 import calendarImg from "../images/calendarTwo.png";
 import InfoIconImg from "../images/info.png";
 
