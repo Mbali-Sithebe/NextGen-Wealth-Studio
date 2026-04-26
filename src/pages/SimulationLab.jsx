@@ -25,14 +25,6 @@ export default function SimulationLab(){
               Let your future unfold by exploring your financial choices with our interactive simulations!
             </p>
           </section>
-
-              {/*2. Main Button*/}
-      <div className="moreButton-Holder">
-        <button onClick={handleNextStudio}>
-          <img className="more" src={moreButtonImg}/>
-        </button>
-      </div>
-
         </header>
 
         <main>
@@ -41,6 +33,14 @@ export default function SimulationLab(){
     {/* ================= STUDIO 1 ================= */}
     {currentStudio === 0 && (
     <div className="studio-1">
+
+      {/*2. Main Button*/}
+      <div className="moreButton-Holder">
+        <button onClick={handleNextStudio}>
+          <img className="more" src={moreButtonImg}/>
+        </button>
+      </div>
+
       {/* 1. Top Boc Intro*/}
       <img className="house" src={propertyImg} />
       <h1>Renting vs Property Purchase</h1>
@@ -76,8 +76,12 @@ export default function SimulationLab(){
           <label>Years Staying</label>
           <input type="number" placeholder="Number of years" />
         </div>
-
       </div>
+
+      <section className="resultButton">
+        <button className="resultBtn">Run Simulation</button>
+      </section>
+
     </div>
     )}
 
@@ -85,13 +89,19 @@ export default function SimulationLab(){
     {/* ================= STUDIO 2 ================= */}
     {currentStudio === 1 && (
     <div className="studio-2">
+
+      <div className="moreButton-Holder">
+        <button onClick={handleNextStudio}>
+          <img className="more" src={moreButtonImg}/>
+        </button>
+      </div>
+
       <img className="car" src={carPurchaseImg} />
       <h1>Uber vs Vehicle Purchase</h1>
       <p>
         Compare the cost of using ride-hailing services versus owning a vehicle to see which option fits your budget.
       </p>
 
-      {/*Interactive Studio*/}
       <div className="simulation">
         {/*Left Tab - Uber*/}
         <div className="rentingBox">
@@ -120,8 +130,12 @@ export default function SimulationLab(){
           <label>Years of Ownership</label>
           <input type="number" placeholder="Number of years" />
         </div>
-
       </div>
+
+      <section className="resultButton">
+        <button className="resultBtn">Run Simulation</button>
+      </section>
+
     </div>
     )}
 
@@ -129,13 +143,19 @@ export default function SimulationLab(){
     {/* ================= STUDIO 3 ================= */}
     {currentStudio === 2 && (
     <div className="studio-3">
+
+      <div className="moreButton-Holder">
+        <button onClick={handleNextStudio}>
+          <img className="more" src={moreButtonImg}/>
+        </button>
+      </div>
+
       <img className="groceries" src={groceriesImg} />
       <h1>Monthly Groceries vs Weekly Groceries</h1>
       <p>
         Explore your grocery spending habits and compare whether shopping weekly or monthly helps you save more.
       </p>
 
-      {/*Interactive Studio*/}
       <div className="simulation">
         {/*Left Tab - Weekly*/}
         <div className="rentingBox">
@@ -164,14 +184,14 @@ export default function SimulationLab(){
           <label>Months</label>
           <input type="number" placeholder="Number of months" />
         </div>
-
       </div>
+
+      <section className="resultButton">
+        <button className="resultBtn">Run Simulation</button>
+      </section>
+
     </div>
     )}
-
-    <section className="resultButton">
-      <button className="resultBtn">Run Simulation</button>
-    </section>
 
   </section>
 
@@ -183,5 +203,4 @@ export default function SimulationLab(){
        </Layout>
 
     )
-   
 }

@@ -14,6 +14,7 @@ import './styles/Login.css'
 import './styles/Navigation.css'
 import './styles/MoneySnapshot.css'
 import './styles/StrategyTracks.css'
+import './styles/SimulationLab.css'
 import './styles/EducationHub.css'
 
 

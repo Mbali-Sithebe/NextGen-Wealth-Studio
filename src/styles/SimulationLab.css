@@ -1,0 +1,120 @@
+/* ICON IMAGES SMALLER */
+.house,
+.car,
+.groceries {
+    width: 60px;
+    height: auto;
+}
+
+/* MAIN STUDIO BOX */
+.studio-1,
+.studio-2,
+.studio-3 {
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 900px;
+    height: 420px; /* FIXED SIZE (no shrinking) */
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* MORE BUTTON (SMALL + TOP RIGHT INSIDE WHITE BOX) */
+.moreButton-Holder {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.moreButton-Holder button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.moreButton-Holder img {
+    width: 20px; /* SMALL SIZE */
+    height: auto;
+}
+
+/* SIMULATION BOX (RED INNER BOX) */
+.simulation {
+    background: #DC0032;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    height: 220px;
+    position: relative;
+}
+
+/* LEFT TAB */
+.rentingBox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* RIGHT TAB */
+.buyingBox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* DIVIDER LINE BETWEEN LEFT & RIGHT */
+.simulation::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 50%;
+    width: 1px;
+    background: white;
+}
+
+/* INPUT STYLING */
+.simulation input {
+    padding: 8px;
+    border: none;
+    outline: none;
+}
+
+/* LABELS */
+.simulation label {
+    font-size: 14px;
+    color: white;
+}
+
+/* HEADINGS */
+.simulation h2 {
+    color: white;
+    margin-bottom: 5px;
+}
+
+/* RUN SIMULATION BUTTON (BOTTOM RIGHT INSIDE STUDIO) */
+.resultButton {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.resultBtn {
+    padding: 12px 20px;
+    font-size: 14px;
+    background: #DC0032;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* HOVER */
+.resultBtn:hover {
+    background: #a80028;
+}
