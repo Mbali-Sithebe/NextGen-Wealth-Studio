@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Layout from "../components/layout";
 
 //Import Images
+import moreButtonImg from "../images/refresh.png"
 import propertyImg from "../images/house.png"
-import moreButtonImg from "../images/moreButton.png"
 import carPurchaseImg from "../images/carPurchase.png"
 import groceriesImg from "../images/groceries.png"
 
@@ -42,12 +42,14 @@ export default function SimulationLab(){
       </div>
 
       {/* 1. Top Boc Intro*/}
-      <img className="house" src={propertyImg} />
-      <h1>Renting vs Property Purchase</h1>
-      <p>
-        Use this tool to explore the difference between buying and renting, and see which option could help you save more.
-      </p>
-   
+      <div className="intro">
+         <img className="house" src={propertyImg} />
+         <h1>Renting vs Property Purchase</h1>
+            <p>
+              Use this tool to explore the difference between buying and renting, and see which option could help you save more.
+           </p>
+      </div>
+    
       <div className="simulation">
         {/*Left Tab - Renting*/}
         <div className="rentingBox">
@@ -96,11 +98,13 @@ export default function SimulationLab(){
         </button>
       </div>
 
-      <img className="car" src={carPurchaseImg} />
-      <h1>Uber vs Vehicle Purchase</h1>
-      <p>
+      <div className="intro">
+         <img className="car" src={carPurchaseImg} />
+         <h1>Uber vs Vehicle Purchase</h1>
+           <p>
         Compare the cost of using ride-hailing services versus owning a vehicle to see which option fits your budget.
-      </p>
+          </p>
+      </div>
 
       <div className="simulation">
         {/*Left Tab - Uber*/}
@@ -150,11 +154,14 @@ export default function SimulationLab(){
         </button>
       </div>
 
-      <img className="groceries" src={groceriesImg} />
-      <h1>Monthly Groceries vs Weekly Groceries</h1>
-      <p>
-        Explore your grocery spending habits and compare whether shopping weekly or monthly helps you save more.
-      </p>
+      <div className="intro">
+        <img className="groceries" src={groceriesImg} />
+        <h1>Monthly Groceries vs Weekly Groceries</h1>
+           <p>
+             Explore your grocery spending habits and compare whether shopping weekly or monthly helps you save more.
+          </p>
+
+      </div>
 
       <div className="simulation">
         {/*Left Tab - Weekly*/}

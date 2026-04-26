@@ -1,29 +1,41 @@
-/* ICON IMAGES SMALLER */
+.labContent h1 {
+   padding-bottom: 15px;
+}
+
+.labContent p{
+    margin-bottom: 40px;
+}
+
+/* Studios Icons - Intro text and Paragraph */
 .house,
 .car,
 .groceries {
-    width: 60px;
+    width: 28px;
     height: auto;
 }
 
-/* MAIN STUDIO BOX */
-.studio-1,
-.studio-2,
-.studio-3 {
-    background: white;
-    padding: 20px;
-    border: 1px solid #ccc;
-    width: 100%;
-    max-width: 900px;
-    height: 420px; /* FIXED SIZE (no shrinking) */
-    margin: 0 auto;
-    position: relative;
+.intro {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start; 
+    gap: 8px;
 }
 
-/* MORE BUTTON (SMALL + TOP RIGHT INSIDE WHITE BOX) */
+.intro img {
+    margin-right: 10px;
+}
+
+.intro h1 {
+    font-size: 25px;
+    margin: 0;
+}
+
+.intro p {
+    width: 100%;
+    margin: 0;
+}
+
+/* more button */
 .moreButton-Holder {
     position: absolute;
     top: 15px;
@@ -38,21 +50,57 @@
 }
 
 .moreButton-Holder img {
-    width: 20px; /* SMALL SIZE */
+    width: 27px; 
     height: auto;
 }
 
-/* SIMULATION BOX (RED INNER BOX) */
+
+/* Studio Boxes Here */
+.studio-1,
+.studio-2,
+.studio-3 {
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 1500px;
+    height: 490px;
+    margin: 0 auto;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+    gap: 20px;
+    box-sizing: border-box;/
+}
+
 .simulation {
     background: #DC0032;
     padding: 20px;
+    margin-bottom: 80px !important;
     display: flex;
     gap: 20px;
-    height: 220px;
+    width: 96%;           
+    max-width: 1100px;    
+    margin: auto;         
+    border-radius: 5px;   
     position: relative;
 }
 
-/* LEFT TAB */
+.simulation label {
+    font-size: 15px;
+    color: white;
+}
+
+.simulation h2 {
+    color: white;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+/* Left tab */
 .rentingBox {
     flex: 1;
     display: flex;
@@ -60,7 +108,7 @@
     gap: 10px;
 }
 
-/* RIGHT TAB */
+/* Right Tab B*/
 .buyingBox {
     flex: 1;
     display: flex;
@@ -68,7 +116,6 @@
     gap: 10px;
 }
 
-/* DIVIDER LINE BETWEEN LEFT & RIGHT */
 .simulation::before {
     content: "";
     position: absolute;
@@ -79,42 +126,25 @@
     background: white;
 }
 
-/* INPUT STYLING */
 .simulation input {
     padding: 8px;
     border: none;
     outline: none;
 }
 
-/* LABELS */
-.simulation label {
-    font-size: 14px;
-    color: white;
-}
-
-/* HEADINGS */
-.simulation h2 {
-    color: white;
-    margin-bottom: 5px;
-}
-
-/* RUN SIMULATION BUTTON (BOTTOM RIGHT INSIDE STUDIO) */
+/* Run simulation button here */
 .resultButton {
     position: absolute;
     bottom: 15px;
-    right: 15px;
+    right: 40px;
+    border: 2px solid #2D2323;
 }
 
 .resultBtn {
-    padding: 12px 20px;
+    padding: 12px 45px;
     font-size: 14px;
-    background: #DC0032;
-    color: white;
+    background: #F0F0F0;
+    color: #2D2323;
     border: none;
     cursor: pointer;
-}
-
-/* HOVER */
-.resultBtn:hover {
-    background: #a80028;
 }
