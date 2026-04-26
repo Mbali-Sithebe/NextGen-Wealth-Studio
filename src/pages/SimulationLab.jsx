@@ -207,7 +207,7 @@ export default function SimulationLab(){
   {/* Results Container */}
   <div className="results-container">
 
-    {/* LEFT RESULT */}
+    {/* Left Results */}
     <div className="result-block">
       
       <div className="result-box">
@@ -220,7 +220,7 @@ export default function SimulationLab(){
 
     </div>
 
-    {/* RIGHT RESULT */}
+    {/* Right Results */}
     <div className="result-block">
 
       <div className="result-box">
