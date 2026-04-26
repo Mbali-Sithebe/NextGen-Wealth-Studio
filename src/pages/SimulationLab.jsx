@@ -16,7 +16,7 @@ export default function SimulationLab(){
     }
 
     return(
-
+      //UI Elements Starts Here:
        <Layout>
         <header>
           <section className="labContent">
@@ -30,7 +30,6 @@ export default function SimulationLab(){
         <main>
   <section className="interactive-Boxes">
 
-    {/* ================= STUDIO 1 ================= */}
     {currentStudio === 0 && (
     <div className="studio-1">
 
@@ -87,8 +86,6 @@ export default function SimulationLab(){
     </div>
     )}
 
-
-    {/* ================= STUDIO 2 ================= */}
     {currentStudio === 1 && (
     <div className="studio-2">
 
@@ -143,8 +140,6 @@ export default function SimulationLab(){
     </div>
     )}
 
-
-    {/* ================= STUDIO 3 ================= */}
     {currentStudio === 2 && (
     <div className="studio-3">
 
@@ -202,9 +197,8 @@ export default function SimulationLab(){
 
   </section>
   
-{/* ================= Results Box after pressing run simulation button ================= */}
-<section className="resultsDisplay">
 
+<section className="resultsDisplay">
   <div className="results-Intro">
     <h1>Simulation Results</h1>
     <p>After a period of 5 years, this is how much you will be saving</p>
