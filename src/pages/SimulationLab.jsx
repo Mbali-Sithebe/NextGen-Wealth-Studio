@@ -201,10 +201,47 @@ export default function SimulationLab(){
     )}
 
   </section>
+  
+{/* ================= Results Box after pressing run simulation button ================= */}
+<section className="resultsDisplay">
 
-  <section className="resultsDisplay">
+  <div className="results-Intro">
+    <h1>Simulation Results</h1>
+    <p>After a period of 5 years, this is how much you will be saving</p>
+  </div>
 
-  </section>
+  {/* Results Container */}
+  <div className="results-container">
+
+    {/* LEFT RESULT */}
+    <div className="result-block">
+      
+      <div className="result-box">
+        <h2>0%</h2>
+      </div>
+
+      <div className="result-label">
+        <p>Results for:</p>
+      </div>
+
+    </div>
+
+    {/* RIGHT RESULT */}
+    <div className="result-block">
+
+      <div className="result-box">
+        <h2>0%</h2>
+      </div>
+
+      <div className="result-label">
+        <p>Results for:</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 </main>
          
        </Layout>
