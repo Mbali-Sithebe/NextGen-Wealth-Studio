@@ -3,12 +3,14 @@ import { useContext } from 'react'
 import { AuthProvider } from './context/AuthContext';
 import AuthContext from './context/AuthContext';
 
+//1. Pages
 import Login from "./pages/Login";
 import MoneySnapshot from './pages/MoneySnapshot';
 import StrategyTracks from './pages/StrategyTracks';
 import SimulationLab from './pages/SimulationLab';
 import EducationHub from './pages/EducationHub';
 
+//2. CSS
 import './App.css'
 import './styles/Login.css'
 import './styles/Navigation.css'

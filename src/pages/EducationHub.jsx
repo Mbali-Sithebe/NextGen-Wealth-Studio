@@ -9,7 +9,6 @@ import { glossaryData } from "../data/glossaryData";
 
 export default function EducationHub(){
 
-    // GLOSSARY STATE
     const [index, setIndex] = useState(0);
 
     function handleNext() {
@@ -112,13 +111,9 @@ export default function EducationHub(){
                                 <img className="nextB" src={nextButtonImg} alt="read"/>
                             </a>
                         </div>
-
                     </div>
-
                 </section>
-
             </main>
-          
         </Layout>
     )
 }

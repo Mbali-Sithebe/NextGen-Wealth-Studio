@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../components/layout";
 
-//Import Images
 import propertyImg from "../images/house.png"
 
 export default function SimulationLab(){
@@ -181,10 +180,7 @@ export default function SimulationLab(){
 
     </div>
   </section>
-
 </main>
-         
        </Layout>
-
     )
 }

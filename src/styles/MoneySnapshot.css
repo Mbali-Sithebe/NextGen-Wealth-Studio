@@ -1,4 +1,3 @@
-/*Text Color For The Whole Page*/
 body {
     color: #2D2323;
     background-color: #F9F5F0;
@@ -195,7 +194,7 @@ body {
 }
 
 
-/* RIGHT PANEL - SAVING GOALS + FIXED EXPENSES */
+/* Right Panel - Saving goals and foxed expenses*/
 .financeBox-Holder {
     display: flex;
     align-items: flex-start;
@@ -222,7 +221,6 @@ body {
     border: 2px solid #4d4d4d; 
 }
 
-/* HEADINGS */
 .savingGoals-Box h1,
 .fixedExpenses-Box h1 {
     font-size: 25px;
@@ -242,7 +240,7 @@ body {
     font-weight: 600;
 }
 
-/* INPUT SECTION */
+/* Input */
 .goalInputBox {
     display: flex;
     gap: 8px;
@@ -280,7 +278,6 @@ body {
     border-bottom: 1px solid #f0f0f0;
 }
 
-/* Remove arrows when adding money amount*/
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -291,7 +288,7 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-/* Pie Chart - Remove outline*/
+/* Pie Chart*/
 .recharts-wrapper:focus {
   outline: none;
 }
@@ -310,7 +307,7 @@ input[type="number"] {
     font-size: 25px;
 }
 
-/*Information Hover - EDUCATION PURPOSE SUGESTED*/
+/*Information Hover*/
 
 .infoIcon {
     position: relative;
@@ -334,12 +331,12 @@ input[type="number"] {
     bottom: 125%;
     left: 50%;
     transform: translateX(-50%);
-    background: #b14b58;
+    background: #333;
     color: white;
     padding: 6px 8px;
-    border-radius: 6px;
+    border-radius: 3px;
     font-size: 13px;
-    width: 180px;
+    width: 250px;
     text-align: center;
     transition: 0.2s;
     z-index: 999;

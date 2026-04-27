@@ -6,7 +6,6 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 //Import Images(Icons) Here
 import userProfileImg from "../images/ProfilePicture.png";
-import calendarImg from "../images/calendarTwo.png";
 import InfoIconImg from "../images/info.png";
 
 export default function MoneySnapshot() {
@@ -59,14 +58,6 @@ export default function MoneySnapshot() {
         setExpenseInput({ name: "", amount: "" });
     }
 
-    // Accurate Date (Live)
-    const today = new Date();
-    const formattedDate = today.toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-    });
-
     // Log Out and Redirect to login
     function handleLogOut() {
         logOut();
@@ -113,12 +104,6 @@ export default function MoneySnapshot() {
             <main>
                 <section className="page-header">
                     <h1>Money Snapshot</h1>
-
-                    {/*Money Snapshot + Today's Date */}
-                    <div className="date">
-                        <img className="calendar" src={calendarImg} alt="Calendar" />
-                        <p>{formattedDate}</p>
-                    </div>
                 </section>
 
                 <section className="financeBox-Holder">
@@ -141,7 +126,7 @@ export default function MoneySnapshot() {
                             {/* Display Values (Gross Income + UIF + Income After Deductions) */}
                             <div className="incomeValues">
 
-                                {/* EDUCATION: Gross Income */}
+                                {/* Education: Gross Income */}
                                 <h2>
                                     Gross Income
 
@@ -159,7 +144,7 @@ export default function MoneySnapshot() {
                                     {income !== null ? `R${income}` : "R0.00"}
                                 </h3>
 
-                                {/* EDUCATION: UIF */}
+                                {/* Education: UIF */}
                                 <h2>
                                     UIF (1%)
                                     <span className="infoIcon">
@@ -245,7 +230,7 @@ export default function MoneySnapshot() {
                                     cx="50%"
                                     cy="50%"
                                     outerRadius={140}
-                                    label={false} // FIX: removed extra labels
+                                    label={false} 
                                 >
                                     <Cell fill="#640032" /> {/*Income*/}
                                     <Cell fill="#DC0032" /> {/*Expenses*/}
@@ -275,7 +260,7 @@ export default function MoneySnapshot() {
                             <h1 className="mainHeading">
                                 Monthly Saving Goals
 
-                                {/* EDUCATION */}
+                                {/* Educational Tooltip */}
                                 <span className="infoIcon">
                                      <img src={InfoIconImg} alt="info" />
 
@@ -333,7 +318,6 @@ export default function MoneySnapshot() {
                             <h1 className="mainHeading">
                                 Fixed Expenses
 
-                                {/* EDUCATION */}
                                 <span className="infoIcon">
                                      <img src={InfoIconImg} alt="info" />
 

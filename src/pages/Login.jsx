@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-// ABSA LOGO IMPORT
 import AbsaLogo from "../images/AbsaLogo.png";
 
 export default function Login () {
@@ -54,7 +53,7 @@ export default function Login () {
                 {/* separate background colour here - first column */}
                  <header className="introContext">
 
-                    {/* ABSA LOGO */}
+                    {/* ABSA Logo */}
                     <img className="absa-logo" src={AbsaLogo} alt="Absa Logo" />
 
                     <h1 className="welcomeText">

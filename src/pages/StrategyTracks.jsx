@@ -14,7 +14,7 @@ export default function StrategyTracks () {
     const [progress, setProgress] = useState(0);
     const [completed, setCompleted] = useState([]);
     
-    // 4 Boxes: Each Box Has 3 Goals (Progress Slider)
+    // 4 Boxes: Each Box Has 3 Goals (Progress Slider no longer apply this)
     const totalTasks = 12; 
 
     function handleTick(id) {
@@ -155,18 +155,10 @@ export default function StrategyTracks () {
                                 <img className="smiley" src={TipsImg} />
                                 <p>cancel any service you haven't used in the past month</p>
                             </div>
-
-                        
                         </div>
-
-               
-
                     </div>
-
                 </section>
-
             </main>
-
         </Layout>
     )
 }
