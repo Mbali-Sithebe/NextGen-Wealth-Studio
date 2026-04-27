@@ -8,7 +8,7 @@ import AuthContext from './context/AuthContext';
 export default function App(){
     return (
         <AuthProvider>
-            <HashRouter>  }
+            <HashRouter>  
                 <AppRoutes/>
             </HashRouter>
         </AuthProvider>
