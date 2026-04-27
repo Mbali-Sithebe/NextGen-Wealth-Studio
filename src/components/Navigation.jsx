@@ -23,32 +23,32 @@ export default function Navigation (){
             <section className="sidebar">
                 <ul>
                     <li 
-                        onClick={() => navigate("/MoneySnapshot")} 
-                        style={{ cursor: "pointer" }}
+                        onClick={() => location.pathname !== "/MoneySnapshot" && navigate("/MoneySnapshot")} 
+                        style={{ cursor: location.pathname === "/MoneySnapshot" ? "default" : "pointer" }}
                         className={location.pathname === "/MoneySnapshot" ? "active" : ""}
                     >
                         Money Snapshot
                     </li>
 
                     <li 
-                        onClick={() => navigate("/StrategyTracks")} 
-                        style={{ cursor: "pointer" }}
+                        onClick={() => location.pathname !== "/StrategyTracks" && navigate("/StrategyTracks")} 
+                        style={{ cursor: location.pathname === "/StrategyTracks" ? "default" : "pointer" }}
                         className={location.pathname === "/StrategyTracks" ? "active" : ""}
                     >
                         Strategy Track
                     </li>
 
                     <li 
-                        onClick={() => navigate("/SimulationLab")} 
-                        style={{ cursor: "pointer" }}
+                        onClick={() => location.pathname !== "/SimulationLab" && navigate("/SimulationLab")} 
+                        style={{ cursor: location.pathname === "/SimulationLab" ? "default" : "pointer" }}
                         className={location.pathname === "/SimulationLab" ? "active" : ""}
                     >
                         Simulation Lab
                     </li>
 
                     <li 
-                        onClick={() => navigate("/EducationHub")} 
-                        style={{ cursor: "pointer" }}
+                        onClick={() => location.pathname !== "/EducationHub" && navigate("/EducationHub")} 
+                        style={{ cursor: location.pathname === "/EducationHub" ? "default" : "pointer" }}
                         className={location.pathname === "/EducationHub" ? "active" : ""}
                     >
                         Education Hub

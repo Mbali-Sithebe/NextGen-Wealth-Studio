@@ -92,3 +92,13 @@
     flex: 1;
     min-height: 100vh;
 }
+
+.sidebar li.active {
+    background-color: #C95326;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.sidebar li.active:hover {
+    background-color: #C95326;
+}
