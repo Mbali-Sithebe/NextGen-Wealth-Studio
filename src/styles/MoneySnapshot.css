@@ -1,0 +1,350 @@
+body {
+    color: #2D2323;
+    background-color: #F9F5F0;
+}
+
+/*Profile and LogOut Button*/
+.user-Content {
+    display: flex;
+    gap: 675px;
+    align-items: center;
+    padding: 0px 18px; 
+}
+
+.displayUser-Name {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.logout-profile {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+}
+
+.logout-profile button {
+    padding: 6px 15px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 2px solid grey;
+    
+}
+
+.logout-profile button:hover {
+    background-color: #797878;
+    color: rgb(223, 223, 223);
+}
+
+.userProfile {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+}
+
+.notification {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: -6px;
+    right: -5px;
+}
+
+/*Money Snapshot - Header*/
+.page-header {
+    padding: 6px 15.5px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 650;
+}
+
+.date {
+    display: flex; 
+    margin-top: 30px;
+    margin-left: 2px;
+    gap: 10px; 
+}
+
+.calendar {
+    width: 19px;
+    height: 19px;
+    object-fit: contain;
+}
+
+.date p {
+    margin: 0;
+    font-size: 15px;
+    color: #3b3b3b; 
+}
+
+/*Move Financial Boxes Below*/
+.page-header {
+    margin-bottom: 40px;
+}
+
+/*Financial Section - Income*/
+.incomeBox {
+    background-color: #fff;
+    border: 2px solid #4d4d4d;
+    margin-left: 10px;
+    padding: 15px;
+    padding-left: 25px;
+    width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 18px;
+}
+
+.incomeHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.incomeHeader h1 {
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    font-weight: 650;
+    margin: 0;
+     color: #2D2323;
+}
+
+.addIncomeBtn {
+    background-color: #333;
+    border:none;
+    border-radius: 6px;
+    color: #fff;
+    width: 33px;
+    height: 33px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.incomeValues {
+    display: flex;
+    flex-direction: column;
+}
+
+/* (Headings for Gross / UIF / Money After Deductions) */
+.incomeValues h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+    color: #333;
+}
+
+.balance {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    color: #000;
+}
+
+/* Input Wrapper */
+.grossInputArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.incomeInputBox {
+    display: flex;
+    gap: 5px;
+}
+
+/* Input Fill In Field */
+.incomeInputBox input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+/* Input Save Button */
+.incomeInputBox button {
+    padding: 8px 12px;
+    border: none;
+    color:#fff ;
+    background-color: #333;
+    cursor: pointer;
+    font-weight: 550;
+}
+
+.incomeValues h2:not(:first-child) {
+    margin-top: 8px;
+}
+
+.resultData {
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+
+/* Right Panel - Saving goals and foxed expenses*/
+.financeBox-Holder {
+    display: flex;
+    align-items: flex-start;
+    margin-right: 20px;
+}
+
+.leftPanel {
+    flex: 2;
+}
+
+.rightPanel {
+    flex: 0 0 470px; 
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+}
+
+.savingGoals-Box,
+.fixedExpenses-Box {
+    background: #fff;
+    padding: 16px;
+    height: 395px;
+    border-radius: 18px;
+    border: 2px solid #4d4d4d; 
+}
+
+.savingGoals-Box h1,
+.fixedExpenses-Box h1 {
+    font-size: 25px;
+    margin-bottom: 10px;
+    color: #2D2323;
+    margin-top: 10px;
+}
+
+.savingGoals-Box h2,
+.fixedExpenses-Box h2{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.balance {
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+/* Input */
+.goalInputBox {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.goalInputBox input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.goalInputBox button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* 5 Column List */
+.goalList {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.goalItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Pie Chart*/
+.recharts-wrapper:focus {
+  outline: none;
+}
+
+.recharts-sector:focus {
+  outline: none;
+}
+
+.recharts-surface:focus {
+  outline: none;
+}
+
+.resultData h1 {
+    margin-top: 65px;
+    margin-left: 5px;
+    font-size: 25px;
+}
+
+/*Information Hover*/
+
+.infoIcon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.infoIcon img {
+    width: 16px;  
+    height: 16px;
+    object-fit: contain;
+
+}
+
+.infoIcon .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 6px 8px;
+    border-radius: 3px;
+    font-size: 13px;
+    width: 250px;
+    text-align: center;
+    transition: 0.2s;
+    z-index: 999;
+
+    font-weight: normal; 
+}
+
+.infoIcon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}

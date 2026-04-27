@@ -1,0 +1,208 @@
+.labContent h1 {
+   padding-bottom: 15px;
+}
+
+.labContent p{
+    margin-bottom: 40px;
+}
+
+/* Studios Icons - Intro text and Paragraph */
+.house,
+.car,
+.groceries {
+    width: 28px;
+    height: auto;
+}
+
+.intro {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start; 
+    gap: 8px;
+}
+
+.intro img {
+    margin-right: 10px;
+}
+
+.intro h1 {
+    font-size: 25px;
+    margin: 0;
+}
+
+.intro p {
+    width: 100%;
+    margin: 0;
+}
+
+/* more button */
+.moreButton-Holder {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.moreButton-Holder button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.moreButton-Holder img {
+    width: 27px; 
+    height: auto;
+}
+
+
+/* Studio Boxes Here */
+.studio-1,
+.studio-2,
+.studio-3 {
+    background: #FFFFFF;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 1500px;
+    height: 490px;
+    margin: 0 auto;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.simulation {
+    background: #D9D9D9;
+    padding: 20px;
+    margin-bottom: 80px !important;
+    display: flex;
+    gap: 20px;
+    width: 96%;           
+    max-width: 1100px;    
+    margin: auto;         
+    border-radius: 5px;   
+    position: relative;
+}
+
+.simulation label {
+    font-size: 15px;
+    color:  #2D2323;
+}
+
+.simulation h2 {
+    color:  #2D2323;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+/* Left tab */
+.rentingBox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Right Tab B*/
+.buyingBox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.simulation::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 50%;
+    width: 1px;
+    background: #FFFFFF;
+}
+
+.simulation input {
+    padding: 8px;
+    border: none;
+    outline: none;
+}
+
+/* Run simulation button here */
+.resultButton {
+    position: absolute;
+    bottom: 15px;
+    right: 40px;
+}
+
+.resultBtn {
+    padding: 14px 50px;
+    font-size: 16px;
+    background: #C95326;
+    color: #FFFFFF;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+/*Results Container*/
+.results-Intro h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.results-Intro p {
+    margin: 5px 0 0 0;
+}
+
+.resultsDisplay {
+    background-color: #FFFFFF;
+    border: 2px solid #DC0032;
+    padding: 25px;
+    display: flex;
+    width: 65%;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 50px;
+}
+
+.result-box h2 {
+    font-size: 25px;
+}
+
+.result-label {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.result-label p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.results-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.result-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.result-box {
+    width: 95%;
+    height: 180px;
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
