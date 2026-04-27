@@ -61,7 +61,7 @@ export default function Login () {
                         <span className="font-1">Welcome to</span>
                         NextGen Wealth Studio
                     </h1>
-                    <p className="introP">Take control of your financial future, your story matters</p>
+                    <p className="introP">Take control of your financial future, your story matters.</p>
                  </header>
             </section>
 
