@@ -3,7 +3,19 @@ import { useContext } from 'react'
 import { AuthProvider } from './context/AuthContext';
 import AuthContext from './context/AuthContext';
 
-// ... your imports stay the same
+import Login from "./pages/Login";
+import MoneySnapshot from './pages/MoneySnapshot';
+import StrategyTracks from './pages/StrategyTracks';
+import SimulationLab from './pages/SimulationLab';
+import EducationHub from './pages/EducationHub';
+
+import './App.css'
+import './styles/Login.css'
+import './styles/Navigation.css'
+import './styles/MoneySnapshot.css'
+import './styles/StrategyTracks.css'
+import './styles/SimulationLab.css'
+import './styles/EducationHub.css'
 
 export default function App(){
     return (
