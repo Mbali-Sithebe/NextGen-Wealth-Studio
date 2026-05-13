@@ -13,25 +13,22 @@
 
 .introColumn {
     width: 50%;
-    height: 120%;
-    margin-top: -65px;
-    margin-left: -10px;
+    height: auto;
     background-color: #640032;
     display: flex;
     align-items: center;
-   
 }
 
 .introContext {
-    padding: 70px;
-    margin-top: -145px;
+    padding: 40px;
+    margin-top: -120px;
     margin-left: 80px; 
 }
 
 .formColumn {
     width: 50%;
-    height: 100%;
-    background-color: #FFFFFF;
+    height: auto;
+    background-color: #F9F5F0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,10 +38,9 @@
 }
 
 .absa-logo {
-    width: 180px;
-    height: 180px;
+    width: 183px;
+    height: 183px;
     border-radius: 50%;
-    background-color: #C1C1C1;
     display: block;
     margin-bottom: 30px;
 }
@@ -56,20 +52,22 @@
 }
 
 .welcomeText {
+    margin-left: 16px;
     font-size: 40px;
     font-weight: 700;
-    margin-bottom: 16px; 
+    margin-bottom: 18px; 
     color: #FFFFFF;
 }
 
 .introP {
+    margin-left: 16px;
     font-size: 18px;
     font-weight: 400;
     color: #FFFFFF;
 }
 
 .formColumn h1 {
-    font-size: 35px;
+    font-size: 33px;
     font-weight: 700;
     margin-bottom: 8px;
 }
@@ -100,7 +98,7 @@
 .username input, .password input {
     padding: 16px 18px;
     font-size: 14px;
-    border: 1px solid #C1C1C1;
+    border: 2px solid #DC0032;
     border-radius: 3px;
     outline: none;
     width: 137%; 
@@ -117,25 +115,26 @@
     margin-right: -145px; 
     margin-bottom: 70px;
     font-size: 15px;
+    color: #DC0032;
+    font-weight: 600;
 }
 
 .formActions button {
     align-self: center;
     margin-right: -80px; 
-    width: 65%; 
+    width: 60%; 
     padding: 16px;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
+    background-color:#C95326;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 9px;
 }
 
-.formColumn button{
-    align-self: center;
-    margin-right: -80px; 
-    margin-bottom: -20px;
-    width: 65%; 
-    padding: 16px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
+.formActions button:hover{
+      background-color:#A8441F;
 }
+
+
