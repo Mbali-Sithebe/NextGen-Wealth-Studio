@@ -1,6 +1,7 @@
 import React from "react"; 
 import { useNavigate, useLocation } from "react-router-dom";
 
+import AbsaLogo from "../images/AbsaLogo.png";
 
 export default function Navigation (){
     const navigate = useNavigate();
@@ -11,12 +12,12 @@ export default function Navigation (){
         <nav>
 
             {/* Logo and app name */}
-            <section className="brand-logo">
-                <img src="" className="navigation-logo" alt="" />
-                <h1 className="brand-name">
-                    <span className="font-1">NextGen</span>
-                    Wealth Studio
-                </h1>
+            <section className="brand-section">
+                   <img className="brand-logo" src={AbsaLogo} alt="Absa Logo" />
+                   <h1 className="brand-name">
+                       <span className="font-1"> <strong>NextGen</strong>  Wealth</span>
+                        Studio
+                 </h1>
             </section>
 
             {/* Sidebar navigation links */}
