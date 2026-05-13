@@ -138,17 +138,16 @@
 /* Year Buttins Here */
 .yearLabel {
     margin-top: 30px;
-    background: #D9D9D9;
-    color: #2D2323;
-    border: 1px solid #2D2323;
+    background: #C95326;
+    color: #fff;
+    border:none;
     padding: 10px 108px;
     border-radius: 0px;
     cursor: default;
-
-    white-space: nowrap; /* keeps "Year 1" on one line */
+    white-space: nowrap; 
     font-weight: 600;     
     text-align: center;  
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .dashboardBottom {
@@ -185,7 +184,7 @@
     height: 18px;
     background: #ddd;
     border-radius: 8px;
-    border: 1px solid #2D2323;
+    border: none;
 }
 
 .barFill {
