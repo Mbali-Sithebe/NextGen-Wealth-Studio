@@ -1,124 +1,205 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Layout from "../components/layout";
+import AuthContext from "../context/AuthContext";
 
-//Image Import (Icons)
-import milestoneImg from "../images/milestone.png";
-import tickButtonImg from "../images/circleButton.png";
-import TipsImg from "../images/SmileyOne.png"
-import TipsIconImg from "../images/tips.png"
+import AnimTipBulb from "../images/AnimTipBulb.mp4";
+import SmileyIcon from "../images/SmileyIcon.mp4";
 
-import { strategyData } from "../data/strategyData";
 
-export default function StrategyTracks () {
+import { TRACKS, STATE_LABELS, STATE_COLORS, POPUP_MESSAGES } from "../data/strategyData";
 
-    const [progress, setProgress] = useState(0);
-    const [completed, setCompleted] = useState([]);
-    
-    // 4 Boxes: Each Box Has 3 Goals (Progress Slider no longer apply this)
-    const totalTasks = 12; 
+export default function StrategyTracks() {
+    const { selectedTrack, trackProgress, chooseTrack, updateMilestoneState } = useContext(AuthContext);
 
-    function handleTick(id) {
-        if (completed.includes(id)) return;
+    const [popup, setPopup] = useState(null);
 
-        const updated = [...completed, id];
-        setCompleted(updated);
-        setProgress(Math.round((updated.length / totalTasks) * 100));
+    const activeTrack = TRACKS.find(t => t.id === selectedTrack) || null;
+    // Get milestone state 
+    function getMilestoneState(id) {
+        return trackProgress[id] ?? 0;
     }
 
-    // Year Progress for Bar Graph
-    const getYearProgress = (tasks) => {
-        const done = tasks.filter(t => completed.includes(t.id)).length;
-        return Math.round((done / tasks.length) * 100);
-    };
+    function handleMilestoneClick(milestoneId, yearIndex, yearMilestones) {
+        const current = getMilestoneState(milestoneId);
+        const next = (current + 1) % 3;
+        updateMilestoneState(milestoneId, next);
 
-    //USER INTERFACE DESIGN HERE (4 USER MILESTONES: 4 YEARS: PROGRESS TRACKER:)
-    return(
+        // Popup when milestone is reached
+        if (next === 2) {
+            const allDone = yearMilestones.every(m => {
+                const s = m.id === milestoneId ? 2 : getMilestoneState(m.id);
+                return s === 2;
+            });
+            if (allDone) {
+                setPopup(POPUP_MESSAGES[yearIndex]);
+            }
+        }
+    }
+
+    // Overall track progress percentage
+    function getOverallProgress() {
+        if (!activeTrack) return 0;
+        const allMilestones = activeTrack.years.flatMap(y => y.milestones);
+        const done = allMilestones.filter(m => getMilestoneState(m.id) === 2).length;
+        return Math.round((done / allMilestones.length) * 100);
+    }
+
+    // Per-year progress percentage for bar graph
+    function getYearProgress(milestones) {
+        const done = milestones.filter(m => getMilestoneState(m.id) === 2).length;
+        return Math.round((done / milestones.length) * 100);
+    }
+
+    // Track Selection Studios
+    if (!selectedTrack) {
+        return (
+            <Layout>
+                <header>
+                    <section className="pageIntro">
+                        <h1 className="pageTitle">Strategy Tracker</h1>
+                        <div className="introRow">
+                            <p>
+                                This page offers three financial trackers. Select the one that best suits your goals
+                                and lifestyle for the next four years.
+                            </p>
+                        </div>
+                    </section>
+                </header>
+
+                <main>
+                    <div className="trackSelection">
+                        {TRACKS.map(track => (
+                            <div key={track.id} className="trackCard">
+                                <h2 className="trackCardName">{track.name}</h2>
+                                <p className="trackCardTagline">{track.tagline}</p>
+
+                                <div className="trackCardSection">
+                                    <span className="trackCardLabel">Designed For:</span>
+                                    <p>{track.who}</p>
+                                </div>
+
+                                <div className="trackCardSection">
+                                    <span className="trackCardLabel">What it costs you:</span>
+                                    <p>{track.cost}</p>
+                                </div>
+
+                                <div className="trackCardSection danger">
+                                    <span className="trackCardLabel">Be Aware:</span>
+                                    <p>{track.warning}</p>
+                                </div>
+
+                                <button
+                                    className="selectTrackBtn"
+                                    onClick={() => chooseTrack(track.id)}
+                                >
+                                    Choose This Track
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </main>
+            </Layout>
+        );
+    }
+
+    // Active Track Screen
+    return (
         <Layout>
             <header>
                 <section className="pageIntro">
-                    <h1 className="pageTitle">
-                        Strategy Tracker
-                    </h1>
-
+                    <h1 className="pageTitle">{activeTrack.name}</h1>
                     <div className="introRow">
-                        <img className="progress" src={milestoneImg} alt="Progress" />
-                        <p>
-                            Track your progress milestones and financial strategy set for the next four years.
-                        </p>
+                        <p>Track your financial milestones and long-term strategy over the next four years. Set goals, monitor your progress, and stay aligned with your financial plan
+                            as you build toward your future targets.</p>
                     </div>
+
+                    <button
+                        className="switchTrackBtn"
+                        onClick={() => chooseTrack(null)}
+                    >
+                        ← Switch Track
+                    </button>
                 </section>
 
-                {/* Main Slider */}
+                {/* Overall Progress Slider */}
                 <section className="mainSlider-Progress">
                     <div className="sliderContainer">
                         <h1 className="slider-Progress">
-                            Progress: {progress}% Completed
+                            Overall Progress: {getOverallProgress()}% Completed
                         </h1>
-
                         <div className="progressSlider">
-                            <div 
+                            <div
                                 className="progressFill"
-                                style={{ width: `${progress}%` }}
+                                style={{ width: `${getOverallProgress()}%` }}
                             />
                         </div>
                     </div>
                 </section>
             </header>
 
-            {/* Milestones - 4 Year */}
             <main>
+                {/* 4 Milestone Year Boxes */}
                 <section className="milestone-Boxes">
-
-                    {strategyData.map((box) => (
-                        <div className="goalWrapper" key={box.title}>
+                    {activeTrack.years.map((yearObj, yearIndex) => (
+                        <div className="goalWrapper" key={yearObj.year}>
                             <div className="goalBox">
-
-                                <div className="boxHeader">{box.title}</div>
-
+                                <div className="boxHeader">{yearObj.title}</div>
                                 <div className="boxContent">
+                                    {yearObj.milestones.map((task) => {
+                                        const state = getMilestoneState(task.id);
+                                        return (
+                                            <div className="taskRow" key={task.id}>
 
-                                    {box.tasks.map((task) => (
-                                        <div className="taskRow" key={task.id}>
-                                            <button
-                                                onClick={() => handleTick(task.id)}
-                                                className={`tickBox ${completed.includes(task.id) ? "done" : ""}`}
-                                            >
-                                                <img src={tickButtonImg} alt="tick" />
-                                            </button>
+                                                {/* 3-state dot buttons */}
+                                                <div className="milestoneBtnWrapper">
+                                                    <button
+                                                        onClick={() => handleMilestoneClick(task.id, yearIndex, yearObj.milestones)}
+                                                        className="milestoneBtn"
+                                                        style={{ backgroundColor: STATE_COLORS[state] }}
+                                                    />
+                                                    {/* Tooltip */}
+                                                    <span className="milestoneTooltip">
+                                                        {STATE_LABELS[state]}
+                                                    </span>
+                                                </div>
 
-                                            <p>{task.text}</p>
-                                        </div>
-                                    ))}
-
+                                                <p style={{
+                                                    textDecoration: state === 2 ? "line-through" : "none",
+                                                    color: state === 2 ? "#aaa" : "#2D2323"
+                                                }}>
+                                                    {task.text}
+                                                </p>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
-
                             </div>
 
-                            <button className="yearLabel">{box.year}</button>
+                            <button className="yearLabel">{yearObj.year}</button>
                         </div>
                     ))}
-
                 </section>
 
-               
                 <section className="dashboardBottom">
 
-                    {/* Bar Graph Generate (Left) */}
+                    {/* Bar Graph (Left) */}
                     <div className="trackData">
                         <div className="barGraph-Container">
-                            <h1 className="dataTitle">
-                                Progress Tracker Data
-                            </h1>
-                            <p className="text">This is yearly progress data tracking how much you have saved over the course of a year</p>
+                            <h1 className="dataTitle">Progress Tracker Data</h1>
+                            <p className="text">
+                                Yearly milestone completion for your {activeTrack.name} track.
+                            </p>
 
-                            {strategyData.map((box) => (
-                                <div key={box.year} className="barRow">
-                                    <p>{box.year}</p>
-
+                            {activeTrack.years.map((yearObj) => (
+                                <div key={yearObj.year} className="barRow">
+                                    <div className="barRowLabel">
+                                        <p>{yearObj.year}</p>
+                                        <p>{getYearProgress(yearObj.milestones)}%</p>
+                                    </div>
                                     <div className="bar">
                                         <div
                                             className="barFill"
-                                            style={{ width: `${getYearProgress(box.tasks)}%` }}
+                                            style={{ width: `${getYearProgress(yearObj.milestones)}%` }}
                                         />
                                     </div>
                                 </div>
@@ -126,39 +207,60 @@ export default function StrategyTracks () {
                         </div>
                     </div>
 
-                    {/* Generate Tips (Right) */}
+                    {/* Tips Box (Right) */}
                     <div className="TipsContainer-Holder">
-
                         <div className="TipsBox">
-                             
                             <h1 className="tipsTitle">
-                                <img className="tips" src={TipsIconImg} />
                                 General Tips
                             </h1>
 
                             <div className="Tip-1">
-                                <img className="smiley" src={TipsImg} />
+                                <video src={SmileyIcon} autoPlay loop muted playsInline className="smiley" style={{ mixBlendMode: "multiply" }} />
                                 <p>Set aside your savings the moment your income arrives.</p>
                             </div>
-
                             <div className="Tip-2">
-                                <img className="smiley" src={TipsImg} />
-                                <p>Know where your money goes helps you cut what doesn't matter.</p>
+                                <video src={SmileyIcon} autoPlay loop muted playsInline className="smiley" style={{ mixBlendMode: "multiply" }} />
+                                <p>Tracking where your money goes helps you cut what does not matter.</p>
                             </div>
-
                             <div className="Tip-3">
-                                <img className="smiley" src={TipsImg} />
-                                <p>Avoid impulse buying, wait 24 hours before making any unplanned purchase.</p>
+                                <video src={SmileyIcon} autoPlay loop muted playsInline className="smiley" style={{ mixBlendMode: "multiply" }} />
+                                <p>Wait 24 hours before any unplanned purchase, impulse buying kills budgets.</p>
                             </div>
-
-                             <div className="Tip-4">
-                                <img className="smiley" src={TipsImg} />
-                                <p>cancel any service you haven't used in the past month</p>
+                            <div className="Tip-4">
+                                <video src={SmileyIcon} autoPlay loop muted playsInline className="smiley" style={{ mixBlendMode: "multiply" }} />
+                                <p>Cancel any subscription you have not used in the past 30 days.</p>
                             </div>
                         </div>
                     </div>
                 </section>
             </main>
+
+            {popup && (
+                <div className="feedback-overlay" onClick={() => setPopup(null)}>
+                    <div className="feedback-modal" onClick={(e) => e.stopPropagation()}>
+
+                        <div className="feedbackTitle">
+                            <video
+                                src={AnimTipBulb}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="feedbackTitleIcon"
+                                style={{ mixBlendMode: "multiply" }}
+                            />
+                            <h2>{popup.title}</h2>
+                        </div>
+
+                        <p className="feedbackMessage healthy">{popup.message}</p>
+
+                        <p className="popupTip">{popup.tip}</p>
+
+                        <button onClick={() => setPopup(null)}>Continue</button>
+
+                    </div>
+                </div>
+            )}
         </Layout>
-    )
+    );
 }

@@ -67,15 +67,16 @@
 }
 
 .formColumn h1 {
-    font-size: 33px;
+    font-size: 38px;
     font-weight: 700;
     margin-bottom: 8px;
 }
 
 .formColumn p {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 400;
-    margin-bottom: 40px;
+    margin-bottom: 46px;
+    color: #48484A;
 }
 
 .formColumn form {
@@ -95,46 +96,93 @@
     margin-bottom: 6px;
 }
 
-.username input, .password input {
+.username input {
     padding: 16px 18px;
     font-size: 14px;
-    border: 2px solid #DC0032;
-    border-radius: 3px;
+    border: 2px solid #8E8E93;
+    border-radius: 5px;
     outline: none;
-    width: 137%; 
+    width: 137%;
 }
+
+.password input {
+    padding: 16px 18px;
+    font-size: 14px;
+    border: 2px solid #8E8E93;
+    border-radius: 5px;
+    outline: none;
+    width: 100%;
+}
+
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 137%;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.password-rules {
+    list-style: none;
+    padding: 8px 0 0;
+    margin: 0;
+    font-size: 13px;
+    width: 137%;
+}
+
+.rule-pass { color: #509029; }
+.rule-fail { color: #D62828; }
 
 .formActions {
     display: flex;
     flex-direction: column;
     width: 100%;
-}
-
-.formActions p {
-    text-align: right;
-    margin-right: -145px; 
-    margin-bottom: 70px;
-    font-size: 16px;
-    color: #DC0032;
-    font-weight: 600;
+    margin-top: 40px;
 }
 
 .formActions button {
     align-self: center;
-    margin-right: -80px; 
-    width: 60%; 
+    margin-right: -150px; 
+    width: 137%; 
     padding: 16px;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    background-color:#C95326;
+    background-color: #C95326;
     color: #FFFFFF;
     border: none;
-    border-radius: 9px;
+    border-radius: 6px;
 }
 
-.formActions button:hover{
-      background-color:#A8441F;
+.formActions button:hover {
+    background-color: #A8441F;
 }
 
+.formText {
+    text-align: right;
+    margin-right: -10px; 
+    font-size: 16px;
+    margin-top: 28px;
+}
 
+.normalText {
+    color: #48484A;
+    font-weight: 400;
+}
+
+.linkText {
+    color: #C95326;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+}
