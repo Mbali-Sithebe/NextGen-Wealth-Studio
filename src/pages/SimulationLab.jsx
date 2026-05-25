@@ -1,186 +1,381 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "../components/layout";
+import InfoIconImg from "../images/info.png";
+import AnimTipBulb from "../images/AnimTipBulb.mp4";
 
-import propertyImg from "../images/house.png"
+// Custom hook — all calculations and logic live here
+import useSimulations from "../data/useSimulations";
 
-export default function SimulationLab(){
+export default function SimulationLab() {
+    // All state, calculations and handlers come from the hook
+    const {
+        simInputs,
+        setField,
+        formatRand,
+        currentStudio,
+        handleNextStudio,
+        resultsVisible,
+        popup,
+        setPopup,
+        studio1,
+        studio2,
+        studio3,
+        handleRunSimulation
+    } = useSimulations();
 
-    // Studio 1 - Renting inputs
-    const [rentMonthly, setRentMonthly] = useState("");
-    const [rentDeposit, setRentDeposit] = useState("");
-    const [rentYears, setRentYears] = useState("");
+    // Active result values by current studio
+    const activeResult = currentStudio === 0 ? studio1 : currentStudio === 1 ? studio2 : studio3;
+    const leftLabel    = currentStudio === 0 ? "Renting" : currentStudio === 1 ? "Uber/Bolt" : "Weekly Shopping";
+    const rightLabel   = currentStudio === 0 ? "Buying" : currentStudio === 1 ? "Vehicle" : "Monthly Shopping";
+    const leftValue    = currentStudio === 0 ? studio1.totalRenting : currentStudio === 1 ? studio2.totalUber : studio3.totalWeekly;
+    const rightValue   = currentStudio === 0 ? studio1.totalBuying : currentStudio === 1 ? studio2.totalCar : studio3.totalMonthly;
 
-    // Studio 1 - Buying inputs
-    const [buyBond, setBuyBond] = useState("");
-    const [buyDeposit, setBuyDeposit] = useState("");
-    const [buyYears, setBuyYears] = useState("");
+    return (
+        <Layout>
+            <header>
+                <section className="labContent">
+                    <h1>Simulation Lab</h1>
+                    <p>
+                        Let your future unfold by exploring your financial choices with our interactive simulations.
+                        Fill in your values and press Run Simulation to see your results.
+                    </p>
+                </section>
+            </header>
 
-    // Studio 1 - Results
-    const [rentingResult, setRentingResult] = useState("0%");
-    const [buyingResult, setBuyingResult] = useState("0%");
-    const [rentingLabel, setRentingLabel] = useState("Results for:");
-    const [buyingLabel, setBuyingLabel] = useState("Results for:");
-    const [simRan, setSimRan] = useState(false);
+            <main>
+                <section className="interactive-Boxes">
 
-    // Studio 1 - Run Simulation logic
-    function handleRunSimulation(){
-        const monthlyRent = parseFloat(rentMonthly) || 0;
-        const depositRent = parseFloat(rentDeposit) || 0;
-        const yearsRent   = parseFloat(rentYears)   || 0;
+                    {/* STUDIO 1: Rent vs Buy */}
+                    {currentStudio === 0 && (
+                        <div className="studio-1">
+                            <button className="studioNavBtn" onClick={handleNextStudio}>
+                                Studio 1 of 3 →
+                            </button>
 
-        const monthlyBond = parseFloat(buyBond)     || 0;
-        const depositBuy  = parseFloat(buyDeposit)  || 0;
-        const yearsBuy    = parseFloat(buyYears)     || 0;
+                            <div className="intro">
+                                <h1>
+                                    Renting vs Buying Property
+                                    <span className="infoIcon">
+                                        <img src={InfoIconImg} alt="info" />
+                                        <span className="tooltip">
+                                            Compare the true long-term cost of renting versus buying property in South Africa.
+                                        </span>
+                                    </span>
+                                </h1>
 
-        const totalRenting = (monthlyRent * yearsRent * 12) + depositRent;
-        const totalBuying  = (monthlyBond * yearsBuy  * 12) + depositBuy;
-        const combined     = totalRenting + totalBuying;
+                                <p>
+                                    This studio helps you to compare the total long-term cost of renting a home versus buying property in South Africa. 
+                                </p>
+                            </div>
 
-        if (combined === 0) return;
+                            <div className="simulation">
 
-        const rentPercent = ((totalRenting / combined) * 100).toFixed(1);
-        const buyPercent  = ((totalBuying  / combined) * 100).toFixed(1);
+                                <div className="rentingBox">
+                                    <h2>Renting</h2>
 
-        setRentingResult(`${rentPercent}%`);
-        setBuyingResult(`${buyPercent}%`);
-        setRentingLabel("Results for: Renting");
-        setBuyingLabel("Results for: Buying Property");
-        setSimRan(true);
-    }
+                                    <label>Monthly Rent (R)</label>
+                                    <input
+                                        type="number"
+                                        placeholder="e.g. R8 500"
+                                        value={simInputs.rentMonthly}
+                                        onChange={(e) => setField("rentMonthly", e.target.value)}
+                                    />
 
-    return(
-      //UI Elements Starts Here:
-       <Layout>
-        <header>
-          <section className="labContent">
-            <h1>Simulation Lab</h1>
-            <p>
-              Let your future unfold by exploring your financial choices with our interactive simulations!
-            </p>
-          </section>
-        </header>
+                                    <label>Deposit (R)
+                                      <span className="infoIcon">
+                                            <img src={InfoIconImg} alt="info" />
+                                            <span className="tooltip">You pay a deposit of 1 month rent upfront, and it’s refundable 
+                                              when you leave if there are no damages or unpaid costs.</span>
+                                        </span>
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="e.g. R8 500"
+                                        value={simInputs.rentDeposit}
+                                        onChange={(e) => setField("rentDeposit", e.target.value)}
+                                    />
 
-        <main>
-  <section className="interactive-Boxes">
+                                    <label>Years Renting</label>
+                                    <input
+                                        type="number"
+                                        placeholder="5 YEARS"
+                                        value={simInputs.rentYears}
+                                        disabled
+                                    />
+                                </div>
 
-    <div className="studio-1">
+                                <div className="buyingBox">
+                                    <h2>Buying Property</h2>
 
-      {/* 1. Top Box Intro*/}
-      <div className="intro">
-         <img className="house" src={propertyImg} />
-         <h1>Renting vs Property Purchase</h1>
-            <p>
-              Use this tool to explore the difference between buying and renting, and see which option could help you save more.
-           </p>
-      </div>
-    
-      <div className="simulation">
-        {/*Left Tab - Renting*/}
-        <div className="rentingBox">
-          <h2>Renting</h2>
+                                    <label>Property Price (R)</label>
+                                    <input
+                                        type="number"
+                                        placeholder="e.g. R950 000"
+                                        value={simInputs.buyPrice}
+                                        onChange={(e) => setField("buyPrice", e.target.value)}
+                                    />
 
-          <label>Monthly Rent (R)</label>
-          <input
-            type="number"
-            placeholder="Enter monthly rent"
-            value={rentMonthly}
-            onChange={(e) => setRentMonthly(e.target.value)}
-          />
+                                    <label>Deposit (R)
+                                       <span className="infoIcon">
+                                            <img src={InfoIconImg} alt="info" />
+                                            <span className="tooltip">You pay a deposit 10%–20% of the house price 
+                                              upfront as part of the purchase, and it is not refundable.</span>
+                                        </span>
+                                    </label>
+                                    <input
+                                        type="number"
+                                        placeholder="e.g. R95 000"
+                                        value={simInputs.buyDeposit}
+                                        onChange={(e) => setField("buyDeposit", e.target.value)}
+                                    />
 
-          <label>Deposit (R)</label>
-          <input
-            type="number"
-            placeholder="Once-off deposit"
-            value={rentDeposit}
-            onChange={(e) => setRentDeposit(e.target.value)}
-          />
+                                    <label>Bond Term (Years)</label>
+                                    <input
+                                        type="number"
+                                        placeholder="5 YEARS"
+                                        value={simInputs.buyYears}
+                                        disabled
+                                    />
+                                </div>
+                            </div>
 
-          <label>Years Staying</label>
-          <input
-            type="number"
-            placeholder="Number of years"
-            value={rentYears}
-            onChange={(e) => setRentYears(e.target.value)}
-          />
-        </div>
+                            <section className="resultButton">
+                                <button className="resultBtn" onClick={handleRunSimulation}>
+                                    Run Simulation
+                                </button>
+                            </section>
+                        </div>
+                    )}
 
-        {/*Right Tab - Buying*/}
-        <div className="buyingBox">
-          <h2>Buying Property</h2>
+                    {/* STUDIO 2: Uber vs Vehicle */}
+                    {currentStudio === 1 && (
+                        <div className="studio-2">
 
-          <label>Monthly Bond (R)</label>
-          <input
-            type="number"
-            placeholder="Enter monthly bond"
-            value={buyBond}
-            onChange={(e) => setBuyBond(e.target.value)}
-          />
+                            <button className="studioNavBtn" onClick={handleNextStudio}>
+                                Studio 2 of 3 →
+                            </button>
 
-          <label>Deposit (R)</label>
-          <input
-            type="number"
-            placeholder="Once-off deposit"
-            value={buyDeposit}
-            onChange={(e) => setBuyDeposit(e.target.value)}
-          />
+                            <div className="intro">
+                                <h1>
+                                    Uber/Bolt vs Buying Vehicle 
+                                    <span className="infoIcon">
+                                        <img src={InfoIconImg} alt="info" />
+                                        <span className="tooltip">
+                                            Compare the total cost of using ride-hailing services versus owning and financing a vehicle including fuel. 
+                                        </span>
+                                    </span>
+                                </h1>
 
-          <label>Years Staying</label>
-          <input
-            type="number"
-            placeholder="Number of years"
-            value={buyYears}
-            onChange={(e) => setBuyYears(e.target.value)}
-          />
-        </div>
-      </div>
+                                <p>
+                                    This studio helps you to compare ride-hailing costs against owning a vehicle including finance and fuel.
+                                </p>
+                            </div>
 
-      <section className="resultButton">
-        <button className="resultBtn" onClick={handleRunSimulation}>Run Simulation</button>
-      </section>
+                            <div className="simulation">
 
-    </div>
+                                <div className="rentingBox">
+                                    <h2>Uber/Bolt</h2>
 
-  </section>
+                                    <label>Average Cost per Trip (Going & Returning)</label>
+                                    <input
+                                        type="number"
+                                        placeholder="e.g. R85"
+                                        value={simInputs.uberCostPerTrip}
+                                        onChange={(e) => setField("uberCostPerTrip", e.target.value)}
+                                    />
 
+                                    <label>Trips per Month</label>
+                                    <input
+                                        type="number"
+                                        placeholder="e.g. 30 days"
+                                        value={simInputs.uberTripsPerMonth}
+                                        onChange={(e) => setField("uberTripsPerMonth", e.target.value)}
+                                    />
 
-  <section className="resultsDisplay">
-    <div className="results-Intro">
-      <h1>Simulation Results</h1>
+                                    <label>Years Using Service</label>
+                                    <input
+                                        type="number"
+                                        placeholder="5 YEARS"
+                                        value={simInputs.uberYears}
+                                        disabled
+                                    />
+                                </div>
 
-      {/* Only shows after Run Simulation is pressed */}
-      {simRan && (
-          <p>
-              Over a period of {rentYears} years, you will spend more on renting and save more with buying.
-          </p>
-      )}
-    </div>
+                                <div className="buyingBox">
+                                    <h2>Vehicle Ownership</h2>
 
-    {/* Results Container */}
-    <div className="results-container">
+                                    <label>Vehicle Price (R)</label>
+                                    <input
+                                        type="number"
+                                        placeholder="e.g. R350 000"
+                                        value={simInputs.carPrice}
+                                        onChange={(e) => setField("carPrice", e.target.value)}
+                                    />
 
-      {/* Left Results */}
-      <div className="result-block">
-        <div className="result-box">
-          <h2>{rentingResult}</h2>
-        </div>
-        <div className="result-label">
-          <p>{rentingLabel}</p>
-        </div>
-      </div>
+                                    <label>Monthly Fuel Cost (R)</label>
+                                    <input
+                                        type="number"
+                                        placeholder="e.g. R2 000"
+                                        value={simInputs.carFuel}
+                                        onChange={(e) => setField("carFuel", e.target.value)}
+                                    />
 
-      {/* Right Results */}
-      <div className="result-block">
-        <div className="result-box">
-          <h2>{buyingResult}</h2>
-        </div>
-        <div className="result-label">
-          <p>{buyingLabel}</p>
-        </div>
-      </div>
+                                    <label>Years of Ownership</label>
+                                    <input
+                                        type="number"
+                                        placeholder="5 YEARS"
+                                        value={simInputs.carYears}
+                                        disabled
+                                    />
+                                </div>
+                            </div>
 
-    </div>
-  </section>
-</main>
-       </Layout>
-    )
+                            <section className="resultButton">
+                                <button className="resultBtn" onClick={handleRunSimulation}>
+                                    Run Simulation
+                                </button>
+                            </section>
+                        </div>
+                    )}
+
+                    {/* STUDIO 3: Weekly vs Monthly Groceries */}
+                    {currentStudio === 2 && (
+                        <div className="studio-3">
+
+                            <button className="studioNavBtn" onClick={handleNextStudio}>
+                                Studio 3 of 3 →
+                            </button>
+
+                            <div className="intro">
+                                <h1>
+                                    Weekly vs Monthly Groceries
+                                    <span className="infoIcon">
+                                        <img src={InfoIconImg} alt="info" />
+                                        <span className="tooltip">
+                                            Compare weekly versus monthly grocery shopping habits.
+                                        </span>
+                                    </span>
+                                </h1>
+
+                                <p>
+                                    This studio helps you compare weekly versus monthly grocery shopping. The saving is projected using
+                                    7% compound annual growth if the difference is invested monthly.
+                                </p>
+                            </div>
+
+                            <div className="simulation">
+
+                                <div className="rentingBox">
+                                    <h2>Weekly Groceries</h2>
+
+                                    <label>Weekly Grocery Spend (R)</label>
+                                    <input
+                                        type="number"
+                                        placeholder="e.g. R750"
+                                        value={simInputs.weeklySpend}
+                                        onChange={(e) => setField("weeklySpend", e.target.value)}
+                                    />
+
+                                    <label>Number of Months</label>
+                                    <input
+                                        type="number"
+                                        placeholder="12 MONTHS"
+                                        value={simInputs.weeklyMonths}
+                                        disabled
+                                    />
+                                </div>
+
+                                <div className="buyingBox">
+                                    <h2>Monthly Groceries</h2>
+
+                                    <label>Monthly Grocery Budget (R)</label>
+                                    <input
+                                        type="number"
+                                        placeholder="e.g. R2 200"
+                                        value={simInputs.monthlyBudget}
+                                        onChange={(e) => setField("monthlyBudget", e.target.value)}
+                                    />
+
+                                    <label>Number of Months</label>
+                                    <input
+                                        type="number"
+                                        placeholder="12 MONTHS"
+                                        value={simInputs.monthlyMonths}
+                                        disabled
+                                    />
+                                </div>
+                            </div>
+
+                            <section className="resultButton">
+                                <button className="resultBtn" onClick={handleRunSimulation}>
+                                    Run Simulation
+                                </button>
+                            </section>
+                        </div>
+                    )}
+                </section>
+
+                {resultsVisible && (
+                    <section className="resultsDisplay">
+                        <div className="results-Intro">
+                            <h1>Simulation Results</h1>
+                            <p>Based on your inputs, here is the cost breakdown.</p>
+                        </div>
+
+                        <div className="results-container">
+                            <div className="result-block">
+                                <div className="result-box result-box--filled">
+                                    <h2>{formatRand(leftValue)}</h2>
+                                </div>
+                                <div className="result-label">
+                                    <p>Total Cost: {leftLabel}</p>
+                                </div>
+                            </div>
+
+                            <div className="result-block">
+                                <div className="result-box result-box--filled">
+                                    <h2>{formatRand(rightValue)}</h2>
+                                </div>
+                                <div className="result-label">
+                                    <p>Total Cost: {rightLabel}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="verdictBanner">
+                            <p>
+                                <strong>{activeResult.cheaper}</strong> is cost-effective option,
+                                saving you <strong>{formatRand(Math.abs(activeResult.diff))}</strong> overall.
+                            </p>
+                        </div>
+                    </section>
+                )}
+            </main>
+
+            {popup && (
+                <div className="feedback-overlay" onClick={() => setPopup(null)}>
+                    <div className="feedback-modal" onClick={(e) => e.stopPropagation()}>
+
+                        <div className="feedbackTitle">
+                            <video
+                                src={AnimTipBulb}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="feedbackTitleIcon"
+                                style={{ mixBlendMode: "multiply" }}
+                            />
+                            <h2>{popup.title}</h2>
+                        </div>
+
+                        <p className="feedbackMessage healthy">{popup.message}</p>
+                        <p className="popupTip">{popup.detail}</p>
+
+                        <button onClick={() => setPopup(null)}>Close</button>
+                    </div>
+                </div>
+            )}
+        </Layout>
+    );
 }

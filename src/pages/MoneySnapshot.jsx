@@ -9,21 +9,17 @@ import InfoIconImg from "../images/info.png";
 import AnimTipBulb from "../images/AnimTipBulb.mp4";
 
 export default function MoneySnapshot() {
-    //1. Pull user and financial data from AuthContext
+    //Pull financial data from AuthContext
     const { user, income, goals, expenses, updateIncome, addGoal, addExpense, clearGoals, clearExpenses } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    //2. Local UI state 
+    //2. States: UI, Inputs and Feedback
     const [inputValue, setInputValue] = useState("");
     const [showIncomeInput, setShowIncomeInput] = useState(false);
 
-    //3. Saving Goals local input state
     const [goalInput, setGoalInput] = useState({ name: "", amount: "" });
-
-    //4. Fixed Expenses local input state
     const [expenseInput, setExpenseInput] = useState({ name: "", amount: "" });
 
-    //5. Feedback State
     const [showFeedback, setShowFeedback] = useState(false);
     const [feedback, setFeedback] = useState({
         title: "",
@@ -31,33 +27,34 @@ export default function MoneySnapshot() {
         tips: []
     });
 
-    // Adding Saving Goal (Input) Function 
+    //Saving Goal Function 
     function handleAddGoal() {
         if (goals.length >= 3) return;
         if (!goalInput.name || !goalInput.amount) return;
+
+        if (!/^[A-Za-z\s]+$/.test(goalInput.name)) return;
 
         addGoal({
             name: goalInput.name,
             amount: Number(goalInput.amount)
         });
-
         setGoalInput({ name: "", amount: "" });
     }
 
-    // Adding Expenses (Input) Function
+    //Expenses Function
     function handleAddExpense() {
         if (expenses.length >= 3) return;
         if (!expenseInput.name || !expenseInput.amount) return;
+
+        if (!/^[A-Za-z\s]+$/.test(expenseInput.name)) return;
 
         addExpense({
             name: expenseInput.name,
             amount: Number(expenseInput.amount)
         });
-
         setExpenseInput({ name: "", amount: "" });
     }
 
-    // Accurate Date (Live)
     const today = new Date();
     const formattedDate = today.toLocaleDateString("en-GB", {
         day: "numeric",
@@ -65,7 +62,7 @@ export default function MoneySnapshot() {
         year: "numeric"
     });
 
-    // South Africa UIF Calculation (1%) Remove From Salary
+    // SA UIF Calculation (1%) Remove From Salary
     function calculateNetIncome(gross) {
         const uif = gross * 0.01;
         return {
@@ -74,21 +71,20 @@ export default function MoneySnapshot() {
         };
     }
 
-    // Updates Pie Chart Financial Data 
+    //Pie Chart Financial Data 
     const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
     const totalSavings = goals.reduce((sum, g) => sum + g.amount, 0);
 
     const netIncome = income ? calculateNetIncome(income).net : 0;
     const totalAllocated = totalExpenses + totalSavings;
 
-    // Pie Chart Data (Reads All User's Expenses)
     const chartData = [
         { name: "Income", value: income || 0 },
         { name: "Expenses", value: totalExpenses },
         { name: "Savings", value: totalSavings }
     ];
 
-    // Generate Feedback Function
+    //Feedback Function
     function generateFeedback() {
         if (!income) {
             return {
@@ -138,7 +134,6 @@ export default function MoneySnapshot() {
                 `Savings rate is ${savingsRate.toFixed(1)}%. Recommended minimum is 20% of net income.`
             );
         }
-
         return { title, message, tips };
     }
 
@@ -151,7 +146,6 @@ export default function MoneySnapshot() {
         }
     }, [income, goals, expenses]);
 
-    //USER INTERFACE DESIGN HERE: (INCOME, SAVING GOALS & EXPENSES)
     return (
         <Layout>
             <header>
@@ -165,7 +159,6 @@ export default function MoneySnapshot() {
             <main>
                 <section className="page-header">
                     <h1>Money Snapshot</h1>
-
                     <p className="pageIntro">
                         Track your income, set monthly saving goals, and manage your fixed expenses all in one place.
                         Add your salary to get started, then log what you save and spend each month.
@@ -178,11 +171,7 @@ export default function MoneySnapshot() {
                 </section>
 
                 <section className="financeBox-Holder">
-
-                    {/* Left Panel Containers */}
                     <div className="leftPanel">
-
-                        {/*User's Income Box*/}
                         <div className="incomeBox">
                             <div className="incomeHeader">
                                 <h1>Income Balance</h1>
@@ -194,61 +183,27 @@ export default function MoneySnapshot() {
                                 </button>
                             </div>
 
-                            {/* Display Values (Gross Income + UIF + Income After Deductions) */}
                             <div className="incomeValues">
-
-                                {/* Gross Income */}
-                                <h2>
-                                    Gross Income
-                                    <span className="infoIcon">
-                                        <img src={InfoIconImg} alt="info" />
-                                        <span className="tooltip">
-                                            This is your total income before any deductions.
-                                        </span>
-                                    </span>
-                                </h2>
-
+                                <h2>Gross Income</h2>
                                 <h3 className="balance">
                                     {income !== null ? `R${income}` : "R0.00"}
                                 </h3>
 
-                                {/* UIF */}
-                                <h2>
-                                    UIF (1%)
-                                    <span className="infoIcon">
-                                        <img src={InfoIconImg} alt="info" />
-                                        <span className="tooltip">
-                                            UIF is a 1% deduction for unemployment insurance in South Africa. This is deducted from your gross income.
-                                        </span>
-                                    </span>
-                                </h2>
-
+                                <h2>UIF (1%)</h2>
                                 <h3 className="balance">
                                     {income !== null
                                         ? `R${calculateNetIncome(income).uif.toFixed(2)}`
                                         : "R0.00"}
                                 </h3>
 
-                                {/* Net Income */}
-                                <h2>
-                                    After Deductions (Net Income)
-                                    <span className="infoIcon">
-                                        <img src={InfoIconImg} alt="info" />
-                                        <span className="tooltip">
-                                            This is your final income after deductions.
-                                        </span>
-                                    </span>
-                                </h2>
-
+                                <h2>After Deductions (Net Income)</h2>
                                 <h3 className="balance">
                                     {income !== null
                                         ? `R${calculateNetIncome(income).net.toFixed(2)}`
                                         : "R0.00"}
                                 </h3>
-
                             </div>
 
-                            {/* Input Section: Saving New Salary Resets Goals, Expenses and Pie Chart */}
                             {showIncomeInput && (
                                 <div className="incomeInputBox">
                                     <input
@@ -273,22 +228,11 @@ export default function MoneySnapshot() {
                             )}
                         </div>
 
-                        {/*Pie Chart*/}
                         <div className="resultData">
                             <h1>Financial Management Breakdown</h1>
 
                             <PieChart width={350} height={350}>
-                                <Pie
-                                    data={[{ value: 100 }]}
-                                    dataKey={"value"}
-                                    cx="50%"
-                                    cy="50%"
-                                    outerRadius={120}
-                                    fill="none"
-                                    isAnimationActive={false}
-                                    stroke="#2e2d2d"
-                                    strokeWidth={2}
-                                />
+                                <Pie data={[{ value: 100 }]} dataKey={"value"} cx="50%" cy="50%" outerRadius={120} fill="none" isAnimationActive={false} stroke="#2e2d2d" strokeWidth={2} />
 
                                 <Pie
                                     data={chartData}
@@ -305,60 +249,32 @@ export default function MoneySnapshot() {
                                 </Pie>
 
                                 <Tooltip formatter={(value, name) => [`R${value}`, name]} />
-
-                                <Legend
-                                    align="center"
-                                    layout="horizontal"
-                                    wrapperStyle={{
-                                        marginLeft: "22px"
-                                    }}
-
-                                    formatter={(value) => {
-                                        if (
-                                            value === "Income" ||
-                                            value === "Expenses" ||
-                                            value === "Savings"
-                                        ) {
-                                            return value;
-                                        }
-                                        return null;
-                                    }}
-                                />
+                                <Legend />
                             </PieChart>
                         </div>
                     </div>
 
-                    {/* Right Panel Container */}
                     <div className="rightPanel">
 
-                        {/* User's Saving Goals */}
                         <div className="savingGoals-Box">
-                            <h1 className="mainHeading">
-                                Saving Goals
-                                <span className="infoIcon">
-                                    <img src={InfoIconImg} alt="info" />
-                                    <span className="tooltip">
-                                        Your monthly saving goals will help you plan future expenses like emergencies or big purchases.
-                                    </span>
-                                </span>
-                            </h1>
-
-                            <h2 className="midHeading">Total Money Saved</h2>
+                            <h1 className="mainHeading">Saving Goals</h1>
 
                             <h3 className="balance">
                                 R{goals.reduce((sum, g) => sum + g.amount, 0).toFixed(2)}
                             </h3>
 
-                            {/* Show input form only when under the 3 goal limit */}
                             {goals.length < 3 && (
                                 <div className="goalInputBox">
                                     <input
                                         type="text"
                                         placeholder="Enter Goal Name"
                                         value={goalInput.name}
-                                        onChange={(e) =>
-                                            setGoalInput({ ...goalInput, name: e.target.value })
-                                        }
+                                        onChange={(e) => {
+                                            const value = e.target.value;
+                                            if (/^[A-Za-z\s]*$/.test(value)) {
+                                                setGoalInput({ ...goalInput, name: value });
+                                            }
+                                        }}
                                     />
 
                                     <input
@@ -369,49 +285,30 @@ export default function MoneySnapshot() {
                                             setGoalInput({ ...goalInput, amount: e.target.value })
                                         }
                                     />
-
                                     <button onClick={handleAddGoal}>+</button>
                                 </div>
                             )}
-
-                            <div className="goalList">
-                                {goals.map((g, index) => (
-                                    <div key={index} className="goalItem">
-                                        <p>{g.name}</p>
-                                        <p>R{g.amount}</p>
-                                    </div>
-                                ))}
-                            </div>
                         </div>
 
-                        {/* Fixed Expenses Container */}
                         <div className="fixedExpenses-Box">
-                            <h1 className="mainHeading">
-                                Fixed Expenses
-                                <span className="infoIcon">
-                                    <img src={InfoIconImg} alt="info" />
-                                    <span className="tooltip">
-                                        Fixed expenses are recurring monthly costs like rent, transport and subscriptions.
-                                    </span>
-                                </span>
-                            </h1>
 
-                            <h2 className="midHeading">Monthly Expenses</h2>
-
+                            <h1 className="mainHeading">Fixed Expenses</h1>
                             <h3 className="balance">
                                 R{expenses.reduce((sum, e) => sum + e.amount, 0).toFixed(2)}
                             </h3>
 
-                            {/* Show input form only when under the 3 expense limit */}
                             {expenses.length < 3 && (
                                 <div className="goalInputBox">
                                     <input
                                         type="text"
                                         placeholder="Enter Expense Name"
                                         value={expenseInput.name}
-                                        onChange={(e) =>
-                                            setExpenseInput({ ...expenseInput, name: e.target.value })
-                                        }
+                                        onChange={(e) => {
+                                            const value = e.target.value;
+                                            if (/^[A-Za-z\s]*$/.test(value)) {
+                                                setExpenseInput({ ...expenseInput, name: value });
+                                            }
+                                        }}
                                     />
 
                                     <input
@@ -426,59 +323,10 @@ export default function MoneySnapshot() {
                                     <button onClick={handleAddExpense}>+</button>
                                 </div>
                             )}
-
-                            <div className="goalList">
-                                {expenses.map((e, index) => (
-                                    <div key={index} className="goalItem">
-                                        <p>{e.name}</p>
-                                        <p>R{e.amount}</p>
-                                    </div>
-                                ))}
-                            </div>
                         </div>
                     </div>
                 </section>
             </main>
-
-            {/* POPUP */}
-            {showFeedback && (
-                <div className="feedback-overlay" onClick={() => setShowFeedback(false)}>
-                    <div className="feedback-modal" onClick={(e) => e.stopPropagation()}>
-
-                        <div className="feedbackTitle">
-                            <video
-                            src={AnimTipBulb}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            className="feedbackTitleIcon"
-                             />
-
-                            <h2>{feedback.title}</h2>
-                               
-                        </div>  
-    
-                        <p className={
-                            feedback.title === "Budget Looks Healthy" ? "feedbackMessage healthy" : "feedbackMessage warning"
-                            
-                        }>
-                             {feedback.message}
-                        </p>
-
-                        <ul>
-                            {feedback.tips.map((tip, i) => (
-                                <li key={i}>{tip}</li>
-                            ))}
-                        </ul>
-
-                        <button onClick={() => setShowFeedback(false)}>
-                            Close
-                        </button>
-
-                    </div>
-                </div>
-            )}
         </Layout>
     );
 }

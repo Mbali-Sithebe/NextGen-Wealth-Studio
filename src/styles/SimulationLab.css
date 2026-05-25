@@ -1,61 +1,48 @@
 .labContent h1 {
-   padding-bottom: 15px;
+    padding-bottom: 15px;
 }
 
-.labContent p{
+.labContent p {
     margin-bottom: 40px;
-}
-
-/* Studios Icons - Intro text and Paragraph */
-.house,
-.car,
-.groceries {
-    width: 28px;
-    height: auto;
 }
 
 .intro {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start; 
+    align-items: flex-start;
     gap: 8px;
-}
-
-.intro img {
-    margin-right: 10px;
 }
 
 .intro h1 {
     font-size: 25px;
-    margin: 0;
+    margin-left: 25px;
+    font-size: 23px;
 }
 
 .intro p {
     width: 100%;
-    margin: 0;
+    margin-left: 25px;
 }
 
-/* more button */
-.moreButton-Holder {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-}
-
-.moreButton-Holder button {
-    background: none;
-    border: none;
-    padding: 0;
+.studioNavBtn {
+    align-self: flex-start;
+    background-color: #C95326;
+    color: white;
+    padding: 8px 18px;
+    border:none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
+    letter-spacing: 0.4px;
+    margin-bottom: 4px;
+  
 }
 
-.moreButton-Holder img {
-    width: 27px; 
-    height: auto;
+.studioNavBtn:hover {
+    background-color: #A8441F;
 }
 
-
-/* Studio Boxes Here */
 .studio-1,
 .studio-2,
 .studio-3 {
@@ -64,58 +51,40 @@
     border: 1px solid #ccc;
     width: 100%;
     max-width: 1500px;
-    height: 490px;
+    height: auto;
     margin: 0 auto;
     position: relative;
-
     display: flex;
     flex-direction: column;
-
     justify-content: flex-start;
     gap: 20px;
     box-sizing: border-box;
 }
 
 .simulation {
-    background: #D9D9D9;
+    background: #F0325A;
     padding: 20px;
-    margin-bottom: 80px !important;
     display: flex;
     gap: 20px;
-    width: 96%;           
-    max-width: 1100px;    
-    margin: auto;         
-    border-radius: 5px;   
+    width: 96%;
+    max-width: 1100px;
+    margin: auto;
+    border-radius: 5px;
     position: relative;
 }
 
 .simulation label {
     font-size: 15px;
-    color:  #2D2323;
+    color: #FFFFFF;
 }
 
 .simulation h2 {
-    color:  #2D2323;
+    color: #FFFFFF;
     margin-bottom: 5px;
     font-size: 20px;
 }
 
-/* Left tab */
-.rentingBox {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* Right Tab B*/
-.buyingBox {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
+/* Divider line between tabs */
 .simulation::before {
     content: "";
     position: absolute;
@@ -123,43 +92,57 @@
     bottom: 10px;
     left: 50%;
     width: 1px;
-    background: #FFFFFF;
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .simulation input {
     padding: 8px;
     border: none;
     outline: none;
+    border-radius: 3px;
 }
 
-/* Run simulation button here */
+.rentingBox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buyingBox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .resultButton {
-    position: absolute;
-    bottom: 15px;
-    right: 40px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    padding-bottom: 10px;
 }
 
 .resultBtn {
-    padding: 14px 50px;
+    padding: 13px 45px;
     font-size: 16px;
     background: #C95326;
     color: #FFFFFF;
-    border-radius: 8px;
-    font-weight: 600;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.4px;
     border: none;
     cursor: pointer;
 }
 
-/*Results Container*/
-.results-Intro h1 {
-    margin: 0;
-    font-size: 25px;
+.resultBtn:hover {
+    background-color: #A8441F;
 }
 
-.results-Intro p {
-    margin: 5px 0 0 0;
-}
-
+/* RESPONSIVE NOTE: This section is hidden until Run Simulation is pressed (controlled by
+   resultsVisible state in SimulationLab.jsx). For responsive design, to always show it,
+   remove the {resultsVisible && (...)} wrapper in the JSX around <section className="resultsDisplay"> */
 .resultsDisplay {
     background-color: #FFFFFF;
     border: 2px solid #DC0032;
@@ -171,18 +154,13 @@
     margin-top: 50px;
 }
 
-.result-box h2 {
-    font-size: 25px;
+.results-Intro h1 {
+    margin: 0;
+    font-size: 23px;
 }
 
-.result-label {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.result-label p {
-    font-size: 18px;
-    font-weight: 600;
+.results-Intro p {
+    margin: 5px 0 0 0;
 }
 
 .results-container {
@@ -198,6 +176,7 @@
     align-items: flex-start;
 }
 
+/* Result box — red fill when results are visible */
 .result-box {
     width: 95%;
     height: 180px;
@@ -205,4 +184,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.result-box--filled {
+    background-color: #DC0032;
+}
+
+.result-box h2 {
+    font-size: 23px;
+    color: #FFFFFF;
+}
+
+.result-label {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.result-label p {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.verdictBanner {
+    background: #F9F5F0;
+    border: 2px solid #2e7d32;
+    border-radius: 6px;
+    padding: 12px 18px;
+    margin-top: 10px;
+    font-size: 15px;
+    color: #2D2323;
 }

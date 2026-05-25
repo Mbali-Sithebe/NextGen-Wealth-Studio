@@ -3,18 +3,30 @@ import { createContext, useEffect, useState } from "react";
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-    // AuthStatus (Checking if you logged in)
+    // Checks if you logged in
     const [authStatus, setAuthStatus] = useState('unknown');
     const [user, setUser] = useState(null);
 
-    // Money Snapshot Data - stored here so it persists across pages
+    // Money Snapshot Data
     const [income, setIncome] = useState(null);
     const [goals, setGoals] = useState([]);
     const [expenses, setExpenses] = useState([]);
 
-    // Strategy Tracker Data - stored here so it persists across pages
+    // Strategy Tracker Data 
     const [selectedTrack, setSelectedTrack] = useState(null);
     const [trackProgress, setTrackProgress] = useState({});
+
+    // Simulation Lab Data 
+    const [simInputs, setSimInputs] = useState({
+        rentMonthly: "", rentDeposit: "", rentYears: "",
+        buyPrice: "", buyDeposit: "", buyRate: "", buyYears: "",
+       
+        uberCostPerTrip: "", uberTripsPerMonth: "", uberYears: "",
+        carPrice: "", carDeposit: "", carRate: "", carFuel: "", carYears: "",
+       
+        weeklySpend: "", weeklyMonths: "",
+        monthlyBudget: "", monthlyExtras: "", monthlyMonths: ""
+    });
 
     useEffect(() => {
         const mockToken = localStorage.getItem("mockToken");
@@ -24,70 +36,72 @@ export function AuthProvider({ children }) {
             setAuthStatus("authed");
             setUser({ username });
 
-            // Restore saved financial data from localStorage on login
+            // Restore saved financial data + strategy tracker data + simulation data from localStorage on login
             const savedIncome = localStorage.getItem("userIncome");
             const savedGoals = localStorage.getItem("userGoals");
             const savedExpenses = localStorage.getItem("userExpenses");
 
-            // Restore saved strategy tracker data from localStorage on login
             const savedTrack = localStorage.getItem("selectedTrack");
             const savedProgress = localStorage.getItem("trackProgress");
+
+            const savedSimInputs = localStorage.getItem("simInputs");
 
             if (savedIncome) setIncome(JSON.parse(savedIncome));
             if (savedGoals) setGoals(JSON.parse(savedGoals));
             if (savedExpenses) setExpenses(JSON.parse(savedExpenses));
             if (savedTrack) setSelectedTrack(JSON.parse(savedTrack));
             if (savedProgress) setTrackProgress(JSON.parse(savedProgress));
+            if (savedSimInputs) setSimInputs(JSON.parse(savedSimInputs));
         } else {
             setAuthStatus("guest");
         }
     }, []);
 
-    // Saves income and syncs to localStorage
     function updateIncome(value) {
         setIncome(value);
         localStorage.setItem("userIncome", JSON.stringify(value));
     }
 
-    // Adds a saving goal and syncs to localStorage
+    // Adds a saving goal + expense and syncs to localStorage
     function addGoal(goal) {
         const updated = [...goals, goal];
         setGoals(updated);
         localStorage.setItem("userGoals", JSON.stringify(updated));
     }
 
-    // Adds an expense and syncs to localStorage
     function addExpense(expense) {
         const updated = [...expenses, expense];
         setExpenses(updated);
         localStorage.setItem("userExpenses", JSON.stringify(updated));
     }
 
-    // Clears all goals from state and localStorage
+    // Clears all goals + expenses from state and localStorage
     function clearGoals() {
         setGoals([]);
         localStorage.removeItem("userGoals");
     }
 
-    // Clears all expenses from state and localStorage
     function clearExpenses() {
         setExpenses([]);
         localStorage.removeItem("userExpenses");
     }
 
-    // Saves selected track and syncs to localStorage
     function chooseTrack(trackId) {
         setSelectedTrack(trackId);
-        setTrackProgress({});
         localStorage.setItem("selectedTrack", JSON.stringify(trackId));
-        localStorage.setItem("trackProgress", JSON.stringify({}));
     }
 
-    // Updates a single milestone state and syncs to localStorage
+    // Updates a single milestone state + simulation inputs and syncs to localStorage
     function updateMilestoneState(milestoneId, state) {
         const updated = { ...trackProgress, [milestoneId]: state };
         setTrackProgress(updated);
         localStorage.setItem("trackProgress", JSON.stringify(updated));
+    }
+
+    function updateSimInputs(fields) {
+        const updated = { ...simInputs, ...fields };
+        setSimInputs(updated);
+        localStorage.setItem("simInputs", JSON.stringify(updated));
     }
 
     function login(username, password) {
@@ -108,20 +122,22 @@ export function AuthProvider({ children }) {
             localStorage.setItem("userDisplayName", username);
             localStorage.setItem("mockToken", "abcdefghijklmnopqrstuvwxyz");
 
-            // Restore this user's financial data on login
+            // Restore this user's financial data + strategy tracker data + simulation data on login
             const savedIncome = localStorage.getItem("userIncome");
             const savedGoals = localStorage.getItem("userGoals");
             const savedExpenses = localStorage.getItem("userExpenses");
 
-            // Restore this user's strategy tracker data on login
             const savedTrack = localStorage.getItem("selectedTrack");
             const savedProgress = localStorage.getItem("trackProgress");
+
+            const savedSimInputs = localStorage.getItem("simInputs");
 
             if (savedIncome) setIncome(JSON.parse(savedIncome));
             if (savedGoals) setGoals(JSON.parse(savedGoals));
             if (savedExpenses) setExpenses(JSON.parse(savedExpenses));
             if (savedTrack) setSelectedTrack(JSON.parse(savedTrack));
             if (savedProgress) setTrackProgress(JSON.parse(savedProgress));
+            if (savedSimInputs) setSimInputs(JSON.parse(savedSimInputs));
 
             return true;
         }
@@ -152,14 +168,22 @@ export function AuthProvider({ children }) {
         setAuthStatus("guest");
         setUser(null);
 
-        // Wipe financial data from state and localStorage on logout
+        // Wipe financial data + strategy tracker data + simulation data from state and localStorage on logout
         setIncome(null);
         setGoals([]);
         setExpenses([]);
 
-        // Wipe strategy tracker data from state and localStorage on logout
         setSelectedTrack(null);
         setTrackProgress({});
+
+        setSimInputs({
+            rentMonthly: "", rentDeposit: "", rentYears: "",
+            buyPrice: "", buyDeposit: "", buyRate: "", buyYears: "",
+            uberCostPerTrip: "", uberTripsPerMonth: "", uberYears: "",
+            carPrice: "", carDeposit: "", carRate: "", carFuel: "", carYears: "",
+            weeklySpend: "", weeklyMonths: "",
+            monthlyBudget: "", monthlyExtras: "", monthlyMonths: ""
+        });
 
         localStorage.removeItem("mockToken");
         localStorage.removeItem("userDisplayName");
@@ -168,6 +192,7 @@ export function AuthProvider({ children }) {
         localStorage.removeItem("userExpenses");
         localStorage.removeItem("selectedTrack");
         localStorage.removeItem("trackProgress");
+        localStorage.removeItem("simInputs");
     }
 
     return (
@@ -177,7 +202,7 @@ export function AuthProvider({ children }) {
             login,
             logOut,
             register,
-            // Financial data and updaters available to all pages
+            // Financial data
             income,
             goals,
             expenses,
@@ -186,11 +211,14 @@ export function AuthProvider({ children }) {
             addExpense,
             clearGoals,
             clearExpenses,
-            // Strategy tracker data and updaters available to all pages
+            // Strategy tracker data
             selectedTrack,
             trackProgress,
             chooseTrack,
-            updateMilestoneState
+            updateMilestoneState,
+            // Simulation lab inputs
+            simInputs,
+            updateSimInputs
         }}>
             {children}
         </AuthContext.Provider>

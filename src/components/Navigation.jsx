@@ -14,7 +14,6 @@ export default function Navigation (){
     const location = useLocation();
     const { logOut } = useContext(AuthContext);
 
-    // Clears session and sends user back to login page
     function handleLogOut() {
         logOut();
         navigate("/");

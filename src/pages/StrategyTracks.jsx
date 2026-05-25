@@ -4,16 +4,16 @@ import AuthContext from "../context/AuthContext";
 
 import AnimTipBulb from "../images/AnimTipBulb.mp4";
 import SmileyIcon from "../images/SmileyIcon.mp4";
+import InfoIconImg from "../images/info.png"; 
 
-
-import { TRACKS, STATE_LABELS, STATE_COLORS, POPUP_MESSAGES } from "../data/strategyData";
+import { tracks, stateLabels, stateColors, popupMessages } from "../data/strategyData";
 
 export default function StrategyTracks() {
     const { selectedTrack, trackProgress, chooseTrack, updateMilestoneState } = useContext(AuthContext);
 
     const [popup, setPopup] = useState(null);
 
-    const activeTrack = TRACKS.find(t => t.id === selectedTrack) || null;
+    const activeTrack = tracks.find(t => t.id === selectedTrack) || null;
     // Get milestone state 
     function getMilestoneState(id) {
         return trackProgress[id] ?? 0;
@@ -31,12 +31,12 @@ export default function StrategyTracks() {
                 return s === 2;
             });
             if (allDone) {
-                setPopup(POPUP_MESSAGES[yearIndex]);
+                setPopup(popupMessages[yearIndex]);
             }
         }
     }
 
-    // Overall track progress percentage
+    // Track progress percentage
     function getOverallProgress() {
         if (!activeTrack) return 0;
         const allMilestones = activeTrack.years.flatMap(y => y.milestones);
@@ -68,7 +68,7 @@ export default function StrategyTracks() {
 
                 <main>
                     <div className="trackSelection">
-                        {TRACKS.map(track => (
+                        {tracks.map(track => (
                             <div key={track.id} className="trackCard">
                                 <h2 className="trackCardName">{track.name}</h2>
                                 <p className="trackCardTagline">{track.tagline}</p>
@@ -79,13 +79,8 @@ export default function StrategyTracks() {
                                 </div>
 
                                 <div className="trackCardSection">
-                                    <span className="trackCardLabel">What it costs you:</span>
+                                    <span className="trackCardLabel">Requirements:</span>
                                     <p>{track.cost}</p>
-                                </div>
-
-                                <div className="trackCardSection danger">
-                                    <span className="trackCardLabel">Be Aware:</span>
-                                    <p>{track.warning}</p>
                                 </div>
 
                                 <button
@@ -126,6 +121,13 @@ export default function StrategyTracks() {
                     <div className="sliderContainer">
                         <h1 className="slider-Progress">
                             Overall Progress: {getOverallProgress()}% Completed
+
+                            <span className="infoIcon">
+                                <img src={InfoIconImg} alt="info" />
+                                <span className="tooltip">
+                                    This shows your total completion across all milestones in your selected track.
+                                </span>
+                            </span>
                         </h1>
                         <div className="progressSlider">
                             <div
@@ -155,11 +157,11 @@ export default function StrategyTracks() {
                                                     <button
                                                         onClick={() => handleMilestoneClick(task.id, yearIndex, yearObj.milestones)}
                                                         className="milestoneBtn"
-                                                        style={{ backgroundColor: STATE_COLORS[state] }}
+                                                        style={{ backgroundColor: stateColors[state] }}
                                                     />
                                                     {/* Tooltip */}
                                                     <span className="milestoneTooltip">
-                                                        {STATE_LABELS[state]}
+                                                        {stateLabels[state]}
                                                     </span>
                                                 </div>
 
@@ -185,7 +187,16 @@ export default function StrategyTracks() {
                     {/* Bar Graph (Left) */}
                     <div className="trackData">
                         <div className="barGraph-Container">
-                            <h1 className="dataTitle">Progress Tracker Data</h1>
+                            <h1 className="dataTitle">
+                                Progress Tracker Data
+                                <span className="infoIcon">
+                                    <img src={InfoIconImg} alt="info" />
+                                    <span className="tooltip">
+                                        This section shows your yearly milestone completion and overall progress across your selected track.
+                                    </span>
+                                </span>
+                            </h1>
+
                             <p className="text">
                                 Yearly milestone completion for your {activeTrack.name} track.
                             </p>
@@ -212,6 +223,12 @@ export default function StrategyTracks() {
                         <div className="TipsBox">
                             <h1 className="tipsTitle">
                                 General Tips
+                                <span className="infoIcon">
+                                    <img src={InfoIconImg} alt="info" />
+                                    <span className="tooltip">
+                                        These tips help you stay consistent, disciplined, and aligned with your long-term financial goals.
+                                    </span>
+                                </span>
                             </h1>
 
                             <div className="Tip-1">
@@ -253,7 +270,6 @@ export default function StrategyTracks() {
                         </div>
 
                         <p className="feedbackMessage healthy">{popup.message}</p>
-
                         <p className="popupTip">{popup.tip}</p>
 
                         <button onClick={() => setPopup(null)}>Continue</button>

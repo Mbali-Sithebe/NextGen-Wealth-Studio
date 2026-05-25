@@ -1,14 +1,10 @@
-//1. Track Data With 4 Year Milestones
-//2. Pop Up Messages
-
-export const TRACKS = [
+export const tracks = [
     {
         id: "property",
         name: "Property Ownership",
         tagline: "Ways to own a house within 4-5 years.",
         who: "Best for young professionals with stable income who want to build equity instead of paying rent.",
         cost: "Requires disciplined saving of 20–30% of net income. Lifestyle sacrifices are expected in years 1–2.",
-        warning: "South African bond rates are variable. A 2% rate hike can increase your monthly repayment by R1,500 plus on a R1M bond.",
         years: [
             {
                 year: "Year 1",
@@ -54,7 +50,6 @@ export const TRACKS = [
         tagline: "Eliminate all your debts and build from zero",
         who: "Best for young professionals carrying credit card debt, personal loans, or store accounts who want a clean financial slate.",
         cost: "You will sacrifice investing and lifestyle spending for 2–3 years. Every extra rand goes to debt.",
-        warning: "South African credit card interest averages 20%+ per year. R10,000 on a card costs you R2,000/year in interest alone.",
         years: [
             {
                 year: "Year 1",
@@ -100,7 +95,6 @@ export const TRACKS = [
         tagline: "Maximise wealth through early and bold investments",
         who: "Best for young professionals with no debt, stable income, and a high risk tolerance who want to grow wealth fast.",
         cost: "Requires investing 30–40% of net income. Market downturns will happen, you must stay in and not panic sell.",
-        warning: "Rand depreciation means offshore exposure is essential. 100% SA-only investing has historically underperformed global indices.",
         years: [
             {
                 year: "Year 1",
@@ -142,12 +136,11 @@ export const TRACKS = [
     }
 ];
 
-// States Colors: 0 Not Started, 1 = In Progress, 2 = Done
-export const STATE_LABELS = ["Not Started", "In Progress", "Done"];
-export const STATE_COLORS = ["#ccc", "#DC0032", "#2e7d32"];
 
-// Congratulation popup messages 
-export const POPUP_MESSAGES = [
+export const stateLabels = ["Not Started", "In Progress", "Done"];
+export const stateColors = ["#ccc", "#DC0032", "#2e7d32"];
+
+export const popupMessages = [
     {
         title: "Year 1 Complete!",
         message: "Outstanding first step. You've laid the foundation. Now it's time to build on it.",

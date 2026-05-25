@@ -9,7 +9,6 @@ import eyeOff from "../images/eyeOff.svg";
 export default function Login () {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
     const [isRegistering, setIsRegistering] = useState(false);
 
     // Hide or show password
@@ -28,7 +27,7 @@ export default function Login () {
     const navigate = useNavigate();
 
     function handleSwitchToRegister() {
-        // This clears login info when switching to register form
+        //Clear login details when registering/refreshed.
         setUsername("");
         setPassword("");
         setShowPassword(false);
@@ -55,7 +54,6 @@ export default function Login () {
             alert("Please ensure your password meets all requirements.");
             return;
         }
-
         const result = register(username, password);
 
         if (result.success){
@@ -73,9 +71,8 @@ export default function Login () {
     return (
         <main className="login-page">
             <section className="introColumn">
-                {/* INTRO COLUMN */}
+                {/* Intro Content */}
                  <header className="introContext">
-
                     <img className="absa-logo" src={AbsaLogo} alt="Absa Logo" />
                     <h1 className="welcomeText">
                         <span className="font-1">Welcome to</span>
@@ -85,10 +82,8 @@ export default function Login () {
                  </header>
             </section>
 
-            {/* PASSWORD COLUMN */}
+            {/* Login Form */}
             <section className="formColumn">
-
-                {/* Register + logging in user */}
                 <h1>{isRegistering ? "Create Your Account" : "Welcome Back"}</h1>
                 <p>{isRegistering ? "Fill in your details to create a new account." :
                 "Sign in or create a new account to continue."}</p>
@@ -104,11 +99,10 @@ export default function Login () {
                                 onChange={(e) => setUsername(e.target.value)}
                             />
                         </div>
-
                         <div className="password">
                             <label>Password</label>
 
-                            {/* Password input wrapper for eye toggle */}
+                            {/* Password wrapper-eye toggle */}
                             <div className="password-wrapper">
                                 <input
                                     type={showPassword ? "text" : "password"}
@@ -127,7 +121,6 @@ export default function Login () {
                                    alt={showPassword ? "Hide password" : "Show password"}
                                    width="20"
                                    height="18"
-
                                    />
                                 </button>
                             </div>
@@ -158,7 +151,6 @@ export default function Login () {
 
                 ) : (
 
-                    /*Login Form */
                     <form onSubmit={handleSubmit}>
                         <div className="username">
                             <label>Username</label>
@@ -171,8 +163,6 @@ export default function Login () {
 
                         <div className="password">
                             <label>Password</label>
-
-                            {/* Password input wrapper for eye toggle */}
                             <div className="password-wrapper">
                                 <input
                                     type={showPassword ? "text" : "password"}
@@ -187,7 +177,7 @@ export default function Login () {
                                     aria-label={showPassword ? "Hide password" : "Show password"}
                                 >
                                     <img 
-                                    src={showPassword ? eyeOpen : eyeOff} 
+                                    src={showPassword ? eyeOff : eyeOpen} 
                                     alt={showPassword ? "Hide password" : "Show password"}
                                     width="20"
                                     height="18"
@@ -198,12 +188,11 @@ export default function Login () {
 
                         {/* Link to switch to register form*/}
                         <div className="formActions">
-
                            <button type="submit">Log in</button>
 
                        <p className="formText">
                        <span className="normalText">Don't have an account? </span>
-
+                       
                        <span
                         className="linkText"
                         onClick={handleSwitchToRegister}

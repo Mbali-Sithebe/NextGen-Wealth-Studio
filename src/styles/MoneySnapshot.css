@@ -105,13 +105,16 @@ body {
     justify-content: center;
 }
 
+.addIncomeBtn:hover {
+    background-color: #A8441F;
+
+}
 
 .incomeValues {
     display: flex;
     flex-direction: column;
 }
 
-/* (Headings for Gross / UIF / Money After Deductions) */
 .incomeValues h2 {
     font-size: 16px;
     font-weight: 500;
@@ -153,6 +156,10 @@ body {
     background-color: #c95326;
     cursor: pointer;
     font-weight: 550;
+}
+
+.incomeInputBox button:hover {
+    background-color: #A8441F;
 }
 
 .incomeValues h2:not(:first-child) {
@@ -238,6 +245,10 @@ body {
     cursor: pointer;
 }
 
+.goalInputBox button:hover {
+    background-color: #A8441F;
+}
+
 /* 3 Column List */
 .goalList {
     margin-top: 12px;
@@ -294,7 +305,6 @@ body {
     opacity: 1;
 }
 
-/* Pie Chart*/
 .recharts-wrapper:focus {
   outline: none;
 }
@@ -323,7 +333,6 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-
 .feedback-overlay {
     position: fixed;
     top: 0;
@@ -346,7 +355,6 @@ input[type="number"] {
     margin-left: 215px;
     text-align: center;
 }
-
 
 .feedbackMessage {
     font-size: 17px;
@@ -376,6 +384,10 @@ input[type="number"] {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.feedback-modal button:hover {
+    background-color: #A8441F;
 }
 
 .feedbackTitle {
