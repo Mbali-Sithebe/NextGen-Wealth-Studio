@@ -30,7 +30,7 @@ export default function Navigation() {
 
     return (
         <>
-            {/* ── PHONE: top navbar ── */}
+            {/* MOBILE PHONE ONLY: Top Navbar Header  */}
             <header className="mobile-topbar">
                 <button
                     className="hamburger-btn"
@@ -46,11 +46,11 @@ export default function Navigation() {
                     <img src={AbsaLogo} alt="Absa Logo" className="mobile-brand-logo" />
                     <h1 className="mobile-brand-name">
                         <strong>NextGen</strong> Wealth Studio
-                        </h1>
-                        </div>
+                    </h1>
+                </div>
             </header>
 
-            {/* ── PHONE: overlay backdrop ── */}
+            {/* MOBILE PHONE ONLY: Slide Overlay shadow */}
             {menuOpen && (
                 <div
                     className="menu-backdrop"
@@ -58,7 +58,7 @@ export default function Navigation() {
                 />
             )}
 
-            {/* ── PHONE: slide-in menu ── */}
+            {/* MOBILE PHONE ONLY: Drawer flyout panel */}
             <nav className={`mobile-menu ${menuOpen ? "mobile-menu--open" : ""}`}>
                 <button
                     className="mobile-menu-close"
@@ -91,7 +91,7 @@ export default function Navigation() {
                 </ul>
             </nav>
 
-            {/* ── DESKTOP & TABLET: sidebar ── */}
+            {/* DESKTOP & TABLET: Fixed Sidebar (Never crashes layout) */}
             <header className="navigation">
                 <nav>
                     <section
@@ -117,13 +117,13 @@ export default function Navigation() {
                                     title={item.label}
                                 >
                                     <img src={item.img} alt={item.label} className="nav-icon" />
-                                    {item.label}
+                                    <span className="sidebar-text">{item.label}</span>
                                 </li>
                             ))}
 
                             <li onClick={handleLogOut} style={{ cursor: "pointer" }} title="Log Out">
                                 <img src={logoutImg} alt="Log Out" className="nav-icon" />
-                                Log Out
+                                <span className="sidebar-text">Log Out</span>
                             </li>
                         </ul>
                     </section>

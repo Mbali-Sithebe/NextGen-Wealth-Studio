@@ -199,7 +199,7 @@ export default function MoneySnapshot() {
                     <Cell fill="#DC0032" />
                     <Cell fill="#C95326" />
                 </Pie>
-                {/* Tooltip config customized below to display only name and custom string amount */}
+                {/* Tooltip*/}
                 <Tooltip formatter={(value, name) => [`R${value}`, name]} />
                 <Legend
                     formatter={(value) => (
@@ -330,7 +330,7 @@ export default function MoneySnapshot() {
 
                 <section className="financeBox-Holder">
                     {isMobile ? (
-                        /* Mobile Dimensions Only: Single stacked structural order flow */
+                        /*  Wrappers for Mobile Dimensions Only*/
                         <div className="mobilePanel" style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                             {renderIncomeBox()}
                             {renderSavingGoals()}
@@ -338,7 +338,7 @@ export default function MoneySnapshot() {
                             {renderPieChart()}
                         </div>
                     ) : (
-                        /* Preserved Original Panel Wrappers for Tablets, iPads and Laptops */
+                        /* Wrappers for Tablets, iPads and Laptops */
                         <>
                             <div className="leftPanel">
                                 {renderIncomeBox()}
