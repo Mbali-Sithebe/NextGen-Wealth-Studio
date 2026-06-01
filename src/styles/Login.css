@@ -51,27 +51,26 @@ body {
 
 .font-1 {
     display: block;
-    font-size: 40px;
     font-weight: 400;
 }
 
 .welcomeText {
     margin-left: 16px;
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 700;
     margin-bottom: 18px;
     color: #FFFFFF;
 }
 
 .introP {
-    margin-left: 16px;
-    font-size: 18px;
+    margin-left: 15px;
+    font-size: 17.4px;
     font-weight: 400;
     color: #FFFFFF;
 }
 
 .formColumn h1 {
-    font-size: 38px;
+    font-size: 35px;
     font-weight: 700;
     margin-bottom: 8px;
 }
@@ -97,6 +96,7 @@ body {
 
 .username label, .password label {
     font-size: 14px;
+    color: #48484A;
     font-weight: 600;
     margin-bottom: 6px;
 }
@@ -172,9 +172,9 @@ body {
 }
 
 .formText {
-    text-align: right;
+    text-align: center;
     margin-right: 0;
-    font-size: 16px;
+    font-size: 15px;
     margin-top: 28px;
 }
 
@@ -185,6 +185,7 @@ body {
 
 .linkText {
     color: #C95326;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     text-decoration: underline;
@@ -192,70 +193,170 @@ body {
 
 
 /* ---------- Responsive Design --------- */
-
-@media (max-width: 1024px) {
+@media (min-width: 913px) and (max-width: 1024px) {
     .absa-logo {
-        width: 140px;
-        height: 140px;
+        width: 120px;
+        height: 120px;
+        margin-left: -30px !important;
     }
 
     .welcomeText .font-1 {
-        font-size: 30px;
+        font-size: 26px;
     }
 
     .welcomeText {
-        font-size: 30px;
+        font-size: 26px;
+        margin-left: -30px !important;
     }
 
     .introP {
         font-size: 15px;
+        margin-left: -30px !important;
     }
 
     .formColumn h1 {
-        font-size: 28px;
+        font-size: 26px;
+        margin-left: -30px !important;
     }
 
     .formColumn p {
         font-size: 15px;
+        margin-left: -30px !important;
+    }
+
+    .username label, .password label {
+        font-size: 14px;
+        margin-left: -30px !important;
+        display: block;
+    }
+
+    .username input,
+    .password input {
+        width: 100%;
+        margin-left: -30px !important;
+    }
+
+    .toggle-password {
+        margin-right: 30px;
     }
 
     .formActions button {
-        font-size: 16px;
+        font-size: 15px;
+        margin-left: -30px !important;
+    }
+
+    .formActions {
+        margin-top: 20px;
+    }
+
+    .formText {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .normalText {
+        margin-left: -30px !important;
+    }
+
+    .linkText {
+        font-size: 14px;
     }
 }
 
-@media (max-width: 820px) {
+
+@media (min-width: 820px) and (max-width: 912px) {
     .absa-logo {
         width: 120px;
         height: 120px;
+        margin-left: -40px;
     }
 
     .welcomeText .font-1 {
-        font-size: 26px;
+        font-size: 24px;
     }
 
     .welcomeText {
-        font-size: 26px;
+        font-size: 24px;
+        margin-left: -40px !important;
+        padding-bottom: 10px;
     }
 
     .introP {
         font-size: 14px;
+        margin-left: -40px !important;
     }
 
     .formColumn h1 {
         font-size: 24px;
+        margin-left: -45px !important;
     }
 
     .formColumn p {
         font-size: 14px;
+        padding-bottom: 10px;
+        margin-left: -45px !important;
+    }
+    
+    .username label, .password label {
+        font-size: 14px;
+        margin-left: -45px !important;
+    }
+
+    .username input,
+    .password input{
+        width: 100%;
+        margin-left: -45px !important;
+    }
+
+    .toggle-password {
+        margin-right: 45px;
     }
 
     .formActions button {
         font-size: 15px;
+        margin-left: -45px !important;
+    }
+    
+    .formActions {
+        margin-top: 20px;
+    }
+
+    .formText {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .normalText {
+        margin-left: -45px !important;
+    }
+
+    .linkText {
+        font-size: 14px;
     }
 }
 
 @media (max-width: 768px) {
+    .absa-logo,
+    .welcomeText,
+    .introP,
+    .formColumn h1,
+    .formColumn p,
+    .username label, .password label,
+    .username input,
+    .password input,
+    .formActions button,
+    .normalText {
+        margin-left: 0 !important;
+    }
+
+    .toggle-password {
+        margin-right: 5px;
+    }
+
+    .login-page {
+        flex-direction: column;
+    }
+
     .login-page {
         flex-direction: column;
     }
@@ -333,8 +434,60 @@ body {
     .toggle-password {
         margin-right: 5px;
     }
+
+    .linkText {
+    font-size: 14px;
+   }
 }
 
+@media (max-width: 500px) {
+    .linkText {
+    font-size: 14px;
+   }
+    
+    .welcomeText .font-1 {
+        font-size: 24px;
+    }
+
+    .welcomeText {
+        font-size: 24px;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .introP {
+        font-size: 14px;
+        margin-left: 0;
+        margin-bottom: 0;
+    }
+
+    .formColumn h1 {
+        font-size: 24px;
+    }
+
+    .formColumn p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .username input,
+    .password input,
+    .password-wrapper,
+    .password-rules,
+    .formActions button {
+        width: 100%;
+        margin: 0;
+    }
+
+    .formActions button {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .formText {
+        font-size: 14px;
+    }
+}
 
 @media (max-width: 430px) {
     .formColumn {
@@ -384,15 +537,6 @@ body {
         margin-bottom: 20px;
     }
 
-    .username input,
-    .password input,
-    .password-wrapper,
-    .password-rules,
-    .formActions button {
-        width: 100%;
-        margin: 0;
-    }
-
     .formActions button {
         font-size: 16px;
         padding: 14px;
@@ -401,6 +545,8 @@ body {
     .formText {
         font-size: 13px;
     }
+
+    
 }
 
 
@@ -433,15 +579,6 @@ body {
 
     .formColumn p {
         font-size: 13px;
-    }
-
-    .username input,
-    .password input,
-    .password-wrapper,
-    .password-rules,
-    .formActions button {
-        width: 100%;
-        margin: 0;
     }
 
     .formActions button {
@@ -486,15 +623,6 @@ body {
         font-size: 12px;
     }
 
-    .username input,
-    .password input,
-    .password-wrapper,
-    .password-rules,
-    .formActions button {
-        width: 100%;
-        margin: 0;
-    }
-
     .formActions button {
         font-size: 14px;
         padding: 12px;
@@ -503,4 +631,8 @@ body {
     .formText {
         font-size: 11px;
     }
+
+    .linkText {
+    font-size: 13px;
+   }
 }
