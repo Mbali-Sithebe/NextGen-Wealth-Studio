@@ -17,38 +17,48 @@ import './styles/StrategyTracks.css'
 import './styles/SimulationLab.css'
 import './styles/EducationHub.css'
 
-
-export default function App(){
+export default function App() {
     return (
         <AuthProvider>
             <HashRouter>
-                <AppRoutes/>
+                <AppRoutes />
             </HashRouter>
         </AuthProvider>
     )
 }
 
-function AppRoutes(){
+function AppRoutes() {
     const { authStatus } = useContext(AuthContext);
 
     return (
         <Routes>
-            <Route path='/' element={<Navigate to="/login"/>}/>
-            <Route path='/login' element={<Login/>}/>
+            {/* 1. Public Routes */}
+            <Route path='/' element={<Navigate to="/login" />} />
+            <Route path='/login' element={<Login />} />
     
-            <Route path='/MoneySnapshot' element={authStatus === "authed" ? 
-            <MoneySnapshot/> : <Navigate to="/login"/>}/>
+            {/* 2. Protected Routes */}
+            <Route 
+                path='/MoneySnapshot' 
+                element={authStatus === "authed" ? <MoneySnapshot /> : <Navigate to="/login" />} 
+            />
          
-            <Route path='*' element={<Navigate to="/login"/>}/>
-        
-            <Route path='/StrategyTracks' element={authStatus === "authed" ? 
-            <StrategyTracks/> : <Navigate to="/login"/>}/>
+            <Route 
+                path='/StrategyTracks' 
+                element={authStatus === "authed" ? <StrategyTracks /> : <Navigate to="/login" />} 
+            />
           
-            <Route path='/SimulationLab' element={authStatus === "authed" ? 
-            <SimulationLab/> : <Navigate to="/login"/>}/>
+            <Route 
+                path='/SimulationLab' 
+                element={authStatus === "authed" ? <SimulationLab /> : <Navigate to="/login" />} 
+            />
         
-            <Route path='/EducationHub' element={authStatus === "authed" ? 
-            <EducationHub/> : <Navigate to="/login"/>}/>
+            <Route 
+                path='/EducationHub' 
+                element={authStatus === "authed" ? <EducationHub /> : <Navigate to="/login" />} 
+            />
+
+          
+            <Route path='*' element={<Navigate to="/login" />} />
         </Routes>
     )
 }
