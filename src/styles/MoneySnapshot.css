@@ -146,7 +146,7 @@ body {
 }
 
 .incomeInputBox button {
-    padding: 8px 12px;
+    padding: 8px 20px;
     border: none;
     color:#fff ;
     background-color: #c95326;
@@ -564,6 +564,7 @@ input[type="number"] {
 
 }
 
+/* ---------- Responsive Design --------- */
 @media (min-width: 768px) and (max-width: 1024px) {
     .mobile-topbar, .mobile-menu, .menu-backdrop {
         display: none !important;
