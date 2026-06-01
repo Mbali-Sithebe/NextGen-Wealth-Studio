@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthProvider } from './context/AuthContext';
 import AuthContext from './context/AuthContext';
@@ -21,9 +21,9 @@ import './styles/EducationHub.css'
 export default function App(){
     return (
         <AuthProvider>
-            <BrowserRouter>
+            <HashRouter>
                 <AppRoutes/>
-            </BrowserRouter>
+            </HashRouter>
         </AuthProvider>
     )
 }
