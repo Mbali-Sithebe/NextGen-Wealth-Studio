@@ -14,7 +14,6 @@
     margin-bottom: 18px;
 }
 
-/* Slider Styling Starts Here */
 .mainSlider-Progress {
     display: flex;
     justify-content: center;
@@ -53,7 +52,6 @@
     transition: 0.3s;
 }
 
-/* 4 Milestone Boxes Style Starts Here */
 .milestone-Boxes {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -90,7 +88,6 @@
     gap: 12px;
 }
 
-/* Tick Button and Text */
 .taskRow p {
     margin: 0;
     font-size: 14px;
@@ -103,7 +100,6 @@
     gap: 10px;
 }
 
-/* 3-State Milestone Button */
 .milestoneBtn {
     width: 22px;
     height: 22px;
@@ -118,7 +114,7 @@
     transform: scale(1.15);
 }
 
-/* Milestone Tooltip */
+
 .milestoneBtnWrapper {
     position: relative;
     display: flex;
@@ -149,7 +145,6 @@
     opacity: 1;
 }
 
-/* Year Buttons Here */
 .yearLabel {
     margin-top: 30px;
     background: #F0325A;
@@ -194,7 +189,6 @@
     margin-bottom: 15px;
 }
 
-/* Bar Graph Row Label */
 .barRowLabel {
     display: flex;
     justify-content: space-between;
@@ -217,7 +211,7 @@
     transition: width 0.3s ease;
 }
 
-/* General Tips Style Here */
+
 .TipsBox {
     margin-left: 20px;
     margin-top: 80px;
@@ -274,13 +268,15 @@
 }
 
 .trackCardName {
-    font-size: 20px;
+    font-size: 18px;
     color: #2D2323;
     margin-bottom: 10px;
+    line-height: 1.4;        
+    letter-spacing: 0.3px; 
 }
 
 .trackCardTagline {
-    font-size: 15px;
+    font-size: 13px;
     color: #555;
     font-weight: 500;
     margin-top: -4px;
@@ -292,16 +288,21 @@
 }
 
 .trackCardLabel {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 4px;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px; 
     color: #C95326;
+    line-height: 1.4;         
+    letter-spacing: 0.3px;    
 }
+
 
 .trackCardSection p {
     font-size: 14.5px;
     color: #555;
     margin-top: 4px;
+    line-height: 1.4;         
+    letter-spacing: 0.3px; 
 }
 
 .selectTrackBtn {
@@ -398,7 +399,7 @@
 
 
 /* ---------- Responsive Design --------- */
-@media (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
     .milestoneTooltip {
         font-size: 10px;
         padding: 3px 6px;
@@ -411,18 +412,24 @@
         padding: 7px 9px;
     }
 
+    
     .trackSelection {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        grid-template-columns: 1fr !important; 
+        gap: 25px !important;                 
         margin-top: 30px;
+        width: 100% !important;
     }
 
+    .trackCard,
     .trackCard:last-child {
-        grid-column: 1 / -1;
-        max-width: 50%;
-        margin: 0 auto;
+        grid-column: auto !important;
+        width: 100% !important;
+        max-width: 580px !important; 
+        margin: 0 auto !important;   
+        box-sizing: border-box;
     }
 
+    
     .trackCardName {
         font-size: 18px;
     }
@@ -448,7 +455,6 @@
     .introRow p {
         font-size: 14.5px;
     }
-
 
     .mainSlider-Progress {
         margin-top: 25px;
@@ -491,7 +497,6 @@
     .taskRow p {
         font-size: 13px;
     }
-
 
     .yearLabel {
         padding: 10px 60px;
@@ -549,6 +554,63 @@
     }
 }
 
+/* ---------- Responsive Design (820px to 1024px) --------- */
+@media (min-width: 820px) and (max-width: 1024px) {
+    .milestoneTooltip {
+        font-size: 10px;
+        padding: 3px 6px;
+        left: 26px;
+    }
+
+    .tooltip {
+        font-size: 12px;
+        width: 190px;
+        padding: 7px 9px;
+    }
+
+    
+    .trackSelection {
+        grid-template-columns: 1fr !important; 
+        gap: 25px !important;                 
+        margin-top: 30px;
+        width: 100% !important;
+    }
+
+
+    .trackCard,
+    .trackCard:last-child {
+        grid-column: auto !important;
+        width: 100% !important;
+        max-width: 580px !important; 
+        margin: 0 auto !important;   
+        box-sizing: border-box;
+    }
+
+
+    .trackCardName {
+        font-size: 18px;
+    }
+
+    .trackCardTagline {
+        font-size: 14px;
+    }
+
+    .trackCardSection p {
+        font-size: 13.5px;
+    }
+
+    .selectTrackBtn {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .pageTitle {
+        font-size: 26px;
+        margin-bottom: 14px;
+    }
+
+
+}
 
 @media (max-width: 540px) {
     .milestoneTooltip {
