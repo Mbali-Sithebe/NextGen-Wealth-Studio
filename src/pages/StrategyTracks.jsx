@@ -14,7 +14,7 @@ export default function StrategyTracks() {
     const [popup, setPopup] = useState(null);
 
     const activeTrack = tracks.find(t => t.id === selectedTrack) || null;
-    // Get milestone state 
+
     function getMilestoneState(id) {
         return trackProgress[id] ?? 0;
     }

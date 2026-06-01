@@ -214,3 +214,613 @@
     font-size: 15px;
     color: #2D2323;
 }
+
+/* ---------- Responsive Design --------- */
+@media (max-width: 1024px) {
+
+    .labContent h1 {
+        font-size: 26px;
+        padding-bottom: 10px;
+    }
+
+    .labContent p {
+        font-size: 14px;
+        margin-bottom: 24px;
+    }
+
+    .studio-1,
+    .studio-2,
+    .studio-3 {
+        padding: 18px;
+        gap: 16px;
+    }
+
+    .intro h1 {
+        font-size: 20px;
+        margin-left: 16px;
+    }
+
+    .intro p {
+        font-size: 14px;
+        margin-left: 16px;
+    }
+
+    .studioNavBtn {
+        font-size: 14px;
+        padding: 7px 16px;
+    }
+
+    .simulation {
+        padding: 18px;
+        gap: 18px;
+        width: 100%;
+    }
+
+    .simulation h2 {
+        font-size: 18px;
+    }
+
+    .simulation label {
+        font-size: 14px;
+    }
+
+    .simulation input {
+        padding: 7px;
+        font-size: 13.5px;
+    }
+
+    .resultBtn {
+        font-size: 15px;
+        padding: 11px 36px;
+    }
+
+    .resultsDisplay {
+        width: 80%;
+        margin-top: 30px;
+        padding: 20px;
+    }
+
+    .results-Intro h1 {
+        font-size: 20px;
+    }
+
+    .results-Intro p {
+        font-size: 14px;
+    }
+
+    .result-box {
+        height: 150px;
+    }
+
+    .result-box h2 {
+        font-size: 20px;
+    }
+
+    .result-label p {
+        font-size: 14px;
+    }
+
+    .verdictBanner {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+}
+
+
+@media (max-width: 820px) {
+
+    .labContent h1 {
+        font-size: 24px;
+    }
+
+    .labContent p {
+        font-size: 13.5px;
+        margin-bottom: 20px;
+    }
+
+    .intro h1 {
+        font-size: 19px;
+        margin-left: 12px;
+    }
+
+    .intro p {
+        font-size: 13.5px;
+        margin-left: 12px;
+    }
+
+    .simulation {
+        padding: 16px;
+        gap: 14px;
+    }
+
+    .simulation h2 {
+        font-size: 17px;
+    }
+
+    .simulation label {
+        font-size: 13px;
+    }
+
+    .simulation input {
+        padding: 6px;
+        font-size: 13px;
+    }
+
+    .resultBtn {
+        font-size: 14px;
+        padding: 10px 28px;
+    }
+
+    .resultsDisplay {
+        width: 90%;
+        padding: 18px;
+    }
+
+    .result-box {
+        height: 130px;
+    }
+
+    .result-box h2 {
+        font-size: 18px;
+    }
+
+    .result-label p {
+        font-size: 13px;
+    }
+
+    .verdictBanner {
+        font-size: 13.5px;
+    }
+}
+
+
+@media (max-width: 540px) {
+
+    .labContent h1 {
+        font-size: 21px;
+        padding-bottom: 8px;
+    }
+
+    .labContent p {
+        font-size: 13.5px;
+        margin-bottom: 16px;
+    }
+
+    .studio-1,
+    .studio-2,
+    .studio-3 {
+        padding: 14px;
+        gap: 14px;
+    }
+
+    .intro h1 {
+        font-size: 17px;
+        margin-left: 8px;
+    }
+
+    .intro p {
+        font-size: 13px;
+        margin-left: 8px;
+    }
+
+    .studioNavBtn {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
+
+
+    .simulation {
+        flex-direction: column;
+        padding: 16px;
+        gap: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+
+    .simulation::before {
+        display: none;
+    }
+
+    .rentingBox,
+    .buyingBox {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .simulation h2 {
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+
+    .simulation label {
+        font-size: 13px;
+    }
+
+    .simulation input {
+        padding: 8px;
+        font-size: 13px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .rentingBox h2,
+    .buyingBox h2 {
+        padding-bottom: 10px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    .resultButton {
+        padding-right: 0;
+        padding-bottom: 0;
+    }
+
+    .resultBtn {
+        width: 100%;
+        font-size: 15px;
+        padding: 12px;
+        text-align: center;
+    }
+
+    .resultsDisplay {
+        width: 100%;
+        margin-top: 24px;
+        padding: 16px;
+        box-sizing: border-box;
+    }
+
+    .results-Intro h1 {
+        font-size: 18px;
+    }
+
+    .results-Intro p {
+        font-size: 13px;
+    }
+
+    .results-container {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .result-block {
+        width: 100%;
+    }
+
+    .result-box {
+        width: 100%;
+        height: 110px;
+        box-sizing: border-box;
+    }
+
+    .result-box h2 {
+        font-size: 18px;
+    }
+
+    .result-label {
+        text-align: left;
+    }
+
+    .result-label p {
+        font-size: 13px;
+    }
+
+    .verdictBanner {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+
+    .feedback-modal {
+        margin-left: 0;
+        width: 92%;
+        max-width: 340px;
+        padding: 16px;
+    }
+}
+
+
+@media (max-width: 430px) {
+
+    .labContent h1 {
+        font-size: 19px;
+    }
+
+    .labContent p {
+        font-size: 13px;
+        margin-bottom: 14px;
+    }
+
+    .studio-1,
+    .studio-2,
+    .studio-3 {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .intro h1 {
+        font-size: 16px;
+        margin-left: 6px;
+    }
+
+    .intro p {
+        font-size: 12.5px;
+        margin-left: 6px;
+    }
+
+    .studioNavBtn {
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+
+    .simulation {
+        padding: 14px;
+        gap: 16px;
+    }
+
+    .simulation h2 {
+        font-size: 15px;
+    }
+
+    .simulation label {
+        font-size: 12.5px;
+    }
+
+    .simulation input {
+        padding: 7px;
+        font-size: 12.5px;
+    }
+
+    .resultBtn {
+        font-size: 14px;
+        padding: 11px;
+    }
+
+    .resultsDisplay {
+        padding: 14px;
+        gap: 14px;
+    }
+
+    .results-Intro h1 {
+        font-size: 17px;
+    }
+
+    .result-box {
+        height: 100px;
+    }
+
+    .result-box h2 {
+        font-size: 17px;
+    }
+
+    .result-label p {
+        font-size: 12.5px;
+    }
+
+    .verdictBanner {
+        font-size: 12.5px;
+        padding: 9px 11px;
+    }
+
+    .feedback-modal {
+        width: 94%;
+        padding: 14px;
+    }
+}
+
+@media (max-width: 412px) {
+
+    .labContent h1 {
+        font-size: 18px;
+    }
+
+    .intro h1 {
+        font-size: 15.5px;
+    }
+
+    .simulation h2 {
+        font-size: 14.5px;
+    }
+
+    .simulation label {
+        font-size: 12px;
+    }
+
+    .simulation input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .result-box h2 {
+        font-size: 16px;
+    }
+
+    .result-label p {
+        font-size: 12px;
+    }
+
+    .verdictBanner {
+        font-size: 12px;
+    }
+
+    .feedback-modal {
+        width: 95%;
+    }
+}
+
+
+@media (max-width: 390px) {
+
+    .labContent h1 {
+        font-size: 17px;
+    }
+
+    .labContent p {
+        font-size: 12.5px;
+    }
+
+    .intro h1 {
+        font-size: 15px;
+        margin-left: 4px;
+    }
+
+    .intro p {
+        font-size: 12px;
+        margin-left: 4px;
+    }
+
+    .studioNavBtn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .simulation {
+        padding: 12px;
+        gap: 14px;
+    }
+
+    .simulation h2 {
+        font-size: 14px;
+    }
+
+    .simulation label {
+        font-size: 12px;
+    }
+
+    .simulation input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .resultBtn {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .resultsDisplay {
+        padding: 12px;
+        gap: 12px;
+        margin-top: 18px;
+    }
+
+    .results-Intro h1 {
+        font-size: 16px;
+    }
+
+    .results-Intro p {
+        font-size: 12px;
+    }
+
+    .result-box {
+        height: 90px;
+    }
+
+    .result-box h2 {
+        font-size: 15px;
+    }
+
+    .result-label p {
+        font-size: 12px;
+    }
+
+    .verdictBanner {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .feedback-modal {
+        width: 96%;
+        padding: 12px;
+    }
+}
+
+
+@media (max-width: 360px) {
+
+    .labContent h1 {
+        font-size: 16px;
+    }
+
+    .labContent p {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    .intro h1 {
+        font-size: 14px;
+        margin-left: 2px;
+    }
+
+    .intro p {
+        font-size: 11.5px;
+        margin-left: 2px;
+    }
+
+    .studioNavBtn {
+        font-size: 11.5px;
+        padding: 5px 10px;
+    }
+
+    .simulation {
+        padding: 10px;
+        gap: 12px;
+    }
+
+    .simulation h2 {
+        font-size: 13.5px;
+    }
+
+    .simulation label {
+        font-size: 11.5px;
+    }
+
+    .simulation input {
+        font-size: 11.5px;
+        padding: 6px;
+    }
+
+    .resultBtn {
+        font-size: 13px;
+        padding: 9px;
+    }
+
+    .resultsDisplay {
+        padding: 10px;
+        gap: 10px;
+        margin-top: 14px;
+    }
+
+    .results-Intro h1 {
+        font-size: 15px;
+    }
+
+    .results-Intro p {
+        font-size: 11.5px;
+    }
+
+    .result-box {
+        height: 80px;
+    }
+
+    .result-box h2 {
+        font-size: 14px;
+    }
+
+    .result-label p {
+        font-size: 11.5px;
+    }
+
+    .verdictBanner {
+        font-size: 11.5px;
+        padding: 7px 9px;
+    }
+
+    .feedback-modal {
+        width: 97%;
+        padding: 10px;
+    }
+
+    .popupTip {
+        font-size: 11.5px;
+    }
+}

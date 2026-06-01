@@ -1,5 +1,6 @@
-import React, { useContext } from "react"; 
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
 import AbsaLogo from "../images/AbsaLogo.png";
@@ -9,80 +10,125 @@ import moneyImg from "../images/wallet.png";
 import strategyImg from "../images/progress.png";
 import educationImg from "../images/education.png";
 
-export default function Navigation (){
+export default function Navigation() {
     const navigate = useNavigate();
     const location = useLocation();
     const { logOut } = useContext(AuthContext);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     function handleLogOut() {
         logOut();
         navigate("/");
     }
 
+    const navItems = [
+        { path: "/MoneySnapshot", img: moneyImg, label: "Money Snapshot" },
+        { path: "/StrategyTracks", img: strategyImg, label: "Strategy Track" },
+        { path: "/SimulationLab", img: simulationImg, label: "Simulation Lab" },
+        { path: "/EducationHub", img: educationImg, label: "Education Hub" },
+    ];
+
     return (
-       <header className="navigation">
-        <nav>
+        <>
+            {/* ── PHONE: top navbar ── */}
+            <header className="mobile-topbar">
+                <button
+                    className="hamburger-btn"
+                    onClick={() => setMenuOpen(true)}
+                    aria-label="Open menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
-            {/* Logo and app name */}
-            <section 
-                className="brand-section"
-                onClick={() => location.pathname !== "/MoneySnapshot" && navigate("/MoneySnapshot")}
-                style={{ cursor: "pointer" }}
-            >
-                <img className="brand-logo" src={AbsaLogo} alt="Absa Logo" />
-                <h1 className="brand-name">
-                    <span className="font-1"> <strong>NextGen</strong>  Wealth</span>
-                        Studio
-                </h1>
-            </section>
+                <div className="mobile-brand">
+                    <img src={AbsaLogo} alt="Absa Logo" className="mobile-brand-logo" />
+                    <h1 className="mobile-brand-name">
+                        <strong>NextGen</strong> Wealth Studio
+                        </h1>
+                        </div>
+            </header>
 
-            {/* Sidebar navigation links */}
-            <section className="sidebar">
+            {/* ── PHONE: overlay backdrop ── */}
+            {menuOpen && (
+                <div
+                    className="menu-backdrop"
+                    onClick={() => setMenuOpen(false)}
+                />
+            )}
+
+            {/* ── PHONE: slide-in menu ── */}
+            <nav className={`mobile-menu ${menuOpen ? "mobile-menu--open" : ""}`}>
+                <button
+                    className="mobile-menu-close"
+                    onClick={() => setMenuOpen(false)}
+                    aria-label="Close menu"
+                >
+                    ✕
+                </button>
+
                 <ul>
-                    <li 
-                        onClick={() => location.pathname !== "/MoneySnapshot" && navigate("/MoneySnapshot")} 
-                        style={{ cursor: location.pathname === "/MoneySnapshot" ? "default" : "pointer" }}
-                        className={location.pathname === "/MoneySnapshot" ? "active" : ""}
-                    >
-                        <img src={moneyImg} alt="" className="nav-icon" />
-                        Money Snapshot
-                    </li>
+                    {navItems.map((item) => (
+                        <li
+                            key={item.path}
+                            onClick={() => {
+                                location.pathname !== item.path && navigate(item.path);
+                                setMenuOpen(false);
+                            }}
+                            className={location.pathname === item.path ? "active" : ""}
+                            title={item.label}
+                        >
+                            <img src={item.img} alt={item.label} className="nav-icon" />
+                            <span className="nav-label">{item.label}</span>
+                        </li>
+                    ))}
 
-                    <li 
-                        onClick={() => location.pathname !== "/StrategyTracks" && navigate("/StrategyTracks")} 
-                        style={{ cursor: location.pathname === "/StrategyTracks" ? "default" : "pointer" }}
-                        className={location.pathname === "/StrategyTracks" ? "active" : ""}
-                    >
-                        <img src={strategyImg} alt="" className="nav-icon" />
-                        Strategy Track
-                    </li>
-
-                    <li 
-                        onClick={() => location.pathname !== "/SimulationLab" && navigate("/SimulationLab")} 
-                        style={{ cursor: location.pathname === "/SimulationLab" ? "default" : "pointer" }}
-                        className={location.pathname === "/SimulationLab" ? "active" : ""}
-                    >
-                        <img src={simulationImg} alt="" className="nav-icon" />
-                        Simulation Lab
-                    </li>
-
-                    <li 
-                        onClick={() => location.pathname !== "/EducationHub" && navigate("/EducationHub")} 
-                        style={{ cursor: location.pathname === "/EducationHub" ? "default" : "pointer" }}
-                        className={location.pathname === "/EducationHub" ? "active" : ""}
-                    >
-                        <img src={educationImg} alt="" className="nav-icon" />
-                        Education Hub
-                    </li>
-
-                    <li onClick={handleLogOut} style={{ cursor: "pointer" }}>
-                        <img src={logoutImg} alt="" className="nav-icon" />
-                        Log Out
+                    <li onClick={handleLogOut} title="Log Out">
+                        <img src={logoutImg} alt="Log Out" className="nav-icon" />
+                        <span className="nav-label">Log Out</span>
                     </li>
                 </ul>
-            </section>
+            </nav>
 
-        </nav>     
-       </header>
-    )
+            {/* ── DESKTOP & TABLET: sidebar ── */}
+            <header className="navigation">
+                <nav>
+                    <section
+                        className="brand-section"
+                        onClick={() => location.pathname !== "/MoneySnapshot" && navigate("/MoneySnapshot")}
+                        style={{ cursor: "pointer" }}
+                    >
+                        <img className="brand-logo" src={AbsaLogo} alt="Absa Logo" />
+                        <h1 className="brand-name">
+                            <span className="font-1"><strong>NextGen</strong> Wealth</span>
+                            Studio
+                        </h1>
+                    </section>
+
+                    <section className="sidebar">
+                        <ul>
+                            {navItems.map((item) => (
+                                <li
+                                    key={item.path}
+                                    onClick={() => location.pathname !== item.path && navigate(item.path)}
+                                    style={{ cursor: location.pathname === item.path ? "default" : "pointer" }}
+                                    className={location.pathname === item.path ? "active" : ""}
+                                    title={item.label}
+                                >
+                                    <img src={item.img} alt={item.label} className="nav-icon" />
+                                    {item.label}
+                                </li>
+                            ))}
+
+                            <li onClick={handleLogOut} style={{ cursor: "pointer" }} title="Log Out">
+                                <img src={logoutImg} alt="Log Out" className="nav-icon" />
+                                Log Out
+                            </li>
+                        </ul>
+                    </section>
+                </nav>
+            </header>
+        </>
+    );
 }

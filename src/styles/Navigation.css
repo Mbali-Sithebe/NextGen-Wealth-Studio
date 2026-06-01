@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     padding: 25px 20px;
+    transition: width 0.3s ease;
 }
 
 .brand-section {
@@ -18,16 +19,14 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     cursor: pointer;
     padding: 10px;
     border-radius: 12px;
     transition: transform 0.15s ease;
 }
 
-
-.brand-section:hover {
-    transform: none;
+.brand-section:active {
+    transform: scale(0.90);
 }
 
 .brand-logo {
@@ -37,10 +36,6 @@
     margin-bottom: 12px;
 }
 
-.brand-section:active {
-    transform: scale(0.90);
-}
-
 .brand-name {
     font-size: 23px;
     font-weight: 400;
@@ -48,8 +43,9 @@
     margin-left: 4px;
 }
 
-.font-1{
+.font-1 {
     font-size: 26px;
+    display: block;
 }
 
 .brand-name strong {
@@ -83,7 +79,6 @@
     background-color: #edc8ba;
 }
 
-
 .sidebar li.active {
     background-color: #C95326;
     color: #FFFFFF;
@@ -94,21 +89,382 @@
     background-color: #C95326;
 }
 
-
 .nav-icon {
     width: 21px;
     height: 21px;
+    flex-shrink: 0;
 }
 
 .sidebar li.active .nav-icon {
     filter: invert(1) brightness(2);
 }
 
+
+.mobile-topbar {
+    display: none; 
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 75%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: #640032;
+    z-index: 1000;
+    padding: 30px 20px;
+    transition: left 0.3s ease;
+    flex-direction: column;
+}
+
+.mobile-menu--open {
+    left: 0;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.mobile-menu li {
+    padding: 14px 16px;
+    border: 2px solid #2C2C2E;
+    border-radius: 12px;
+    background-color: #F9F5F0;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.mobile-menu li:hover {
+    background-color: #edc8ba;
+}
+
+.mobile-menu li.active {
+    background-color: #C95326;
+    color: #FFFFFF;
+    border-color: #F9F5F0;
+}
+
+.mobile-menu li.active .nav-icon {
+    filter: invert(1) brightness(2);
+}
+
+.mobile-menu-close {
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 22px;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-bottom: 10px;
+}
+
+.menu-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 24px;
+    height: 2.5px;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+}
+
+.mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mobile-brand-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.mobile-brand-name {
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.mobile-brand-name .font-1 {
+    font-size: 18px;
+    display: block;
+}
+
+.mobile-brand-name strong {
+    font-weight: 700;
+}
+
+/* ---------- Responsive Design --------- */
+
+/* Surface Duo and similar 540px phones */
+@media (max-width: 540px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .mobile-topbar {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background-color: #640032;
+        padding: 12px 16px;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .mobile-brand-logo {
+        width: 34px;
+        height: 34px;
+    }
+
+    .mobile-brand-name {
+        font-size: 18px;
+        font-weight: 400;
+        color: #FFFFFF;
+        white-space: nowrap;
+    }
+
+    .mobile-brand-name strong {
+        font-weight: 700;
+    }
+
+    .hamburger-btn span {
+        width: 22px;
+        height: 2px;
+    }
+
+    .mobile-menu-close {
+        font-size: 20px;
+    }
+
+    .page-content {
+        padding: 20px;
+        width: 100%;
+    }
+
+    .navigation {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: flex;
+    }
+
+    .menu-backdrop {
+        display: block;
+    }
+}
+
+/* iPhone 14 Pro Max */
+@media (max-width: 430px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .mobile-topbar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background-color: #640032;
+        padding: 12px 16px;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .mobile-brand-logo {
+        width: 32px;
+        height: 32px;
+    }
+
+    .mobile-brand-name {
+        font-size: 17px;
+        font-weight: 400;
+        color: #FFFFFF;
+        white-space: nowrap;
+    }
+
+    .mobile-brand-name strong {
+        font-weight: 700;
+    }
+
+    .hamburger-btn span {
+        width: 22px;
+        height: 2px;
+    }
+
+    .mobile-menu-close {
+        font-size: 20px;
+    }
+
+    .page-content {
+        padding: 20px;
+        width: 100%;
+    }
+
+    .navigation {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: flex;
+    }
+
+    .menu-backdrop {
+        display: block;
+    }
+}
+
+/* Samsung Galaxy A51 413px */
+@media (max-width: 413px) {
+    .mobile-topbar {
+        padding: 11px 14px;
+        gap: 11px;
+    }
+
+    .mobile-brand-logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .mobile-brand-name {
+        font-size: 16px;
+    }
+
+    .hamburger-btn span {
+        width: 20px;
+        height: 2px;
+    }
+
+    .mobile-menu-close {
+        font-size: 19px;
+    }
+
+    .mobile-menu {
+        width: 78%;
+    }
+}
+
+/* iPhone 14, 15, 13 Pro */
+@media (max-width: 390px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .page-content {
+        padding: 16px;
+    }
+
+    .mobile-topbar {
+        padding: 10px 14px;
+        gap: 10px;
+    }
+
+    .mobile-brand-logo {
+        width: 28px;
+        height: 28px;
+    }
+
+    .mobile-brand-name {
+        font-size: 15px;
+    }
+
+    .hamburger-btn span {
+        width: 20px;
+        height: 2px;
+    }
+
+    .mobile-menu-close {
+        font-size: 18px;
+    }
+
+    .mobile-menu {
+        width: 80%;
+    }
+}
+
+/* Small phones / iPhone SE / Samsung small */
+@media (max-width: 360px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .page-content {
+        padding: 12px;
+    }
+
+    .mobile-topbar {
+        padding: 8px 12px;
+        gap: 8px;
+    }
+
+    .mobile-brand-logo {
+        width: 26px;
+        height: 26px;
+    }
+
+    .mobile-brand-name {
+        font-size: 13px;
+    }
+
+    .hamburger-btn span {
+        width: 18px;
+        height: 2px;
+    }
+
+    .mobile-menu-close {
+        font-size: 17px;
+    }
+
+    .mobile-menu {
+        width: 85%;
+    }
+}
+
+
 .footer {
     background-color: #C95326;
     text-align: center;
     padding: 15px;
-    font-size: 14px;
 }
 
 .footer p {
@@ -125,6 +481,7 @@
     padding: 40px;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 .content-wrapper {
