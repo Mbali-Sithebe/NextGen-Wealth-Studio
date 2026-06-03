@@ -148,10 +148,12 @@ body {
 .incomeInputBox button {
     padding: 8px 20px;
     border: none;
-    color:#fff ;
+    color: #fff;
     background-color: #c95326;
     cursor: pointer;
     font-weight: 550;
+    min-height: 33px;
+    min-width: 60px;
 }
 
 .incomeInputBox button:hover {
@@ -188,7 +190,7 @@ body {
 .fixedExpenses-Box {
     background: #fff;
     padding: 16px;
-    height: 330px;
+    height: 293px;
     border-radius: 20px;
     border: none;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.10);
@@ -201,7 +203,7 @@ body {
 .savingGoals-Box h1,
 .fixedExpenses-Box h1 {
     font-size: 23px;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
     margin-top: 10px;
 }
 
@@ -209,6 +211,7 @@ body {
 .fixedExpenses-Box h2{
     font-size: 16px;
     font-weight: 500;
+
 }
 
 .balance {
@@ -364,7 +367,7 @@ input[type="number"] {
 .feedback-modal ul {
     text-align: left;
     padding-left: 20px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .feedback-modal button {
@@ -398,6 +401,12 @@ input[type="number"] {
     mix-blend-mode: multiply;
 }
 
+.feedback-modal > p:not(.feedbackMessage) {
+    font-size: 15px;
+    margin: 0 0 10px 0;
+    font-weight: 650;
+}
+
 /* ---------- Responsive Design --------- */
 .goalInputBox, .incomeInputBox {
     display: flex !important;
@@ -429,7 +438,7 @@ input[type="number"] {
     border-radius: 4px !important;
 }
 
-/* ---------- Responsive Design --------- */
+
 @media (min-width: 820px) and (max-width: 1024px) {
     .mobile-topbar, .mobile-menu, .menu-backdrop {
         display: none !important;
@@ -499,13 +508,13 @@ input[type="number"] {
         padding: 0 !important;
     }
 
-   
     .financeBox-Holder {
         flex-direction: column !important;
         gap: 30px !important;
         margin-right: 0 !important;
         width: 100% !important;
     }
+
     .leftPanel, 
     .rightPanel {
         width: 100% !important;
@@ -564,7 +573,7 @@ input[type="number"] {
 
 }
 
-/* ---------- Responsive Design --------- */
+
 @media (min-width: 768px) and (max-width: 1024px) {
     .mobile-topbar, .mobile-menu, .menu-backdrop {
         display: none !important;
@@ -678,6 +687,16 @@ input[type="number"] {
         transform: scale(0.9) !important;
     }
 
+    .recharts-tooltip-wrapper {
+        z-index: 9999 !important;
+        font-size: 13px !important;
+    }
+
+    .recharts-default-tooltip {
+        font-size: 13px !important;
+        padding: 5px 10px !important;
+    }
+
     .savingGoals-Box h1,
     .fixedExpenses-Box h1 {
         font-size: 21px;
@@ -765,6 +784,11 @@ input[type="number"] {
         margin-bottom: 2px !important;
     }
 
+    .incomeInputBox button {
+        min-height: 29px;
+        min-width: 40px;
+    }
+
     .incomeBox,
     .savingGoals-Box,
     .fixedExpenses-Box {
@@ -776,6 +800,21 @@ input[type="number"] {
         border-radius: 12px !important;
         border-left: 20px solid #DC0032 !important;
         margin-left: 0 !important;
+    }
+
+    .goalList {
+        margin-top: 8px !important;
+        gap: 6px !important;
+    }
+
+    .goalItem {
+        padding: 5px 0 !important;
+        font-size: 13px !important;
+    }
+
+    .goalItem p {
+        margin: 0 !important;
+        font-size: 13px !important;
     }
 
     .resultData {
@@ -824,11 +863,25 @@ input[type="number"] {
        margin-bottom: 42px !important;
     }
 
+    .recharts-tooltip-wrapper {
+        z-index: 9999 !important;
+        font-size: 12px !important;
+    }
+
+    .recharts-default-tooltip{
+        font-size: 12px !important;
+        padding: 4px 8px !important;
+    }
+
     .feedback-modal {
         margin-left: 0;
         width: 90%;
         max-width: 360px;
     }
+
+    .feedback-modal > p:not(.feedbackMessage) {
+    font-size: 13px !important;
+   }
 
     .feedbackMessage {
         font-size: 14px;
@@ -936,11 +989,19 @@ input[type="number"] {
         font-size: 15.5px !important;
     }
 
+    .goalItem {
+        font-size: 12.5px !important;
+    }
+
+    .goalItem p {
+        margin: 0 !important;
+        font-size: 12.5px !important;
+    }
+
     .resultData h1 {
     margin-top: 0px !important;    
     margin-bottom: -18px !important;   
     }
-
 
     .resultData .recharts-legend-wrapper .recharts-default-legend {
         justify-content: center !important; 
@@ -1017,6 +1078,15 @@ input[type="number"] {
         font-size: 13.5px !important;
     }
 
+    .goalItem {
+        font-size: 12px !important;
+    }
+
+    .goalItem p {
+        margin: 0 !important;
+        font-size: 12px !important;
+    }
+
     .resultData h1 {
         font-size: 14px !important;
     }
@@ -1066,6 +1136,10 @@ input[type="number"] {
         width: 94%;
         padding: 14px;
     }
+
+    .feedback-modal > p:not(.feedbackMessage) {
+        font-size: 12px !important;
+    }
 }
 
 
@@ -1095,6 +1169,20 @@ input[type="number"] {
 
     .balance {
         font-size: 13px !important;
+    }
+
+    .goalList {
+        gap: 4px !important;
+    }
+
+    .goalItem {
+        font-size: 11.5px !important;
+        padding: 4px 0 !important;
+    }
+
+    .goalItem p {
+        margin: 0 !important;
+        font-size: 11.5px !important;
     }
 
     .resultData h1 {
@@ -1153,5 +1241,10 @@ input[type="number"] {
 
     .feedback-modal ul {
         font-size: 11px;
+    }
+
+    .feedback-modal > p:not(.feedbackMessage) {
+        font-size: 11.5px !important;
+        font-weight: 650;
     }
 }

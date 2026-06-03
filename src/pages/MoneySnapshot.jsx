@@ -121,7 +121,6 @@ export default function MoneySnapshot() {
         }
     }, [income, goals, expenses]);
 
-    // Sub-render helpers to eliminate messy structural duplications across viewport conditions
     const renderIncomeBox = () => (
         <div className="incomeBox">
             <div className="incomeHeader">
@@ -133,17 +132,41 @@ export default function MoneySnapshot() {
             </div>
 
             <div className="incomeValues">
-                <h2>Gross Income</h2>
+                <h2>
+                    Gross Income
+                    <span className="infoIcon">
+                        <img src={InfoIconImg} alt="info" />
+                        <span className="tooltip">
+                            This is your total income before any deductions.
+                        </span>
+                    </span>
+                </h2>
                 <h3 className="balance">
                     {income !== null ? `R${income}` : "R0.00"}
                 </h3>
 
-                <h2>UIF (1%)</h2>
+                <h2>
+                    UIF (1%)
+                    <span className="infoIcon">
+                        <img src={InfoIconImg} alt="info" />
+                        <span className="tooltip">
+                            UIF is a 1% deduction for unemployment insurance in South Africa. This is deducted from your gross income.
+                        </span>
+                    </span>
+                </h2>
                 <h3 className="balance">
                     {income !== null ? `R${calculateNetIncome(income).uif.toFixed(2)}` : "R0.00"}
                 </h3>
 
-                <h2>After Deductions (Net Income)</h2>
+                <h2>
+                    After Deductions (Net Income)
+                    <span className="infoIcon">
+                        <img src={InfoIconImg} alt="info" />
+                        <span className="tooltip">
+                            This is your final income after deductions.
+                        </span>
+                    </span>
+                </h2>
                 <h3 className="balance">
                     {income !== null ? `R${calculateNetIncome(income).net.toFixed(2)}` : "R0.00"}
                 </h3>
@@ -157,7 +180,6 @@ export default function MoneySnapshot() {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                     />
-                    
                     <button onClick={() => {
                         updateIncome(Number(inputValue));
                         clearGoals();
@@ -199,7 +221,6 @@ export default function MoneySnapshot() {
                     <Cell fill="#DC0032" />
                     <Cell fill="#C95326" />
                 </Pie>
-                {/* Tooltip*/}
                 <Tooltip formatter={(value, name) => [`R${value}`, name]} />
                 <Legend
                     formatter={(value) => (
@@ -217,7 +238,15 @@ export default function MoneySnapshot() {
 
     const renderSavingGoals = () => (
         <div className="savingGoals-Box">
-            <h1 className="mainHeading">Saving Goals</h1>
+            <h1 className="mainHeading">
+                Saving Goals
+                <span className="infoIcon">
+                    <img src={InfoIconImg} alt="info" />
+                    <span className="tooltip">
+                        Your monthly saving goals will help you plan future expenses like emergencies or big purchases.
+                    </span>
+                </span>
+            </h1>
             <h3 className="balance">
                 R{goals.reduce((sum, g) => sum + g.amount, 0).toFixed(2)}
             </h3>
@@ -243,12 +272,29 @@ export default function MoneySnapshot() {
                     <button onClick={handleAddGoal}>+</button>
                 </div>
             )}
+
+            <div className="goalList">
+                {goals.map((g, index) => (
+                    <div key={index} className="goalItem">
+                        <p>{g.name}</p>
+                        <p>R{g.amount}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 
     const renderFixedExpenses = () => (
         <div className="fixedExpenses-Box">
-            <h1 className="mainHeading">Fixed Expenses</h1>
+            <h1 className="mainHeading">
+                Fixed Expenses
+                <span className="infoIcon">
+                    <img src={InfoIconImg} alt="info" />
+                    <span className="tooltip">
+                        Fixed expenses are recurring monthly costs like rent, transport and subscriptions.
+                    </span>
+                </span>
+            </h1>
             <h3 className="balance">
                 R{expenses.reduce((sum, e) => sum + e.amount, 0).toFixed(2)}
             </h3>
@@ -274,6 +320,15 @@ export default function MoneySnapshot() {
                     <button onClick={handleAddExpense}>+</button>
                 </div>
             )}
+
+            <div className="goalList">
+                {expenses.map((e, index) => (
+                    <div key={index} className="goalItem">
+                        <p>{e.name}</p>
+                        <p>R{e.amount}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 
@@ -330,7 +385,6 @@ export default function MoneySnapshot() {
 
                 <section className="financeBox-Holder">
                     {isMobile ? (
-                        /*  Wrappers for Mobile Dimensions Only*/
                         <div className="mobilePanel" style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                             {renderIncomeBox()}
                             {renderSavingGoals()}
@@ -338,7 +392,6 @@ export default function MoneySnapshot() {
                             {renderPieChart()}
                         </div>
                     ) : (
-                        /* Wrappers for Tablets, iPads and Laptops */
                         <>
                             <div className="leftPanel">
                                 {renderIncomeBox()}
